@@ -68,7 +68,7 @@ const Form = () => {
           setShowModal(true);
         });
     }
-  }, [id]);
+  }, [id,apiUrl]);
 
   return (
     <>
