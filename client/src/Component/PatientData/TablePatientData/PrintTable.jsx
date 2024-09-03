@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaPrint } from 'react-icons/fa';
 
 const PrintTable = ({ printTableRef }) => {

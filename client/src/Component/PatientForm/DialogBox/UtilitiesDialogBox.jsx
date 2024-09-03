@@ -75,9 +75,6 @@ console.log(apiUrl)
       // :"http://localhost:5001/insert"
       : `${apiUrl}/insert`;
 
-console.log(axiosUrl)
-console.log(formData)
-console.log(userId)
     await axiosMethod(axiosUrl, {
       ...formData,
       userId,
