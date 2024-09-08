@@ -14,7 +14,7 @@ const SignupForm = ({
       <div>
         <h1 className="heading">Signup</h1>
       </div>
-      <form onSubmit={signupSubmitHandler}>
+      <form onSubmit={signupSubmitHandler} style={{width:"33rem"}}>
         <input
           type="text"
           placeholder="Enter your user name"

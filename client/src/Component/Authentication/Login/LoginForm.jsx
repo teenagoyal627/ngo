@@ -15,7 +15,7 @@ const LoginForm = ({
         <h1 className="heading">Login</h1>
       </div>
       <div>
-        <form onSubmit={loginSubmitHandler}>
+        <form onSubmit={loginSubmitHandler} style={{width:"33rem"}}>
           <input
             type="text"
             placeholder="Enter Email address"
