@@ -20,7 +20,6 @@ export  const getImageForPrint = async (RegistrationNo) => {
 
  export const printHandler =async (patient,setSelectedPatient,setShowModal) => {
     try{
-      console.log(patient.ImageUrl)
       // const imageUrl=await getImageForPrint(patient.RegistrationNo)
        const imageUrl=patient.ImageUrl
       setSelectedPatient({...patient,imageUrl});
