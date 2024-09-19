@@ -14,7 +14,7 @@ export  const getImageForPrint = async (RegistrationNo) => {
     if (patientImage) {
       return patientImage.imgUrl;
     } else {
-      return "no OOOmage";
+      return "no Image found";
     }
   };
 
