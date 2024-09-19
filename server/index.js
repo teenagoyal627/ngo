@@ -78,8 +78,8 @@ app.put("/data/:id", (req, res) => {
   
       await formData.save();
       res.status(200).json({ success: true, id: formData._id });
-      console.log(res)
-      console.log(formData)
+      // console.log(res)
+      // console.log(formData)
     } catch (err) {
       console.error("Error occurred: ", err);
       res.status(500).send("Server error");
