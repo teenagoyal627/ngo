@@ -1,0 +1,73 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    color:black;
+      background: linear-gradient(1535deg, #FFFFFF, #008080);
+      padding: 20px;
+      margin-bottom: .1rem;
+      margin-top:2px;
+  }
+  
+  
+  form {
+    width:90rem;
+    background:rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    color:black;
+    
+  }
+  .ngo-heading{
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  .form-row {
+    display: flex;
+    justify-content: space-around;
+  margin-bottom: 13px;
+  }
+  
+  .form-column {
+    width: 32%;
+  }
+  form label {
+    margin-bottom: 5px;
+  }
+  
+  form select{
+    margin-bottom: 23px;
+    margin-top: 0.7rem;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+     width: 100%;
+  
+  }
+ 
+  
+  
+  .brought-by-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .brought-by-container input {
+    width: 480%; 
+  }
+  
+  @media screen and (max-width:1000px) {
+    form {
+      width:40rem;
+    }
+    /* form input {
+      width: 30rem;
+    }    */
+  } 
+  

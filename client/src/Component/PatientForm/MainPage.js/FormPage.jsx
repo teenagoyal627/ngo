@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import OtherPageNavbar from "../../Navbar/OtherPageNavbar";
-import FormFields from "../FormFields/FormFields";
 import {
   handleImageChange,
   formChangeHandler,
@@ -10,7 +9,8 @@ import {
 } from "../Utilities/FormUtilities";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { MessageBox } from "../../MessageBox";
-import '../FormFields/Form.css'
+// import '../FormFields/MainPage/Form.css'
+import FormFields from "../FormFields/MainPage/FormFields";
 
 const Form = () => {
   const { id } = useParams();

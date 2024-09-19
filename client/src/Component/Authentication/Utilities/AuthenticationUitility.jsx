@@ -13,35 +13,29 @@ export const loginSubmitHandler = (
   setModalContent,
   setShowModal
 ) => {
-    try{
-        e.preventDefault();
-        const auth = getAuth();
-        const userId=auth.currentUser.uid
-         console.log(userId)
-        signInWithEmailAndPassword(auth, loginField.email, loginField.password)
-          .then(() => {
-            setModalContent({
-              title: "Success",
-              body: "Successfully Logged In!",
-            });
-            setShowModal(true);
-          })
-          .catch((error) => {
-            setModalContent({
-              title: "Login Error",
-              body: `There is something problem in login: ${error.message}`,
-            });
-            setShowModal(true);
-          });
-    }catch {
-        setModalContent({
-          title: "Login Error",
-          body: "Please signup before login",
-        });
-        setShowModal(true);
-      }
-  
+  e.preventDefault();
+  const auth = getAuth();
+
+  signInWithEmailAndPassword(auth, loginField.email, loginField.password)
+    .then((userCredential) => {
+      const userId = userCredential.user.uid;
+      console.log(userId);
+
+      setModalContent({
+        title: "Success",
+        body: "Successfully Logged In!",
+      });
+      setShowModal(true);
+    })
+    .catch((error) => {
+      setModalContent({
+        title: "Login Error",
+        body: `There is something wrong with login: ${error.message}`,
+      });
+      setShowModal(true);
+    });
 };
+
 
 export const loginGoogleHandler = (setModalContent, setShowModal) => {
   const provider = new GoogleAuthProvider();

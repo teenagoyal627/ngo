@@ -1,0 +1,22 @@
+.subrow-section {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .subrow-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .subrow-table th, .subrow-table td {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .subrow-section h4 {
+    margin-bottom: 10px;
+  }
+  

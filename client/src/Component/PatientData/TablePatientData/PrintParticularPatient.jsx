@@ -1,7 +1,9 @@
-import React from 'react';
+//this is for print each patient data...
+
 import SapnaLogo from '../../Navbar/Logo/SapnaLogo.png';
 
-const PrintModal = ({ selectedPatient, closeModal, showModal }) => {
+const PrintParticularPatient = ({ selectedPatient, closeModal, showModal }) => {
+  console.log(showModal)
   if (!showModal || !selectedPatient) {
     return null;
   }
@@ -205,4 +207,4 @@ const PrintModal = ({ selectedPatient, closeModal, showModal }) => {
   );
 };
 
-export default PrintModal;
+export default PrintParticularPatient;

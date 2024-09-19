@@ -10,15 +10,17 @@ import {
   printHandler,
 } from "../Utilities/PatientDataUtilities";
 import TableFormate from "../TablePatientData/TableFormate";
-import PrintModal from "../TablePatientData/PrintModal";
+import PrintParticularPatient from "../TablePatientData/PrintParticularPatient";
 import FilterData from "../Filter/Filter";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import PrintTable from "../TablePatientData/PrintTable";
-
+import PrintAllPatients from "../TablePatientData/PrintAllPatients";
+import './Loading.css'
 const AllPatientDetails = () => {
   const [patients, setPatients] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [showModal, setShowModal] = useState(false);
+  const[loading,setLoading]=useState(true)
+
 const[userId,setUserId]=useState(null)
   const history = useHistory();
   const printTableRef=useRef(null)
@@ -44,9 +46,11 @@ const[userId,setUserId]=useState(null)
 
         .then((response) => {
           setPatients(response.data);
+          setLoading(false)
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
+          setLoading(false)
         });
     }
    
@@ -57,20 +61,43 @@ const[userId,setUserId]=useState(null)
   return (
     <>
       <OtherPageNavbar />
-      <FilterData patients={patients} setPatients={setPatients} />
-      <PrintTable printTableRef={printTableRef} />
-      <TableFormate
-        patients={patients}
-        editHandler={(id) => editHandler(id, history)}
-        printHandler={(patient) =>printHandler(patient, setSelectedPatient, setShowModal) }
-        deleteHandler={(id) => deleteHandler(id, setPatients)}
-        printRef={printTableRef}
-      />
-      <PrintModal
+      {loading && (
+        <div className="loading-backdrop">
+          <div className="loading-box">
+            <div className="loading-spinner"></div>
+            <div className="loading-text">Please wait, data is loading...</div>
+          </div>
+        </div>
+      )}
+      {!loading && patients.length > 0 && (
+        <>
+          <div className="header-container">
+            <h2 className="header-title">Patient Details</h2>
+            <div className="button-container">
+              <FilterData patients={patients} setPatients={setPatients} />
+              <PrintAllPatients printTableRef={printTableRef} />
+            </div>
+          </div>
+
+{console.log(showModal)}
+          <TableFormate
+            patients={patients}
+            editHandler={(id) => editHandler(id, history)}
+            printHandler={(patient) =>
+              printHandler(patient, setSelectedPatient, setShowModal)
+            }
+            deleteHandler={(id) => deleteHandler(id, setPatients)}
+            printRef={printTableRef}
+          />
+           <PrintParticularPatient
         selectedPatient={selectedPatient}
         closeModal={() => closeModal(setShowModal, setSelectedPatient)}
         showModal={showModal}
       />
+        </>
+      )}
+      
+     
     </>
   );
 };

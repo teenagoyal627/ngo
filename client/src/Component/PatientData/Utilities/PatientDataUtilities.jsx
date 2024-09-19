@@ -21,12 +21,13 @@ export  const getImageForPrint = async (RegistrationNo) => {
 
  export const printHandler =async (patient,setSelectedPatient,setShowModal) => {
     try{
-      const imageUrl=await getImageForPrint(patient.RegistrationNo)
-      // console.log(imageUrl)
+      console.log(patient.ImageUrl)
+      // const imageUrl=await getImageForPrint(patient.RegistrationNo)
+       const imageUrl=patient.ImageUrl
       setSelectedPatient({...patient,imageUrl});
       setShowModal(true);
     }catch(error){
-      console.error("show error ",error)
+      console.error("Error while get the image url ",error)
     }
   };
 

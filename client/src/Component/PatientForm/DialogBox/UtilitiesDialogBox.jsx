@@ -19,7 +19,8 @@ export const dialogBoxSubmitHandler = async (
   userId,
   documents,
   setDocuments,
-  fileInputEvent
+  fileInputEvent,
+  setLoading
 ) => {
   e.preventDefault();
   if (!validateForm(formData)) {
@@ -41,11 +42,12 @@ export const dialogBoxSubmitHandler = async (
     return;
   }
 
-  setModalContent({
-    title: "Processing",
-    body: "It's take few seconds to submit the patients data on database.",
-  });
-  setShowModal(true);
+  setLoading(true)
+  // setModalContent({
+  //   title: "Processing",
+  //   body: "It's take few seconds to submit the patients data on database.",
+  // });
+  // setShowModal(true);
 
   try {
 
@@ -81,12 +83,14 @@ console.log(apiUrl)
       PatientsDocuments: documents,
       ImageUrl: image,
     });
+    setLoading(false)
     setModalContent({
       title: "Success",
       body: "Patient Data successfully submitted.",
     });
     setShowModal(true);
   } catch (error) {
+    setLoading(false)
     setModalContent({
       title: "Error",
       body: `Error saving patient data: ${error.message}`,
@@ -104,8 +108,9 @@ export const dialogBoxConfirm = (
 ) => {
   setShowModal(false);
   if (modalContent.title === "Success") {
-    history.replace("/patientdata");
+    history.replace("/form");
     setFormData({
+      image:"",
       RegistrationNo: "",
       Name: "",
       FatherName: "",
@@ -113,7 +118,12 @@ export const dialogBoxConfirm = (
       Address: "",
       RegistrationDate: "",
       MeanOfTransportation: "",
-      BroughtBy: "",
+      BroughtBy: {
+      Name: "",
+      Address: "",
+      MobileNumber: "",
+      Aadhar: "",
+    },
       PatientCondition: "",
       LanguageKnown: "",
       HospitalDepartment: "",
