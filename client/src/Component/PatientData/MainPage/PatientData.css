@@ -24,14 +24,24 @@
   text-align: center;
 }
 
-.table tbody tr td .icon {
-  font-size: 18px;
-  color: #0c0c0c;
+.icon {
+  font-size: 1.3rem;
+  display: flex;
+  margin: 1.5rem 1rem 0 1rem;
   transition: color 0.3s;
 }
+.edit-icon{
+  color: green;
+}
+.delete-icon{
+  color: red;
+}
+.print-icon{
+  color: blue;
+}
 
-.table tbody tr td .icon:hover {
-  color: #cfa8df;
+.icon:hover {
+  color: #008080;
   cursor: pointer;
 }
 
@@ -39,7 +49,8 @@
   text-align: center;
 }
 
-.table th, .table td {
+.table th,
+.table td {
   border: 1px solid #323131;
   padding: 8px;
 }
@@ -70,13 +81,33 @@
 
 @media print {
   body * {
-      visibility: hidden;
+    visibility: hidden;
   }
 
-  .print-modal-content, .print-modal-content * {
-      visibility: visible;
+  .print-modal-content,
+  .print-modal-content * {
+    visibility: visible;
   }
 }
 
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem;
+  padding: 1rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: white;
+}
 
+.header-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+}
 
+.button-container {
+  display: flex;
+  gap: 1rem;
+}

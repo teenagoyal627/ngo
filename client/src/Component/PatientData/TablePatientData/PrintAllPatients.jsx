@@ -1,6 +1,6 @@
 import { FaPrint } from 'react-icons/fa';
 
-const PrintTable = ({ printTableRef }) => {
+const PrintAllPatients = ({ printTableRef }) => {
   const handlePrint = () => {
     const printWindow = window.open('', '', 'height=600,width=800');
     const printContent = printTableRef.current.innerHTML;
@@ -43,7 +43,7 @@ const PrintTable = ({ printTableRef }) => {
     <button
       type="button"
       className="filter_button"
-      style={{ marginTop: '1.5rem' }}
+      style={{ marginTop: '1rem' }}
       onClick={handlePrint}
     >
       <FaPrint /> Print all Patients Data
@@ -51,4 +51,4 @@ const PrintTable = ({ printTableRef }) => {
   );
 };
 
-export default PrintTable;
+export default PrintAllPatients;

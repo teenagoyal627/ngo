@@ -4,7 +4,10 @@ import { MessageBox } from "../../MessageBox";
 import { dialogBoxSubmitHandler, dialogBoxConfirm } from "./UtilitiesDialogBox";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import axios from "axios";
-
+import { MdDeleteOutline } from "react-icons/md";
+import "./DialogBox.css";
+import documentIcon from "./documentIcon.jpeg";
+import '../../PatientData/MainPage/Loading.css'
 // this code is for check that cookies are get or not means userid is stored in cookies or not......
 // const getCookies = (name) => {
 //   const value = `; ${document.cookie}`;
@@ -15,7 +18,7 @@ import axios from "axios";
 //   return null;
 // };
 
-function DialogBox  ({ formData, setFormData, id, image }) {
+function DialogBox({ formData, setFormData, id, image }) {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({
     title: "",
@@ -24,9 +27,10 @@ function DialogBox  ({ formData, setFormData, id, image }) {
 
   const [documents, setDocuments] = useState([]);
   const [userId, setUserId] = useState(null);
+  const [fileInputEvent, setFileInputEvent] = useState(null);
+ const[loading,setLoading]=useState(false)
   const history = useHistory();
   const auth = getAuth();
-  const [fileInputEvent, setFileInputEvent] = useState(null);
 
   const apiUrl = import.meta.env.VITE_SERVER_URL;
 
@@ -54,23 +58,32 @@ function DialogBox  ({ formData, setFormData, id, image }) {
       if (user) {
         document.cookie = `userId=${user.uid};path=/; max-age=86400 ; SameSite=None; Secure`;
         setUserId(user.uid);
-        // log the stored cookies...
-        // const userIdFromCookies = getCookies("userId");
-        // if (userIdFromCookies) {
-        //   console.log("User ID from cookies:", userIdFromCookies);
-        // } else {
-        //   console.log("User ID is not stored in cookies.");
-        // }
       } else {
         history.replace("/login");
       }
     });
 
     return () => unsubscribe();
-  }, [apiUrl,auth, history, id]);
+  }, [apiUrl, auth, history, id]);
 
   const handleDocumentChange = (e) => {
     setFileInputEvent(e);
+
+    const files = Array.from(e.target.files);
+    const fileDetails = files.map((file) => ({
+      name: file.name,
+      size: (file.size / 1024).toFixed(2) + " KB",
+      type: file.type,
+      file: file,
+    }));
+    setDocuments((prevDocuments) => [...prevDocuments, ...fileDetails]);
+    console.log(documents)
+  };
+
+  const handleRemoveDocument = (indexToRemove) => {
+    setDocuments((prevDocuments) =>
+      prevDocuments.filter((_, index) => index !== indexToRemove)
+    );
   };
 
   const handleClick = async (e) => {
@@ -85,34 +98,69 @@ function DialogBox  ({ formData, setFormData, id, image }) {
       userId,
       documents,
       setDocuments,
-      fileInputEvent
+      fileInputEvent,
+      setLoading
     );
   };
 
   return (
     <React.Fragment>
-      <label>Upload Documents</label>
-      <ul>
-        {documents.length > 0 ? (
-          documents.map((doc, index) => (
-            <li key={index}>
-              <a href={doc} target="_blank" rel="noopener noreferrer">
-                Document {index + 1}
-              </a>
-            </li>
-          ))
-        ) : (
-          <p>No documents uploaded yet.</p>
-        )}
-      </ul>
+    {loading && (
+  <div className="loading-backdrop">
+    <div className="loading-box">
+      <div className="loading-spinner"></div>
+      <div className="loading-text">Please wait, data is being submitted...</div>
+    </div>
+  </div>
+)}
+      <div className="upload-container">
+        <label htmlFor="fileUpload" className="upload-label">
+          Upload Documents
+        </label>
+        <div className="file-upload-box">
+          <input
+            type="file"
+            id="fileUpload"
+            multiple
+            accept=".pdf,.jpg,.jpeg,.png"
+            onChange={handleDocumentChange}
+            className="file-input"
+          />
+          <label htmlFor="fileUpload" className="file-upload-button">
+            Choose Files
+          </label>
+        </div>
+      </div>
+      {documents.length > 0 && (
+        <div>
+          <label>Uploaded Documents</label>
+          <ul className="documents-container">
+            {documents.map((doc, index) => (
+              <li key={index} className="document-preview">
+                <div className="document-row">
+                  <img src={documentIcon} alt="" />
+                  <a href={doc} target="_blank" rel="noopener noreferrer">
+                    {doc.name}
+                  </a>
+                </div>
+                <div className="document-info">
+                  <span className="file-size">{doc.size}</span>
+                  <span
+                    className="delete-icon"
+                    onClick={() => handleRemoveDocument(index)}
+                  >
+                    <MdDeleteOutline />
+                  </span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
-      <input
-        type="file"
-        multiple
-        accept=".pdf,.jpg,.jpeg,.png"
-        onChange={handleDocumentChange}
-      />
-      <button onClick={handleClick}>Submit</button>
+      <button className="submitButton" onClick={handleClick}>
+        Submit
+      </button>
 
       <MessageBox
         showModal={showModal}
@@ -125,6 +173,6 @@ function DialogBox  ({ formData, setFormData, id, image }) {
       />
     </React.Fragment>
   );
-};
+}
 
 export default DialogBox;

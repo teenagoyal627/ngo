@@ -1,11 +1,11 @@
 .filter_button {
   color: rgb(4, 4, 4);
   padding: 10px 20px;
-  margin: 3rem 0 0 45rem;
+  margin: 1rem 0 0 5rem;
   border: 1px solid black;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
-  width: 30rem;
+  width: 15rem;
   transition: background-color 0.3s;
 }
 
