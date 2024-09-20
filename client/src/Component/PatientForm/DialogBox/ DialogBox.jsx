@@ -75,9 +75,9 @@ function DialogBox({ formData, setFormData, id, image }) {
       size: (file.size / 1024).toFixed(2) + " KB",
       type: file.type,
       file: file,
+      previewUrl: URL.createObjectURL(file)
     }));
-    setDocuments((prevDocuments) => [...prevDocuments, ...fileDetails]);
-    console.log(documents)
+    setDocuments(fileDetails);
   };
 
   const handleRemoveDocument = (indexToRemove) => {
