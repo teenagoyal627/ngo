@@ -166,7 +166,7 @@ function DialogBox({ formData, setFormData, id, image }) {
         showModal={showModal}
         handleClose={() => setShowModal(false)}
         handleConfirm={(e) =>
-          dialogBoxConfirm(setShowModal, modalContent, history, setFormData, e)
+          dialogBoxConfirm(setShowModal, modalContent, history, setFormData, e,id,formData)
         }
         title={modalContent.title}
         body={modalContent.body}

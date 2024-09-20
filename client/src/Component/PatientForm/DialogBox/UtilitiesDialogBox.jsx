@@ -1,6 +1,8 @@
 import axios from "axios";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../Firebase";
+import PrintParticularPatient from "../../PatientData/TablePatientData/PrintParticularPatient";
+import ShowPatientData from "./ShowPatientData";
 
 export const validateForm = (formData) => {
   if (!formData.RegistrationNo) {
@@ -89,6 +91,11 @@ console.log(apiUrl)
       body: "Patient Data successfully submitted.",
     });
     setShowModal(true);
+    console.log(id)
+
+    const newTabUrl=`http://ngoPatientData/patient/${id}`;
+    window.open(newTabUrl,'_blank')
+  
   } catch (error) {
     setLoading(false)
     setModalContent({
@@ -104,7 +111,8 @@ export const dialogBoxConfirm = (
   modalContent,
   history,
   setFormData,
-  e
+  e,
+  id,
 ) => {
   setShowModal(false);
   if (modalContent.title === "Success") {
@@ -136,6 +144,8 @@ export const dialogBoxConfirm = (
       AadharNumber: "",
       ImageUrl: "",
     });
+
+    
   } else {
     e.preventDefault();
     history.replace("/form");

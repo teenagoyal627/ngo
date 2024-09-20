@@ -1,16 +1,20 @@
 //this is for print each patient data...
 
-import SapnaLogo from '../../Navbar/Logo/SapnaLogo.png';
+import SapnaLogo from "../../Navbar/Logo/SapnaLogo.png";
 
-const PrintParticularPatient = ({ selectedPatient, closeModal, showModal }) => {
-  console.log(showModal)
+const PrintParticularPatient = ({ 
+  selectedPatient, 
+  closeModal, 
+  showModal 
+}) => {
+  console.log(showModal);
   if (!showModal || !selectedPatient) {
     return null;
   }
 
   const handlePrint = () => {
-    const printWindow = window.open('', '', 'height=600,width=800');
-    const printContent = document.getElementById('printable-content').innerHTML;
+    const printWindow = window.open("", "", "height=600,width=800");
+    const printContent = document.getElementById("printable-content").innerHTML;
     printWindow.document.open();
     printWindow.document.write(`
       <html>
@@ -39,7 +43,11 @@ const PrintParticularPatient = ({ selectedPatient, closeModal, showModal }) => {
         <body>
           <div id="printable-content">
             <img src="${SapnaLogo}" alt="logo of ngo" style="width: 100px; height: auto;" />
-            <h1>Aandam-Home for the homeless (${selectedPatient.AnandamCenter ? selectedPatient.AnandamCenter : "No "})</h1>
+            <h1>Aandam-Home for the homeless (${
+              selectedPatient.AnandamCenter
+                ? selectedPatient.AnandamCenter
+                : "No "
+            })</h1>
             ${printContent}
           </div>
         </body>
@@ -78,13 +86,13 @@ const PrintParticularPatient = ({ selectedPatient, closeModal, showModal }) => {
           }}
         >
           <div className="modal-header">
-            <img
-              src={SapnaLogo}
-              alt="logo of ngo"
-              className="logo-image1"
-            />
+            <img src={SapnaLogo} alt="logo of ngo" className="logo-image1" />
             <h1 className="modal-title fs-5" id="exampleModalLabel">
-              Aandam-Home for the homeless ({selectedPatient.AnandamCenter ? selectedPatient.AnandamCenter : "No "})
+              Aandam-Home for the homeless (
+              {selectedPatient.AnandamCenter
+                ? selectedPatient.AnandamCenter
+                : "No "}
+              )
             </h1>
             <button
               type="button"
@@ -103,10 +111,10 @@ const PrintParticularPatient = ({ selectedPatient, closeModal, showModal }) => {
                       <img
                         src={selectedPatient.ImageUrl}
                         alt="Patient"
-                        style={{ width: '100px', height: '100px' }}
+                        style={{ width: "100px", height: "100px" }}
                       />
                     ) : (
-                      'No Image Available'
+                      "No Image Available"
                     )}
                   </td>
                 </tr>
@@ -140,7 +148,11 @@ const PrintParticularPatient = ({ selectedPatient, closeModal, showModal }) => {
                 </tr>
                 <tr>
                   <td>Brought By:</td>
-                  <td>{`${selectedPatient.BroughtBy?.Name || "..."}, ${selectedPatient.BroughtBy?.Address || "..."}, ${selectedPatient.BroughtBy?.MobileNumber || "..."}, ${selectedPatient.BroughtBy?.Aadhar || "..."}`}</td>
+                  <td>{`${selectedPatient.BroughtBy?.Name || "..."}, ${
+                    selectedPatient.BroughtBy?.Address || "..."
+                  }, ${selectedPatient.BroughtBy?.MobileNumber || "..."}, ${
+                    selectedPatient.BroughtBy?.Aadhar || "..."
+                  }`}</td>
                 </tr>
                 <tr>
                   <td>Patient Condition:</td>

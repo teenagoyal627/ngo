@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import FrontPage from "./Component/FrontPage/FrontPage";
 import AllPatientDetails from "./Component/PatientData/MainPage/PatientDetails";
 import PageAfterLogin from "./Component/FrontPage/PageAfterLogin";
+import ShowPatientData from "./Component/PatientForm/DialogBox/ShowPatientData";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
           <Route path="/" exact>
             <FrontPage />
           </Route>
+          <Route path="/patient/:id" component={ShowPatientData}/>
           <Route path="/form/:id?" component={Form} />
           <Route path="/login" component={Login} />
           <Route path="/signup" component={Signup} />
