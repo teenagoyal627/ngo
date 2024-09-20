@@ -51,6 +51,8 @@ export const dialogBoxSubmitHandler = async (
 
   try {
 
+    let uploadedDocumentUrls=[]
+
     if(fileInputEvent){
       const files = Array.from(fileInputEvent.target.files);
       if (files.length > 0) {
@@ -60,13 +62,12 @@ export const dialogBoxSubmitHandler = async (
           const uploadedDocument = ref(storage, folderPath + uniqueFileName);
           return uploadBytes(uploadedDocument, file).then((snapshot) =>
             getDownloadURL(snapshot.ref)
-          );
+          ).then((url)=>({
+            name:file.name,
+            url:url
+          }))
         });
-  
-        const urls = await Promise.all(uploadPromises);
-        setDocuments((prevDocuments) => [...prevDocuments, ...urls]);
-  
-        documents = [...documents, ...urls];
+  uploadedDocumentUrls=await Promise.all(uploadPromises)
       }
     }
 const apiUrl = import.meta.env.VITE_SERVER_URL;
@@ -80,7 +81,7 @@ console.log(apiUrl)
     await axiosMethod(axiosUrl, {
       ...formData,
       userId,
-      PatientsDocuments: documents,
+      PatientsDocuments:uploadedDocumentUrls.map(doc => doc.url), 
       ImageUrl: image,
     });
     setLoading(false)
