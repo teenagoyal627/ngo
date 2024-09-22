@@ -18,95 +18,92 @@ connectDB()
 
 app.put("/data/:id", async (req, res) => {
   const id = req.params.id;
-
   try {
-    // Find the existing user data
-    const existingUser = await User.findById(id);
-
+    const existingUser = await User.findById(id).lean();
     if (!existingUser) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    // Prepare the updated data by retaining the old documents if none are provided in the request
     const updatedData = {
-      ...req.body, // Spread all the new values from the request body
+      ...req.body, 
       PatientsDocuments: req.body.PatientsDocuments && req.body.PatientsDocuments.length > 0
-        ? req.body.PatientsDocuments  // If new documents are provided, use them
-        : existingUser.PatientsDocuments // Otherwise, retain the old documents
+        ? req.body.PatientsDocuments  
+        : existingUser.PatientsDocuments 
     };
-
-    // Update the user with the merged data
     const updatedUser = await User.findByIdAndUpdate(id, updatedData, { new: true });
-
     res.json(updatedUser);
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-// app.put("/data/:id", (req, res) => {
-//     const id = req.params.id;
-//     User.findByIdAndUpdate(id, req.body, { new: true })
-//       .then((updatedUser) => res.json(updatedUser))
-//       .catch((err) => {
-//         res.status(400).json(err);
-//       });
-//   });
+  // app.post("/insert", async (req, res) => {
+  //   try {
+  //     const {
+  //       userId,
+  //       RegistrationNo,
+  //       Name,
+  //       FatherName,
+  //       Gender,
+  //       Address,
+  //       RegistrationDate,
+  //       MeanOfTransportation,
+  //       BroughtBy,
+  //       PatientCondition,
+  //       LanguageKnown,
+  //       HospitalDepartment,
+  //       AnandamCenter,
+  //       SentToHome,
+  //       OPD,
+  //       InmateNumber,
+  //       IONumber,
+  //       IOName,
+  //       AadharNumber,
+  //       ImageUrl,
+  //       PatientsDocuments,
+  //     } = req.body;
   
+  //     const formData = new User({
+  //       UserId: userId,
+  //       RegistrationNo,
+  //       Name,
+  //       FatherName,
+  //       Gender,
+  //       Address,
+  //       RegistrationDate,
+  //       MeanOfTransportation,
+  //       BroughtBy,
+  //       PatientCondition,
+  //       LanguageKnown,
+  //       HospitalDepartment,
+  //       AnandamCenter,
+  //       SentToHome,
+  //       OPD,
+  //       InmateNumber,
+  //       IONumber,
+  //       IOName,
+  //       AadharNumber,
+  //       ImageUrl,
+  //       PatientsDocuments,
+  //     });
+  
+  //     await formData.save();
+  //     res.status(200).json({ success: true, id: formData._id });
+  //     console.log(res)
+  //     console.log(formData)
+  //   } catch (err) {
+  //     console.error("Error occurred: ", err);
+  //     res.status(500).send("Server error");
+  //   }
+  // });
+
+
   app.post("/insert", async (req, res) => {
     try {
-      const {
-        userId,
-        RegistrationNo,
-        Name,
-        FatherName,
-        Gender,
-        Address,
-        RegistrationDate,
-        MeanOfTransportation,
-        BroughtBy,
-        PatientCondition,
-        LanguageKnown,
-        HospitalDepartment,
-        AnandamCenter,
-        SentToHome,
-        OPD,
-        InmateNumber,
-        IONumber,
-        IOName,
-        AadharNumber,
-        ImageUrl,
-        PatientsDocuments,
-      } = req.body;
-  
-      const formData = new User({
-        UserId: userId,
-        RegistrationNo,
-        Name,
-        FatherName,
-        Gender,
-        Address,
-        RegistrationDate,
-        MeanOfTransportation,
-        BroughtBy,
-        PatientCondition,
-        LanguageKnown,
-        HospitalDepartment,
-        AnandamCenter,
-        SentToHome,
-        OPD,
-        InmateNumber,
-        IONumber,
-        IOName,
-        AadharNumber,
-        ImageUrl,
-        PatientsDocuments,
-      });
+      const formData = new User(req.body); 
   
       await formData.save();
       res.status(200).json({ success: true, id: formData._id });
-      console.log(res)
-      console.log(formData)
     } catch (err) {
       console.error("Error occurred: ", err);
       res.status(500).send("Server error");
