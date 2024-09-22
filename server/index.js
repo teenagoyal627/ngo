@@ -16,15 +16,42 @@ app.use(bodyParser.urlencoded({limit:"500mb",extended:true}))
 // this contains the mongoatlas uri
 connectDB()
 
+app.put("/data/:id", async (req, res) => {
+  const id = req.params.id;
 
-app.put("/data/:id", (req, res) => {
-    const id = req.params.id;
-    User.findByIdAndUpdate(id, req.body, { new: true })
-      .then((updatedUser) => res.json(updatedUser))
-      .catch((err) => {
-        res.status(400).json(err);
-      });
-  });
+  try {
+    // Find the existing user data
+    const existingUser = await User.findById(id);
+
+    if (!existingUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Prepare the updated data by retaining the old documents if none are provided in the request
+    const updatedData = {
+      ...req.body, // Spread all the new values from the request body
+      PatientsDocuments: req.body.PatientsDocuments && req.body.PatientsDocuments.length > 0
+        ? req.body.PatientsDocuments  // If new documents are provided, use them
+        : existingUser.PatientsDocuments // Otherwise, retain the old documents
+    };
+
+    // Update the user with the merged data
+    const updatedUser = await User.findByIdAndUpdate(id, updatedData, { new: true });
+
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+// app.put("/data/:id", (req, res) => {
+//     const id = req.params.id;
+//     User.findByIdAndUpdate(id, req.body, { new: true })
+//       .then((updatedUser) => res.json(updatedUser))
+//       .catch((err) => {
+//         res.status(400).json(err);
+//       });
+//   });
   
   app.post("/insert", async (req, res) => {
     try {
