@@ -10,6 +10,9 @@ const ModalFilter = ({
   filterHandler,
 }) => {
   return (
+    <>
+      <div className="modal-backdrop"></div>
+   
     <div
       className="modal fade show"
       style={{ display: 'block' }}
@@ -91,7 +94,10 @@ const ModalFilter = ({
         </div>
       </div>
     </div>
-  );
+  
+</>
+
+);
 };
 
 export default ModalFilter;

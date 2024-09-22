@@ -5,14 +5,14 @@
     justify-content: center;
     min-height: 100vh;
     color:black;
-      background: linear-gradient(1535deg, #FFFFFF, #008080);
+      /* background: linear-gradient(1535deg, #FFFFFF, #008080); */
       padding: 20px;
       margin-bottom: .1rem;
       margin-top:2px;
   }
   
   
-  form {
+  /* form {
     width:90rem;
     background:rgba(255, 255, 255, 0.2);
     padding: 20px;
@@ -21,7 +21,7 @@
     flex-direction: column;
     color:black;
     
-  }
+  } */
   .ngo-heading{
     text-align: center;
     font-size: 2rem;
@@ -62,12 +62,5 @@
     width: 480%; 
   }
   
-  @media screen and (max-width:1000px) {
-    form {
-      width:40rem;
-    }
-    /* form input {
-      width: 30rem;
-    }    */
-  } 
+
   

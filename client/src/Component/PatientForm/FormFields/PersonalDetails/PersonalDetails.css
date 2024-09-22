@@ -1,15 +1,4 @@
-.personal-detail-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px;
-  margin-top: 4rem;
-  background: rgba(255, 255, 255, 0.2);
-  color: black;
-  width: 90rem;
-  margin-left: 15rem;
-  border-radius: 1rem;
-}
+
 
 .personal-details-heading {
   text-align: center;
@@ -19,7 +8,7 @@
 
 .personalForm {
   display: flex;
-  width: 90rem;
+  width: 65rem;
   flex-direction: row;
   margin-left: 1rem;
 }
@@ -50,7 +39,7 @@
 }
 .image-preview {
   max-width: 100%;
-  border-radius: 30px;
+  border-radius: 10px;
   padding: 1rem;
 }
 .overlay {
@@ -88,11 +77,59 @@
 }
 
 .form-column select {
-  width: 28rem;
+  width: 18rem;
   padding: 0.5rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box; /* This makes sure padding is included in width */
+  box-sizing: border-box; 
 }
 
-/* cdfsdfjaskdfja */
+.form-column input{
+width: 28rem;
+}
+  
+@media screen and (max-width:1500px) {
+  .personalForm {
+    width: 55rem;
+    margin-left: .1rem;
+  }
+
+  .image-upload-box {
+    margin-left: 1rem;
+    max-width: 170px;
+  }
+
+  .image-preview {
+    max-width: 100%;
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  
+}
+
+@media screen and (min-width:100px) and (max-width:1000px) {
+  .personalForm {
+    width: 18rem;
+    margin-left: .1rem;
+    flex-direction: column;
+
+  }
+  .form-row {
+    display: flex;
+    flex-direction: column;
+
+  }
+  .leftSide-section{
+    margin-left: 2rem;
+  }
+  .right-section{
+    margin-top: 1rem;
+  }
+  .form-column select {
+    width: 18rem;
+  }
+ 
+  
+}
+
+

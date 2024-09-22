@@ -1,11 +1,10 @@
-import FrontPageNavbar from "../Navbar/FrontPageNavbar";
 import TextFrontPage from "./TextFrontPage";
-
+import FrontPageNavbar from '../../Navbar/FrontPageNavbar'
 const FrontPage = () => {
   return (
     <div>
-      <FrontPageNavbar />
-      <TextFrontPage />
+   <FrontPageNavbar/>
+     <TextFrontPage/>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { FaPrint } from 'react-icons/fa';
 
 const PrintAllPatients = ({ printTableRef }) => {

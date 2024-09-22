@@ -1,11 +1,10 @@
-import './FrontPage.css'
+import '../FrontPage.css'
 import { Link } from "react-router-dom";
 
-const TextFrontPage = () => {
+const TextAfterLogin = () => {
   return (
     <div>
        <header>
-       
         <div className="header-section flex container">
           <div className="header-left">
             <h1>Dedicated to Serving Those in Need</h1>
@@ -17,7 +16,7 @@ const TextFrontPage = () => {
             </p>
             <button className="GetStartButton">
               <Link
-                to="/signup"
+                to="/form"
                 style={{ textDecoration: "none"}}
               >
                 Get Started
@@ -78,7 +77,7 @@ const TextFrontPage = () => {
         </div>
       </section>
 
-      <section className="cta-section" style={{marginLeft:"5rem",marginRight:"5rem"}}>
+      <section className="cta-section">
   <div className="container flex cta-section-container">
     {/* <h2 style={{ color: "white" }}>Join Us in Making a Difference</h2> */}
     <div className="card">
@@ -87,22 +86,22 @@ const TextFrontPage = () => {
         <p className="card-text">
           Our system allows you to manage patient information efficiently. You can
           record details such as name, fathers name, arrival date, referring hospital,
-          and more. Click the Signup button to get started and make an impact today.
+          and more.
         </p>
         <button className="GetStartButton" style={{marginRight:"3rem"}}>
           <Link
-            to="/signup"
-            style={{  textDecoration: "none" }}
+            to="/form"
+            style={{ textDecoration: "none" }}
           >
-            Signup
+            Fill Patients Details
           </Link>
         </button>
         <button className="GetStartButton" style={{marginRight:"3rem"}}>
           <Link
-            to="/login"
-            style={{ textDecoration: "none" }}
+            to="/patientdata"
+            style={{textDecoration: "none" }}
           >
-            Login
+            See Patients Details
           </Link>
         </button>
       </div>
@@ -116,4 +115,4 @@ const TextFrontPage = () => {
   )
 }
 
-export default TextFrontPage
+export default TextAfterLogin

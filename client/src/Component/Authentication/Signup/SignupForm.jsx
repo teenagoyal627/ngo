@@ -14,7 +14,7 @@ const SignupForm = ({
       <div>
         <h1 className="heading">Signup</h1>
       </div>
-      <form onSubmit={signupSubmitHandler}>
+      <div onSubmit={signupSubmitHandler}>
         <input
           type="text"
           placeholder="Enter your user name"
@@ -68,7 +68,7 @@ const SignupForm = ({
             Login
           </Link>
         </h5>
-      </form>
+      </div>
     </div>
   );
 };

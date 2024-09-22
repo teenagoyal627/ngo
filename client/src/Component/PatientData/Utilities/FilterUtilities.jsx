@@ -50,12 +50,8 @@ export const filterHandler = async (
       userId
     });
     const filteredData = response.data;
+   
     if (filteredData.length > 0) {
-      setModalContent({
-        title: "Success",
-        body: "Patients are successfully filtered.",
-      });
-      setShowModal(true);
       setShowFilterModal(false);
       setPatients(response.data);
       handleClose(setFilters)

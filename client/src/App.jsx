@@ -4,10 +4,10 @@ import Login from "./Component/Authentication/Login/Login";
 import Signup from "./Component/Authentication/Signup/Signup";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import FrontPage from "./Component/FrontPage/FrontPage";
 import AllPatientDetails from "./Component/PatientData/MainPage/PatientDetails";
-import PageAfterLogin from "./Component/FrontPage/PageAfterLogin";
 import ShowPatientData from "./Component/PatientForm/DialogBox/ShowPatientData";
+import FrontPage from "./Component/FrontPage/BeforeLogin/FrontPage";
+import PageAfterLogin from "./Component/FrontPage/AfterLogin/PageAfterLogin";
 
 const App = () => {
   return (
@@ -15,7 +15,7 @@ const App = () => {
       <div>
         <Switch>
           <Route path="/" exact>
-            <FrontPage />
+          <FrontPage/>
           </Route>
           <Route path="/patient/:id" component={ShowPatientData}/>
           <Route path="/form/:id?" component={Form} />

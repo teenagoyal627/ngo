@@ -10,7 +10,7 @@ const FrontPageNavbar = () => {
 
         <Link to='/' className='logo-link'>
           <img src={SapnaLogo} alt='logo of ngo' className='logo-image' />
-          <h3 className='ngo-name'>Anandam-home for the homeless</h3>
+          <h3 className='ngo-name'>Anandam Home For The Homeless</h3>
         </Link> 
       </div>
       <nav>

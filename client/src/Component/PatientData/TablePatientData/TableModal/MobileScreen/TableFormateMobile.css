@@ -1,0 +1,109 @@
+.patient-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    margin-bottom: 1rem;
+  }
+  
+  .patient-card > div {
+    margin-bottom: 0.5rem;
+  }
+  
+  .patient-card img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .icon {
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  @media (min-width: 768px) {
+    .patient-card {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+  
+
+  .patient-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    background-color: #f9f9f9;
+  }
+  
+  .patient-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e9ecef;
+  }
+  
+  .patient-row:last-child {
+    border-bottom: none;
+  }
+  
+  .patient-row strong {
+    margin-right: 10px;
+    width: 50%;
+    text-align: left;
+  }
+  
+  .patient-row span {
+    width: 50%;
+    text-align: left;
+  }
+  
+  .icon {
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+
+  .patient-card {
+    border: 1px solid #323131; /* Match table border */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 0.5rem;
+    background-color: #fff; /* Background color for clarity */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .patient-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0; /* Space between rows */
+    border-bottom: 1px solid #323131; /* Horizontal separation line */
+  }
+  
+  .patient-row:last-child {
+    border-bottom: none; /* Remove border from last row */
+  }
+  
+  .patient-row strong {
+    margin-right: 10px; /* Space between key and value */
+  }
+  
+  .table-responsive {
+    margin: 20px;
+    overflow-x: auto;
+    padding: 20px;
+  }
+  .patient-row {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #323131; /* Horizontal separation line */
+  }
+  
+  .vertical-separator {
+    width: 1px; /* Width of the vertical line */
+    height: 20px; /* Height of the line, adjust as needed */
+    background-color: #323131; /* Color of the line */
+    margin: 0 10px; /* Space around the line */
+  }
+  

@@ -1,8 +1,8 @@
 import axios from "axios";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../../Firebase";
-import PrintParticularPatient from "../../PatientData/TablePatientData/PrintParticularPatient";
-import ShowPatientData from "./ShowPatientData";
+// import PrintParticularPatient from "../../PatientData/TablePatientData/PrintParticularPatient";
+// import ShowPatientData from "./ShowPatientData";
 
 export const validateForm = (formData) => {
   if (!formData.RegistrationNo) {
@@ -45,14 +45,8 @@ export const dialogBoxSubmitHandler = async (
   }
 
   setLoading(true)
-  // setModalContent({
-  //   title: "Processing",
-  //   body: "It's take few seconds to submit the patients data on database.",
-  // });
-  // setShowModal(true);
-
   try {
-    let uploadedDocumentUrls = [];
+    let uploadedDocumentData = [];
     if(fileInputEvent){
       const files = Array.from(fileInputEvent.target.files);
       if (files.length > 0) {
@@ -64,11 +58,13 @@ export const dialogBoxSubmitHandler = async (
             getDownloadURL(snapshot.ref)
         ).then((url) => ({
           name: file.name,
-          url: url
+          url: url,
+          size: (file.size / 1024).toFixed(2) + " KB",
         }));
       });
 
-      uploadedDocumentUrls = await Promise.all(uploadPromises);
+      uploadedDocumentData = await Promise.all(uploadPromises);
+       console.log(uploadedDocumentData)
     }
   }
 const apiUrl = import.meta.env.VITE_SERVER_URL;
@@ -82,7 +78,8 @@ console.log(apiUrl)
     await axiosMethod(axiosUrl, {
       ...formData,
       userId,
-      PatientsDocuments: uploadedDocumentUrls.map(doc => doc.url), 
+      PatientsDocuments:uploadedDocumentData,
+      // PatientsDocuments: uploadedDocumentData.map(doc => doc.url), 
       ImageUrl: image,
     });
     setLoading(false)

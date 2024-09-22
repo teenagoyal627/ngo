@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { MessageBox } from "../../MessageBox";
@@ -40,6 +41,7 @@ function DialogBox({ formData, setFormData, id, image }) {
       axios
         .get(`${apiUrl}/data/${id}`)
         .then((response) => {
+          console.log("pd",response.data.PatientsDocuments)
           if (response.data.PatientsDocuments) {
             setDocuments(response.data.PatientsDocuments);
           }

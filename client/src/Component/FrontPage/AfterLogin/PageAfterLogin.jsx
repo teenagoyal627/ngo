@@ -1,10 +1,9 @@
-import OtherPageNavbar from '../Navbar/OtherPageNavbar'
 import TextAfterLogin from './TextAfterLogin'
-
+import OtherPageNavbar from '../../Navbar/OtherPageNavbar'
 const PageAfterLogin = () => {
   return (
     <div>
-      <OtherPageNavbar/>
+     <OtherPageNavbar/>
       <TextAfterLogin/>
     </div>
   )

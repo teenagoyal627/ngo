@@ -1,0 +1,94 @@
+.modal-backdrop{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+}
+
+  .logo-image1 {
+    height: 30px;
+    margin-right: 10px;
+  }
+  
+  .modal-body {
+    font-size: 1rem;
+  }
+  
+  .print-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .print-table td {
+    padding: 5px;
+    border: 1px solid rgb(12, 11, 11);
+  }
+  .print-box{
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 210mm;
+      min-height: 197mm;
+      box-sizing: border-box;
+      background: white;
+      margin-left: 1rem;
+
+  }
+  .modal-dialog{
+    margin-left: 38rem;
+    margin-top: 2rem;
+  }
+
+  .modal-title{
+    font-size: 1.5rem;
+    margin-left: 1rem;
+  }
+  
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+  
+    .print-modal-content,
+    .print-modal-content * {
+      visibility: visible;
+    }
+  }
+  @media screen and (max-width:1500px) {
+
+    .modal-dialog{
+      margin-left: 10rem;
+    }
+    .print-box{
+      width: 150mm;
+      min-height: 197mm;
+  }
+  .modal-title{
+    font-size: 1.2rem;
+  }
+  }
+
+  @media screen and (max-width:360px) {
+    .print-table {
+      width: 50%;
+      border-collapse: collapse;
+    }
+    .print-table td {
+      padding: 3px;
+      border: 1px solid rgb(12, 11, 11);
+    }
+    .print-box{
+      width: 75mm;
+      min-height: 197mm;
+  }
+  .modal-dialog{
+    margin-left: 1.5rem;
+  }
+  .modal-title{
+    font-size: 1rem;
+    width: 9rem;
+  }
+  }

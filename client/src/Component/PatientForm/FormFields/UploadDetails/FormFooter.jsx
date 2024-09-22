@@ -1,11 +1,12 @@
 import React from 'react'
 import DialogBox from "../../DialogBox/ DialogBox";
 import './UploadSection.css'
+import Card from '../../../UI/Card';
 const FormFooter = ({formData,setFormData,image,id}) => {
   return (
    
-    <div className="form-container1">
-    <div className='footerButton'>
+    <Card>
+    <div>
       <DialogBox
           formData={formData}
           setFormData={setFormData}
@@ -13,7 +14,7 @@ const FormFooter = ({formData,setFormData,image,id}) => {
           image={image}
         />
       </div>
-    </div>
+    </Card>
   )
 }
 

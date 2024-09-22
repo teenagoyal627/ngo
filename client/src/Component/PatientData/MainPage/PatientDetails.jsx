@@ -1,41 +1,50 @@
-import  { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import "./PatientData.css";
 import OtherPageNavbar from "../../Navbar/OtherPageNavbar";
+import FilterData from "../Filter/Filter";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import PrintParticularPatient from "../TablePatientData/PrintModal/PrintParticularPatient";
+import "./Loading.css";
+import "./PatientData.css";
 import {
   closeModal,
   deleteHandler,
   editHandler,
   printHandler,
 } from "../Utilities/PatientDataUtilities";
-import TableFormate from "../TablePatientData/TableFormate";
-import PrintParticularPatient from "../TablePatientData/PrintParticularPatient";
-import FilterData from "../Filter/Filter";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import PrintAllPatients from "../TablePatientData/PrintAllPatients";
-import './Loading.css'
+import TableFormateMobileScreen from "../TablePatientData/TableModal/MobileScreen/TableFormateMobileScreen";
+import TableFormateFullScreen from "../TablePatientData/TableModal/FullScreen/TableFormateFullScreen";
+
 const AllPatientDetails = () => {
   const [patients, setPatients] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const[loading,setLoading]=useState(true)
-
-const[userId,setUserId]=useState(null)
+  const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+  const [userId, setUserId] = useState(null);
   const history = useHistory();
-  const printTableRef=useRef(null)
+  const printTableRef = useRef(null);
   const auth = getAuth();
 
   useEffect(() => {
-    const unsubscribe=onAuthStateChanged(auth,(user)=>{
-      if(user){
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.addEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
         document.cookie = `userId=${user.uid};path=/; max-age=86400; SameSite=None; Secure`;
+      } else {
+        console.log("error in storeing the cookies");
       }
-      else{
-        console.log("error in storeing the cookies")
-      }
-      setUserId(user.uid)
-    })
+      setUserId(user.uid);
+    });
     const apiUrl = import.meta.env.VITE_SERVER_URL;
 
     if (userId) {
@@ -46,17 +55,16 @@ const[userId,setUserId]=useState(null)
 
         .then((response) => {
           setPatients(response.data);
-          setLoading(false)
+          setLoading(false);
         })
         .catch((error) => {
           console.error("Error fetching data:", error);
-          setLoading(false)
+          setLoading(false);
         });
     }
-   
-    return()=>unsubscribe
 
-  }, [auth,userId]);
+    return () => unsubscribe;
+  }, [auth, userId]);
 
   return (
     <>
@@ -75,29 +83,38 @@ const[userId,setUserId]=useState(null)
             <h2 className="header-title">Patient Details</h2>
             <div className="button-container">
               <FilterData patients={patients} setPatients={setPatients} />
-              <PrintAllPatients printTableRef={printTableRef} />
             </div>
           </div>
 
-{console.log(showModal)}
-          <TableFormate
-            patients={patients}
-            editHandler={(id) => editHandler(id, history)}
-            printHandler={(patient) =>
-              printHandler(patient, setSelectedPatient, setShowModal)
-            }
-            deleteHandler={(id) => deleteHandler(id, setPatients)}
-            printRef={printTableRef}
+          {isMobile ? (
+            <TableFormateMobileScreen
+              patients={patients}
+              editHandler={(id) => editHandler(id, history)}
+              printHandler={(patient) =>
+                printHandler(patient, setSelectedPatient, setShowModal)
+              }
+              deleteHandler={(id) => deleteHandler(id, setPatients)}
+              printRef={printTableRef}
+            />
+          ) : (
+            <TableFormateFullScreen
+              patients={patients}
+              editHandler={(id) => editHandler(id, history)}
+              printHandler={(patient) =>
+                printHandler(patient, setSelectedPatient, setShowModal)
+              }
+              deleteHandler={(id) => deleteHandler(id, setPatients)}
+              printRef={printTableRef}
+            />
+          )}
+
+          <PrintParticularPatient
+            selectedPatient={selectedPatient}
+            closeModal={() => closeModal(setShowModal, setSelectedPatient)}
+            showModal={showModal}
           />
-           <PrintParticularPatient
-        selectedPatient={selectedPatient}
-        closeModal={() => closeModal(setShowModal, setSelectedPatient)}
-        showModal={showModal}
-      />
         </>
       )}
-      
-     
     </>
   );
 };

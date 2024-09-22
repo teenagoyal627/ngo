@@ -20,3 +20,31 @@
     margin-bottom: 10px;
   }
   
+  .edit-icon{
+    color: green;
+  }
+  .delete-icon{
+    color: red;
+  }
+  .print-icon{
+    color: blue;
+  }
+  
+  .icon:hover {
+    color: #ff8800;
+    cursor: pointer;
+  }
+
+  .action-icons{
+    font-size: 1.3rem;
+  }
+ .icon{
+  margin-left: .5rem;
+ }
+
+
+
+ .table-container {
+  overflow-x: auto; 
+}
+

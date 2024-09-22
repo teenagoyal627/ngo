@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import SapnaLogo from './Logo/SapnaLogo.png';
 import { Link } from "react-router-dom";
 import './FrontPageNavbar.css'
@@ -13,7 +13,6 @@ const OtherPageNavbar = () => {
   })
   const history=useHistory()
 const handleClick=()=>{
-  console.log("logout button")
   setModalContent({
     title:"Logout",
     body:"Do you really want to logout form dashboard."
@@ -33,14 +32,16 @@ const handleConfirm=()=>{
           <h3 className='ngo-name'>Anandam-home for the homeless</h3>
         </Link> 
       </div>
+     
       <nav>
         <ul>
-          <li><Link to='/form' className="link">Details Form</Link></li>
-          <li><Link to='/patientdata' className="link">All Patients Details</Link></li>
+          <li><Link to='/form' className="link">New Application</Link></li>
+          <li><Link to='/patientdata' className="link">Browse</Link></li>
 
-         <li className='link' onClick={handleClick}>Logout</li>
+         <li className='logout' onClick={handleClick}>Logout</li>
         </ul>
       </nav>
+      
       <MessageBox
         showModal={showModal}
         handleClose={() => setShowModal(false)}
@@ -53,3 +54,4 @@ const handleConfirm=()=>{
 }
 
 export default OtherPageNavbar;
+

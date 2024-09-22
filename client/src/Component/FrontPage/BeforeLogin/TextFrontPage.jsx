@@ -1,7 +1,7 @@
-import './FrontPage.css'
+import '../FrontPage.css'
 import { Link } from "react-router-dom";
 
-const TextAfterLogin = () => {
+const TextFrontPage = () => {
   return (
     <div>
        <header>
@@ -16,7 +16,7 @@ const TextAfterLogin = () => {
             </p>
             <button className="GetStartButton">
               <Link
-                to="/form"
+                to="/signup"
                 style={{ textDecoration: "none"}}
               >
                 Get Started
@@ -77,7 +77,7 @@ const TextAfterLogin = () => {
         </div>
       </section>
 
-      <section className="cta-section" style={{marginLeft:"5rem",marginRight:"5rem"}}>
+      <section className="cta-section">
   <div className="container flex cta-section-container">
     {/* <h2 style={{ color: "white" }}>Join Us in Making a Difference</h2> */}
     <div className="card">
@@ -86,22 +86,22 @@ const TextAfterLogin = () => {
         <p className="card-text">
           Our system allows you to manage patient information efficiently. You can
           record details such as name, fathers name, arrival date, referring hospital,
-          and more.
+          and more. Click the Signup button to get started and make an impact today.
         </p>
         <button className="GetStartButton" style={{marginRight:"3rem"}}>
           <Link
-            to="/form"
-            style={{ textDecoration: "none" }}
+            to="/signup"
+            style={{  textDecoration: "none" }}
           >
-            Fill Patients Details
+            Signup
           </Link>
         </button>
         <button className="GetStartButton" style={{marginRight:"3rem"}}>
           <Link
-            to="/patientdata"
-            style={{textDecoration: "none" }}
+            to="/login"
+            style={{ textDecoration: "none" }}
           >
-            See Patients Details
+            Login
           </Link>
         </button>
       </div>
@@ -115,4 +115,4 @@ const TextAfterLogin = () => {
   )
 }
 
-export default TextAfterLogin
+export default TextFrontPage

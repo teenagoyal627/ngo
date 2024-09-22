@@ -1,3 +1,4 @@
+import Card from '../../../UI/Card';
 import './PersonalDetails.css'
 import patientAvatar from "./patientAvatar.png"; // Assuming the avatar is saved in the root or 'images' folder
 
@@ -8,11 +9,9 @@ const PersonalDetails = ({
   formChangeHandler,
 }) => {
   return (
-    <div className="personal-detail-form" >
+    <Card>
       <h2 className='personal-details-heading' style={{textAlign:"center"}}>Personal Details</h2>
-
       <div className='personalForm'>
-
         <div className="leftSide-section">
           <div className="image-upload-box">
             <input
@@ -49,7 +48,7 @@ const PersonalDetails = ({
                 name="Name"
                 value={formData.Name}
                 onChange={formChangeHandler}
-                style={{width:"28rem"}}
+                style={{width:"18rem"}}
               />
             </div>
             <div className="form-column">
@@ -60,7 +59,7 @@ const PersonalDetails = ({
                 name="FatherName"
                 value={formData.FatherName}
                 onChange={formChangeHandler}
-                style={{width:"28rem"}}
+                style={{width:"18rem"}}
 
               />
             </div>
@@ -76,7 +75,7 @@ const PersonalDetails = ({
                 name="Address"
                 value={formData.Address}
                 onChange={formChangeHandler}
-                style={{width:"28rem"}}
+                style={{width:"18rem"}}
 
               />
             </div>
@@ -88,7 +87,7 @@ const PersonalDetails = ({
                 name="LanguageKnown"
                 value={formData.LanguageKnown}
                 onChange={formChangeHandler}
-                style={{width:"28rem"}}
+                style={{width:"18rem"}}
 
               />
             </div>
@@ -104,7 +103,7 @@ const PersonalDetails = ({
                 name="AadharNumber"
                 value={formData.AadharNumber}
                 onChange={formChangeHandler}
-                style={{width:"28rem"}}
+                style={{width:"18rem"}}
 
               />
             </div>
@@ -124,7 +123,7 @@ const PersonalDetails = ({
           </div>
         </div>
       </div>
-    </div>
+    </Card>
   );
 };
 

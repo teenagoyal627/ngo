@@ -1,16 +1,32 @@
+.modal-backdrop{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(4, 4, 4, 0.5);
+  z-index:  1040;
+}
+.modal-dialog{
+  z-index:1050;
+}
+
+
 .filter_button {
   color: rgb(4, 4, 4);
   padding: 10px 20px;
-  margin: 1rem 0 0 5rem;
+  margin-right: 1rem;
+  margin-top: .1rem;
   border: 1px solid black;
-  border-radius: 15px;
+  border-radius: 10px;
   cursor: pointer;
   width: 15rem;
   transition: background-color 0.3s;
+  background-color: #dcdcda;
 }
 
 .filter_button:hover {
-  background-color: #008080;
+  background-color: #ff8800;
   color: white;
   border: 1px solid white;
 }
@@ -33,11 +49,17 @@
 .gender-checkbox input[type="checkbox"] {
   margin-right: 5px;
 }
- @media screen and (max-width:1000px) {
+
+@media screen and (min-width:100px) and (max-width:1000px) {
+
   .filter_button {
-    
-    margin: 3rem 0 0 20rem;
+    color:black;
+    margin-right: 1rem;
+    margin-top: .1rem;
+    width: 8rem;
+    padding: 5px 5px;
+
   }
   
- }
 
+}

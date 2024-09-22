@@ -1,8 +1,9 @@
 import React from 'react'
 import './NgoDetails.css'
+import Card from '../../../UI/Card'
 const NgoDetails = ({formData,formChangeHandler}) => {
   return (
-    <div className="form-container">
+    <Card>
     <form>
         <h2 className='ngo-heading'>NGO Details</h2>
 
@@ -16,6 +17,8 @@ const NgoDetails = ({formData,formChangeHandler}) => {
         name="RegistrationNo"
         value={formData.RegistrationNo}
         onChange={formChangeHandler}
+        style={{width:"18rem"}}
+
       />
     </div>
     <div className="form-column">
@@ -26,6 +29,8 @@ const NgoDetails = ({formData,formChangeHandler}) => {
         name="RegistrationDate"
         value={formData.RegistrationDate}
         onChange={formChangeHandler}
+        style={{width:"18rem"}}
+
       />
     </div>
     <div className="form-column">
@@ -36,6 +41,8 @@ const NgoDetails = ({formData,formChangeHandler}) => {
         name="MeanOfTransportation"
         value={formData.MeanOfTransportation}
         onChange={formChangeHandler}
+        style={{width:"18rem"}}
+
       />
     </div>
   </div>
@@ -50,6 +57,8 @@ const NgoDetails = ({formData,formChangeHandler}) => {
         name="PatientCondition"
         value={formData.PatientCondition}
         onChange={formChangeHandler}
+        style={{width:"18rem"}}
+
       />
     </div>
     <div className="form-column">
@@ -58,6 +67,8 @@ const NgoDetails = ({formData,formChangeHandler}) => {
         name="HospitalDepartment"
         value={formData.HospitalDepartment}
         onChange={formChangeHandler}
+        style={{width:"18rem"}}
+
       >
         <option value="">Hospital & Department</option>
         <option value="Safdarjung Hospital">Safdarjung Hospital</option>
@@ -77,6 +88,8 @@ const NgoDetails = ({formData,formChangeHandler}) => {
         name="AnandamCenter"
         value={formData.AnandamCenter}
         onChange={formChangeHandler}
+        style={{width:"18rem"}}
+
       >
         <option value="">Select Anandam Center</option>
         <option value="Noida">Noida</option>
@@ -97,6 +110,8 @@ const NgoDetails = ({formData,formChangeHandler}) => {
         name="SentToHome"
         value={formData.SentToHome}
         onChange={formChangeHandler}
+        style={{width:"18rem"}}
+
       />
     </div>
     <div className="form-column">
@@ -107,6 +122,8 @@ const NgoDetails = ({formData,formChangeHandler}) => {
         name="OPD"
         value={formData.OPD}
         onChange={formChangeHandler}
+        style={{width:"18rem"}}
+
       />
     </div>
 
@@ -118,6 +135,8 @@ const NgoDetails = ({formData,formChangeHandler}) => {
         name="InmateNumber"
         value={formData.InmateNumber}
         onChange={formChangeHandler}
+        style={{width:"18rem"}}
+
       />
     </div>
   </div>
@@ -131,7 +150,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
           <input
            style={{
              display: "flex",
-             width: "48%",
+             width: "18rem",
              flexWrap: "wrap",
              gap: "10px",
            }}
@@ -144,7 +163,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
          <input
            style={{
              display: "flex",
-             width: "48%",
+             width: "18rem",
              flexWrap: "wrap",
              gap: "10px",
            }}
@@ -157,7 +176,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
          <input
            style={{
              display: "flex",
-             width: "48%",
+             width: "18rem",
              flexWrap: "wrap",
              gap: "10px",
            }}
@@ -170,7 +189,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
          <input
            style={{
              display: "flex",
-             width: "48%",
+             width: "18rem",
              flexWrap: "wrap",
              gap: "10px",
            }}
@@ -191,6 +210,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
         name="IONumber"
         value={formData.IONumber}
         onChange={formChangeHandler}
+        style={{width:"18rem"}}
       />
     </div>
     <div className="form-column">
@@ -201,13 +221,14 @@ const NgoDetails = ({formData,formChangeHandler}) => {
         name="IOName"
         value={formData.IOName}
         onChange={formChangeHandler}
+        style={{width:"18rem"}}
       />
     </div>
    
   </div>
        
       </form>
-    </div>
+    </Card>
 
   )
 }

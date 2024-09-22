@@ -54,10 +54,12 @@ const Form = () => {
       axios
         .get(`${apiUrl}/data/${id}`)
         .then((response) => {
+          console.log(response.data)
           setFormData(response.data || {});
           if (response.data.ImageUrl) {
             setImage(response.data.ImageUrl);
           }
+          
          
         })
         .catch((error) => {

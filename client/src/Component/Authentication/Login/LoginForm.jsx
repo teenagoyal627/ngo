@@ -1,4 +1,6 @@
 import React from "react";
+import "./Login.css";
+
 import { AiOutlineEyeInvisible, AiOutlineEye } from "react-icons/ai";
 import { Link } from "react-router-dom";
 const LoginForm = ({
@@ -10,6 +12,7 @@ const LoginForm = ({
   loginGoogleHandler,
 }) => {
   return (
+    
     <div className="form">
       <div>
         <h1 className="heading">Login</h1>
@@ -34,6 +37,7 @@ const LoginForm = ({
               value={loginField.password}
               onChange={loginChangeHandler}
               autoComplete="off"
+
             />
             <div
               className="password-toggle"

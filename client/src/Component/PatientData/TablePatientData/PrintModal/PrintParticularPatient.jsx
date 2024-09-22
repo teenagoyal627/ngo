@@ -1,12 +1,10 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/prop-types */
 //this is for print each patient data...
+import "./PrintModal.css";
+import SapnaLogo from "../../../Navbar/Logo/SapnaLogo.png";
 
-import SapnaLogo from "../../Navbar/Logo/SapnaLogo.png";
-
-const PrintParticularPatient = ({ 
-  selectedPatient, 
-  closeModal, 
-  showModal 
-}) => {
+const PrintParticularPatient = ({ selectedPatient, closeModal, showModal }) => {
   console.log(showModal);
   if (!showModal || !selectedPatient) {
     return null;
@@ -59,6 +57,9 @@ const PrintParticularPatient = ({
   };
 
   return (
+    <>
+      <div className="modal-backdrop"></div>
+    
     <div
       className="modal fade show"
       style={{
@@ -74,20 +75,10 @@ const PrintParticularPatient = ({
     >
       <div className="modal-dialog">
         <div
-          className="modal-content print-modal-content"
-          style={{
-            position: "absolute",
-            left: "0",
-            top: "0",
-            width: "210mm",
-            minHeight: "297mm",
-            boxSizing: "border-box",
-            background: "white",
-          }}
-        >
+          className="modal-content print-modal-content print-box">
           <div className="modal-header">
             <img src={SapnaLogo} alt="logo of ngo" className="logo-image1" />
-            <h1 className="modal-title fs-5" id="exampleModalLabel">
+            <h1 className="modal-title" id="exampleModalLabel">
               Aandam-Home for the homeless (
               {selectedPatient.AnandamCenter
                 ? selectedPatient.AnandamCenter
@@ -216,6 +207,7 @@ const PrintParticularPatient = ({
         </div>
       </div>
     </div>
+    </>
   );
 };
 
