@@ -19,7 +19,7 @@ const PatientsDocumentsSchema = new mongoose.Schema(
 );
 
 const ReactFormDataSchema = new mongoose.Schema({
-  UserId: { type: String },
+  UserId: { type: String,require:true },
   RegistrationNo: { type: Number },
   Name: { type: String },
   FatherName: { type: String },
