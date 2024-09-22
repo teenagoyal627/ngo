@@ -100,8 +100,8 @@ app.put("/data/:id", async (req, res) => {
 
   app.post("/insert", async (req, res) => {
     try {
-           const {
-        userId,
+        const formData = new User({
+        UserId: userId,
         RegistrationNo,
         Name,
         FatherName,
@@ -122,8 +122,9 @@ app.put("/data/:id", async (req, res) => {
         AadharNumber,
         ImageUrl,
         PatientsDocuments,
-      } = req.body;
-      
+      });
+  
+
       const formData = new User(req.body); 
   
       await formData.save();
