@@ -37,70 +37,33 @@ app.put("/data/:id", async (req, res) => {
   }
 });
 
-  // app.post("/insert", async (req, res) => {
-  //   try {
-  //     const {
-  //       userId,
-  //       RegistrationNo,
-  //       Name,
-  //       FatherName,
-  //       Gender,
-  //       Address,
-  //       RegistrationDate,
-  //       MeanOfTransportation,
-  //       BroughtBy,
-  //       PatientCondition,
-  //       LanguageKnown,
-  //       HospitalDepartment,
-  //       AnandamCenter,
-  //       SentToHome,
-  //       OPD,
-  //       InmateNumber,
-  //       IONumber,
-  //       IOName,
-  //       AadharNumber,
-  //       ImageUrl,
-  //       PatientsDocuments,
-  //     } = req.body;
-  
-  //     const formData = new User({
-  //       UserId: userId,
-  //       RegistrationNo,
-  //       Name,
-  //       FatherName,
-  //       Gender,
-  //       Address,
-  //       RegistrationDate,
-  //       MeanOfTransportation,
-  //       BroughtBy,
-  //       PatientCondition,
-  //       LanguageKnown,
-  //       HospitalDepartment,
-  //       AnandamCenter,
-  //       SentToHome,
-  //       OPD,
-  //       InmateNumber,
-  //       IONumber,
-  //       IOName,
-  //       AadharNumber,
-  //       ImageUrl,
-  //       PatientsDocuments,
-  //     });
-  
-  //     await formData.save();
-  //     res.status(200).json({ success: true, id: formData._id });
-  //     console.log(res)
-  //     console.log(formData)
-  //   } catch (err) {
-  //     console.error("Error occurred: ", err);
-  //     res.status(500).send("Server error");
-  //   }
-  // });
-
-
   app.post("/insert", async (req, res) => {
     try {
-        const formData = new User({
+      const {
+        userId,
+        RegistrationNo,
+        Name,
+        FatherName,
+        Gender,
+        Address,
+        RegistrationDate,
+        MeanOfTransportation,
+        BroughtBy,
+        PatientCondition,
+        LanguageKnown,
+        HospitalDepartment,
+        AnandamCenter,
+        SentToHome,
+        OPD,
+        InmateNumber,
+        IONumber,
+        IOName,
+        AadharNumber,
+        ImageUrl,
+        PatientsDocuments,
+      } = req.body;
+  
+      const formData = new User({
         UserId: userId,
         RegistrationNo,
         Name,
@@ -124,17 +87,18 @@ app.put("/data/:id", async (req, res) => {
         PatientsDocuments,
       });
   
-
-      const formData = new User(req.body); 
-  
       await formData.save();
       res.status(200).json({ success: true, id: formData._id });
+      console.log(res)
+      console.log(formData)
     } catch (err) {
       console.error("Error occurred: ", err);
       res.status(500).send("Server error");
     }
   });
-  
+
+
+ 
   app.get("/data", (req, res) => {
     const { userId } = req.query;
     if (!userId) {
