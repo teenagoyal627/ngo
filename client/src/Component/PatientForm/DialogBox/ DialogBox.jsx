@@ -41,7 +41,6 @@ function DialogBox({ formData, setFormData, id, image }) {
       axios
         .get(`${apiUrl}/data/${id}`)
         .then((response) => {
-          console.log("pd",response.data.PatientsDocuments)
           if (response.data.PatientsDocuments) {
             setDocuments(response.data.PatientsDocuments);
           }

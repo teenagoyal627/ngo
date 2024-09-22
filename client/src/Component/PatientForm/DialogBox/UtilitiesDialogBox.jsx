@@ -67,6 +67,7 @@ export const dialogBoxSubmitHandler = async (
        console.log(uploadedDocumentData)
     }
   }
+
 const apiUrl = import.meta.env.VITE_SERVER_URL;
 console.log(apiUrl)
     const axiosMethod = id ? axios.put : axios.post;
@@ -88,10 +89,10 @@ console.log(apiUrl)
       body: "Patient Data successfully submitted.",
     });
     setShowModal(true);
-    console.log(id)
+    // console.log(id)
 
-    const newTabUrl=`http://ngoPatientData/patient/${id}`;
-    window.open(newTabUrl,'_blank')
+    // const newTabUrl=`http://ngoPatientData/patient/${id}`;
+    // window.open(newTabUrl,'_blank')
   
   } catch (error) {
     setLoading(false)

@@ -100,6 +100,30 @@ app.put("/data/:id", async (req, res) => {
 
   app.post("/insert", async (req, res) => {
     try {
+           const {
+        userId,
+        RegistrationNo,
+        Name,
+        FatherName,
+        Gender,
+        Address,
+        RegistrationDate,
+        MeanOfTransportation,
+        BroughtBy,
+        PatientCondition,
+        LanguageKnown,
+        HospitalDepartment,
+        AnandamCenter,
+        SentToHome,
+        OPD,
+        InmateNumber,
+        IONumber,
+        IOName,
+        AadharNumber,
+        ImageUrl,
+        PatientsDocuments,
+      } = req.body;
+      
       const formData = new User(req.body); 
   
       await formData.save();

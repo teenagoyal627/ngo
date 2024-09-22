@@ -116,6 +116,7 @@ const TableFormateFullScreen = ({
   );
 
   const generateSubRows = (patient) => {
+    console.log(patient)
     if (!patient) {
       return null;
     }
@@ -148,7 +149,12 @@ const TableFormateFullScreen = ({
               }`,
               IONumber: patient.IONumber || "Unknown",
               IOName: patient.IOName || "Unknown",
-              PatientsDocments: patient.PatientsDocuments || [],
+              // PatientsDocments: patient.PatientsDocuments || [],
+              PatientsDocuments: patient.PatientsDocuments?.map(doc => ({
+                url: doc.url || "No URL",
+                name: doc.name || "No Name",
+                size: doc.size || "No Size"
+              })) || []
             },
           },
         ]

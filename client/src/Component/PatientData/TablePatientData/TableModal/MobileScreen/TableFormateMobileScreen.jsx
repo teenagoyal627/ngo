@@ -140,8 +140,9 @@ const TableFormateMobileScreen = ({
               <strong>IO Name:</strong>
               <span>{patient.IOName}</span>
             </div>
-            {/* <div className="patient-row">
+            <div className="patient-row">
               <strong>Uploaded Documents:</strong>
+              {console.log(patient.PatientsDocuments)}
               {patient.PatientsDocuments.map((doc, docIndex) => (
                 <div key={docIndex}>
                   <a
@@ -150,11 +151,11 @@ const TableFormateMobileScreen = ({
                     rel="noopener noreferrer"
                     style={{ textDecoration: "none" }}
                   >{doc.name}
-                    Document {docIndex + 1}
+                    
                   </a>
                 </div>
               ))}
-            </div> */}
+            </div>
           </div>
         ))}
       </div>
