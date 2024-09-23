@@ -41,6 +41,9 @@ const ReactFormDataSchema = new mongoose.Schema({
   ImageUrl: { type: String },
   // PatientsDocuments:{type:[String]}
   PatientsDocuments: [PatientsDocumentsSchema],
+  deleted:{type:Boolean, default:false}
+
+  
 });
 const User = mongoose.model("ngoportal", ReactFormDataSchema);
 module.exports = User;

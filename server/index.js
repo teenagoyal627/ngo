@@ -16,6 +16,7 @@ app.use(bodyParser.urlencoded({limit:"500mb",extended:true}))
 // this contains the mongoatlas uri
 connectDB()
 
+
 app.put("/data/:id", async (req, res) => {
   const id = req.params.id;
   try {
@@ -100,8 +101,6 @@ app.put("/data/:id", async (req, res) => {
 
   app.post("/insert", async (req, res) => {
     try {
-      console.log(req.body);  // Log the entire req.body to check if UserId is included
-  
       const formData = new User(req.body);
       await formData.save();
       res.status(200).json({ success: true, id: formData._id });
@@ -111,15 +110,13 @@ app.put("/data/:id", async (req, res) => {
     }
   });
   
-
-
  
   app.get("/data", (req, res) => {
     const { userId } = req.query;
     if (!userId) {
       return res.status(400).json({ error: "UserId is required" });
     }
-    User.find({ UserId: userId })
+    User.find({ UserId: userId ,deleted:false})
       .then((users) => res.json(users))
       .catch((err) => res.json(err));
   });
@@ -133,18 +130,32 @@ app.put("/data/:id", async (req, res) => {
   });
   
   //this code is for delete teh data form the database
-  app.delete("/data/:id", (req, res) => {
-    const { id } = req.params;
-    User.findByIdAndDelete(id)
-      .then((deletedPatient) => {
-        if (!deletedPatient) {
-          return res.status(404).json({ message: "Patient not found" });
-        }
-        res.json({ deletedPatient });
-      })
-      .catch((err) => {
-        res.status(400).json({ message: "Failed to delete patient" });
-      });
+  app.put("/data/:id/delete", (req, res) => {
+  const { id } = req.params;
+User.findByIdAndDelete(
+  id,
+  {deleted:true},
+  {new:true}
+)
+.then((updatedUser)=>{
+  if(!updatedUser){
+    return res.status(404).json({message:"User not found"})
+  }
+  res.json({message:"user marked as deleted",deleted:updatedUser})
+})
+.catch((error)=>{
+  res.status(400).json({message:"Failed to mark as deleted."})
+})
+    // User.findByIdAndDelete(id)
+    //   .then((deletedPatient) => {
+    //     if (!deletedPatient) {
+    //       return res.status(404).json({ message: "Patient not found" });
+    //     }
+    //     res.json({ deletedPatient });
+    //   })
+    //   .catch((err) => {
+    //     res.status(400).json({ message: "Failed to delete patient" });
+    //   });
   });
   
   //this is for filter the data
