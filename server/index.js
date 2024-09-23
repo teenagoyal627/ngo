@@ -8,7 +8,9 @@ const bodyParser=require("body-parser")
 
 const app=express()
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+  origin:['http://localhost:5173/','https://sapnango-d7310.web.app/']
+}))
 
 app.use(bodyParser.json({limit:'500mb'}))
 app.use(bodyParser.urlencoded({limit:"500mb",extended:true}))
