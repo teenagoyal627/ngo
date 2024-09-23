@@ -41,9 +41,44 @@ const ReactFormDataSchema = new mongoose.Schema({
   ImageUrl: { type: String },
   // PatientsDocuments:{type:[String]}
   PatientsDocuments: [PatientsDocumentsSchema],
-  deleted:{type:Boolean, default:false}
+  deleted:{type:Boolean, default:false},
 
-  
+  Search_value:{type:String}
+
+
 });
+
+ReactFormDataSchema.pre("save",function(next){
+  const doc=this;
+  doc.Search_value=[
+    doc.UserId,
+    doc.Name,
+    doc.FatherName,
+    doc.Gender,
+    doc.Address,
+    doc.AadharNumber,
+    doc.LanguageKnown,
+    doc.RegistrationNo,
+    doc.RegistrationDate,
+    doc.MeanOfTransportation,
+    doc.PatientCondition,
+    doc.HospitalDepartment,
+    doc.AnandamCenter,
+    doc.SentToHome,
+    doc.BroughtBy?.Name,         
+    doc.BroughtBy?.Address,      
+    doc.BroughtBy?.MobileNumber,
+    doc.BroughtBy?.Aadhar,
+    doc.OPD,
+    doc.InmateNumber,
+    doc.IONumber,
+    doc.IOName,
+  ]
+  .filter(Boolean)
+  .join("\\n");
+
+  next()
+})
+
 const User = mongoose.model("ngoportal", ReactFormDataSchema);
 module.exports = User;

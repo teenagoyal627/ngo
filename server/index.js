@@ -132,7 +132,7 @@ app.put("/data/:id", async (req, res) => {
   //this code is for delete teh data form the database
   app.put("/data/:id/delete", (req, res) => {
   const { id } = req.params;
-User.findByIdAndDelete(
+User.findByIdAndUpdate(
   id,
   {deleted:true},
   {new:true}
