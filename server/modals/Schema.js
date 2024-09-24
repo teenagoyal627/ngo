@@ -74,8 +74,8 @@ ReactFormDataSchema.pre("save",function(next){
     doc.IONumber,
     doc.IOName,
   ]
-  .filter(Boolean)
-  .join("\\n");
+  // .filter(Boolean)
+  .join("\n");
 
   next()
 })
