@@ -147,7 +147,7 @@ app.put("/data/:id", async (req, res) => {
 
   const buildSearchValue = (fields) => {
     const { UserId, Name, FatherName, Gender, Address, AadharNumber, LanguageKnown, RegistrationNo, RegistrationDate, MeanOfTransportation, PatientCondition, HospitalDepartment, AnandamCenter, SentToHome, BroughtBy, OPD, InmateNumber, IONumber, IOName } = fields;
-    return [UserId || "", Name || "", FatherName || "", Gender || "", Address || "", AadharNumber || "", LanguageKnown || "", RegistrationNo || "", RegistrationDate || "", MeanOfTransportation || "", PatientCondition || "", HospitalDepartment || "", AnandamCenter || "", SentToHome || "", BroughtBy?.Name || "", BroughtBy?.Address || "", BroughtBy?.MobileNumber || "", BroughtBy?.Aadhar || "", OPD || "", InmateNumber || "", IONumber || "", IOName || ""].join("\\n").trim();
+    return [UserId || "", Name || "", FatherName || "", Gender || "", Address || "", AadharNumber || "", LanguageKnown || "", RegistrationNo || "", RegistrationDate || "", MeanOfTransportation || "", PatientCondition || "", HospitalDepartment || "", AnandamCenter || "", SentToHome || "", BroughtBy?.Name || "", BroughtBy?.Address || "", BroughtBy?.MobileNumber || "", BroughtBy?.Aadhar || "", OPD || "", InmateNumber || "", IONumber || "", IOName || ""].join("\n").trim();
   };
   
   
