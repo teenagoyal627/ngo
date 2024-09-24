@@ -123,6 +123,7 @@ app.put("/data/:id", async (req, res) => {
       return res.status(400).json({ error: "UserId is required" });
     }
     User.find({ UserId: userId ,deleted:false})
+      .sort({RegistrationDate:-1})
       .then((users) => res.json(users))
       .catch((err) => res.json(err));
   });
