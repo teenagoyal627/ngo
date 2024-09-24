@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/prop-types */
 import Card from '../../../UI/Card';
 import './PersonalDetails.css'
 import patientAvatar from "./patientAvatar.png"; // Assuming the avatar is saved in the root or 'images' folder
@@ -10,7 +12,7 @@ const PersonalDetails = ({
 }) => {
   return (
     <Card>
-      <h2 className='personal-details-heading' style={{textAlign:"center"}}>Personal Details</h2>
+      <h2 className='personal-details-heading'>Personal Details</h2>
       <div className='personalForm'>
         <div className="leftSide-section">
           <div className="image-upload-box">
@@ -27,7 +29,7 @@ const PersonalDetails = ({
                 src={image || patientAvatar} // Use default avatar if no image
                 alt="Patient"
                 className="image-preview"
-                style={{width:"20rem", height:"20rem"}}
+                // style={{width:"20rem", height:"20rem"}}
               />
               <div className="overlay">
                 <h2 className="upload-button-text">
@@ -44,7 +46,7 @@ const PersonalDetails = ({
               <label>Name</label>
               <input
                 type="text"
-                placeholder="Enter patient name"
+                // //="Patient Name"
                 name="Name"
                 value={formData.Name}
                 onChange={formChangeHandler}
@@ -55,7 +57,7 @@ const PersonalDetails = ({
               <label>Father's Name</label>
               <input
                 type="text"
-                placeholder="Enter father's name"
+                //="Father's Name"
                 name="FatherName"
                 value={formData.FatherName}
                 onChange={formChangeHandler}
@@ -71,7 +73,7 @@ const PersonalDetails = ({
               <label>Address</label>
               <input
                 type="text"
-                placeholder="Enter the address"
+                //="Enter the address"
                 name="Address"
                 value={formData.Address}
                 onChange={formChangeHandler}
@@ -83,7 +85,7 @@ const PersonalDetails = ({
               <label>Language known</label>
               <input
                 type="text"
-                placeholder="Enter the known language of the patient"
+                //="Enter the known language of the patient"
                 name="LanguageKnown"
                 value={formData.LanguageKnown}
                 onChange={formChangeHandler}
@@ -99,7 +101,7 @@ const PersonalDetails = ({
               <label>Aadhar number</label>
               <input
                 type="text"
-                placeholder="Enter Aadhar number"
+                //="Enter Aadhar number"
                 name="AadharNumber"
                 value={formData.AadharNumber}
                 onChange={formChangeHandler}

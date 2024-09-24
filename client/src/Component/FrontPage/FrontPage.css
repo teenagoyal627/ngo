@@ -259,14 +259,14 @@ header {
   .header-right img {
     padding-top: 3rem;
     margin-left: 3rem;
-    max-width: 500px;
+    max-width: 300px;
   }
   .header-left h1 {
     font-size: 1.5rem;
   }
 }
 
-@media screen and (max-width:360px) {
+@media screen and (max-width:480px) {
   .container {
     max-width: 900px;
     padding-inline: 20px;
@@ -276,7 +276,7 @@ header {
     margin-top:0.1rem;
   }
   .header-right img {
-    max-width: 320px;
+    max-width: 360px;
     margin-right:1rem;
     margin-left: 1rem;
   }
@@ -286,17 +286,17 @@ header {
   
   }
 
-  .cta-section {
+  /* .cta-section {
     padding: 10px 20px 10px;
     color: #fff;
-    margin-left: .9rem;
-  }
+    margin-left: 2rem;
+  } */
   
  
   .card {
     padding: 10px;
     width: 20rem;
-    margin-left: 7rem;
+    margin-left: 3rem;
     margin-right: 3rem;
 
   }

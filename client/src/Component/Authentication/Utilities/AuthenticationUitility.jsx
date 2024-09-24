@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -11,23 +12,25 @@ export const loginSubmitHandler = (
   e,
   loginField,
   setModalContent,
-  setShowModal
+  setShowModal,
+  history,
+  setLoginField
+
 ) => {
   e.preventDefault();
   const auth = getAuth();
 
   signInWithEmailAndPassword(auth, loginField.email, loginField.password)
-    .then((userCredential) => {
-      const userId = userCredential.user.uid;
-      console.log(userId);
-
-      setModalContent({
-        title: "Success",
-        body: "Successfully Logged In!",
-      });
-      setShowModal(true);
-    })
-    .catch((error) => {
+  .then((userCredential) => {
+    const userId = userCredential.user.uid;
+    console.log(userId);
+    history.replace('/form')
+    setLoginField({
+      email: "",
+      password: "",
+    });
+  })
+  .catch((error) => {
       setModalContent({
         title: "Login Error",
         body: `There is something wrong with login: ${error.message}`,
@@ -37,15 +40,15 @@ export const loginSubmitHandler = (
 };
 
 
-export const loginGoogleHandler = (setModalContent, setShowModal) => {
+export const loginGoogleHandler = (setModalContent, setShowModal,history,setLoginField) => {
   const provider = new GoogleAuthProvider();
   signInWithPopup(getAuth(), provider)
     .then(() => {
-      setModalContent({
-        title: "Success",
-        body: "Successfully Logged In!",
-      });
-      setShowModal(true);
+      history.replace('/form')
+    setLoginField({
+      email: "",
+      password: "",
+    });
     })
     .catch((error) => {
       setModalContent({
@@ -68,18 +71,15 @@ export const loginHandleConfirm = (
   setShowModal,
   modalContent,
   history,
-  setLoginField
 ) => {
   setShowModal(false);
-  if (modalContent.title === "Success") {
-    history.replace("/form");
-    setLoginField({
-      email: "",
-      password: "",
-    });
-  } else {
+  if (modalContent.title === "Login Error") {
     history.replace("/login");
-  }
+   
+  } 
+  // else {
+  //   history.replace("/login");
+  // }
 };
 
 export const signupSubmitHandler = async (
@@ -148,7 +148,7 @@ export const SignupGoogleHandler = (setShowModal, setModalContent) => {
         GoogleAuthProvider.credentialFromResult(result);
         setModalContent({
           title: "Success",
-          body: "Successfully Logged In!",
+          body: "Successfully Signup!",
         });
         setShowModal(true);
       })

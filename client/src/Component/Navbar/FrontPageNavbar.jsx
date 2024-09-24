@@ -10,16 +10,15 @@ const FrontPageNavbar = () => {
 
         <Link to='/' className='logo-link'>
           <img src={SapnaLogo} alt='logo of ngo' className='logo-image' />
-          <h3 className='ngo-name'>Anandam Home For The Homeless</h3>
+          <h3 style={{width:"20rem",fontSize:"1rem",marginLeft:"1rem"}} className='ngo-name'>Anandam Home For The Homeless</h3>
         </Link> 
       </div>
-      <nav>
+      {/* <nav>
         <ul>
           <li><Link to='/login' className="link">Login</Link></li>
-          {/* <li><Link to='/signup' className="link">Signup</Link></li> */}
          
         </ul>
-      </nav>
+      </nav> */}
     </header>
   );
 }

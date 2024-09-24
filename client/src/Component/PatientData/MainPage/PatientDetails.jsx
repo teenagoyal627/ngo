@@ -15,6 +15,7 @@ import {
 } from "../Utilities/PatientDataUtilities";
 import TableFormateMobileScreen from "../TablePatientData/TableModal/MobileScreen/TableFormateMobileScreen";
 import TableFormateFullScreen from "../TablePatientData/TableModal/FullScreen/TableFormateFullScreen";
+import Searchbox from "../SearchBox/Searchbox";
 
 const AllPatientDetails = () => {
   const [patients, setPatients] = useState([]);
@@ -85,7 +86,9 @@ const AllPatientDetails = () => {
               <FilterData patients={patients} setPatients={setPatients} />
             </div>
           </div>
-
+<div>
+  <Searchbox/>
+</div>
           {isMobile ? (
             <TableFormateMobileScreen
               patients={patients}

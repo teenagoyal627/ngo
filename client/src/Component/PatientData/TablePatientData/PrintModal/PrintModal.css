@@ -71,9 +71,9 @@
   }
   }
 
-  @media screen and (max-width:360px) {
+  @media screen and (max-width:480px) {
     .print-table {
-      width: 50%;
+      width: 100%;
       border-collapse: collapse;
     }
     .print-table td {
@@ -81,14 +81,14 @@
       border: 1px solid rgb(12, 11, 11);
     }
     .print-box{
-      width: 75mm;
+      width: 90mm;
       min-height: 197mm;
   }
   .modal-dialog{
-    margin-left: 1.5rem;
+    margin-left: 1rem;
   }
   .modal-title{
     font-size: 1rem;
-    width: 9rem;
+    width: 13rem;
   }
   }

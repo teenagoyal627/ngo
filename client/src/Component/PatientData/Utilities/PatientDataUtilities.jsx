@@ -35,7 +35,7 @@ export  const getImageForPrint = async (RegistrationNo) => {
   export  const deleteHandler = async (id,setPatients) => {
     const apiUrl = import.meta.env.VITE_SERVER_URL;
     // console.log("Delete button clicked");
-     await axios.delete(`${apiUrl}/data/${id}`);
+     await axios.put(`${apiUrl}/data/${id}/delete`);
     // console.log(response);
     setPatients((prevPatients) =>
       prevPatients.filter((patient) => patient._id !== id)

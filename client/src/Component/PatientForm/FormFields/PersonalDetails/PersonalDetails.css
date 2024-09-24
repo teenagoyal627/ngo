@@ -108,6 +108,13 @@ width: 28rem;
 }
 
 @media screen and (min-width:100px) and (max-width:1000px) {
+
+  .personal-details-heading {
+    font-size: 1.5rem;
+    text-align: start;
+  }
+  
+
   .personalForm {
     width: 18rem;
     margin-left: .1rem;
@@ -120,12 +127,16 @@ width: 28rem;
 
   }
   .leftSide-section{
-    margin-left: 2rem;
+    margin-left: 2.5rem;
   }
+
   .right-section{
     margin-top: 1rem;
   }
   .form-column select {
+    width: 18rem;
+  }
+  .form-column label {
     width: 18rem;
   }
  

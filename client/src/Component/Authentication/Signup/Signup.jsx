@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import FrontPageNavbar from "../../Navbar/FrontPageNavbar";
@@ -35,6 +36,7 @@ const Signup = () => {
             signupFields,
             setModalContent,
             setShowModal,
+            
             
           )
         }

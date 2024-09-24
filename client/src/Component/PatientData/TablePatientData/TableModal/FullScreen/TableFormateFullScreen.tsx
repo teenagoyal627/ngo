@@ -53,6 +53,8 @@ const TableFormateFullScreen = ({
   deleteHandler,
   printRef,
 }) => {
+
+  console.log(patients)
   const columns = useMemo<MRT_ColumnDef<Patient>[]>(
     () => [
       {

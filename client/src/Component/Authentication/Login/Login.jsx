@@ -28,14 +28,14 @@ const Login = () => {
       <FrontPageNavbar />
       <LoginForm
         loginSubmitHandler={(e) =>
-          loginSubmitHandler(e, loginField, setModalContent, setShowModal)
+          loginSubmitHandler(e, loginField, setModalContent, setShowModal,history,  setLoginField)
         }
         loginField={loginField}
         loginChangeHandler={(e) => loginChangeHandler(e, setLoginField)}
         visible={visible}
         setVisible={setVisible}
         loginGoogleHandler={() =>
-          loginGoogleHandler(setModalContent, setShowModal)
+          loginGoogleHandler(setModalContent, setShowModal,history,setLoginField)
         }
       />
 

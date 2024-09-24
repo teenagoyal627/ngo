@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React from 'react'
 import './NgoDetails.css'
 import Card from '../../../UI/Card'
@@ -12,7 +14,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
       <label>Registration No.</label>
       <input
         type="number"
-        placeholder="Enter registration no."
+        //="Enter registration no."
         required
         name="RegistrationNo"
         value={formData.RegistrationNo}
@@ -37,7 +39,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
       <label>Mean of Transportation</label>
       <input
         type="text"
-        placeholder="Enter mean of transport"
+        //="Enter mean of transport"
         name="MeanOfTransportation"
         value={formData.MeanOfTransportation}
         onChange={formChangeHandler}
@@ -53,7 +55,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
       <label>Patient Condition</label>
       <input
         type="text"
-        placeholder="Enter condition of patient"
+        //="Enter condition of patient"
         name="PatientCondition"
         value={formData.PatientCondition}
         onChange={formChangeHandler}
@@ -106,7 +108,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
       <label>Sent to Home</label>
       <input
         type="date"
-        placeholder="Enter sent to home date"
+        //="Enter sent to home date"
         name="SentToHome"
         value={formData.SentToHome}
         onChange={formChangeHandler}
@@ -118,7 +120,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
       <label>OPD</label>
       <input
         type="text"
-        placeholder="Enter opd"
+        //="Enter opd"
         name="OPD"
         value={formData.OPD}
         onChange={formChangeHandler}
@@ -131,7 +133,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
       <label>Inmate Number</label>
       <input
         type="number"
-        placeholder="Enter room number"
+        //="Enter room number"
         name="InmateNumber"
         value={formData.InmateNumber}
         onChange={formChangeHandler}
@@ -182,7 +184,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
            }}
            type="text"
            name="BroughtBy.MobileNumber"
-           placeholder="Enter mobile number of person"
+           placeholder="Enter mobile number "
            value={formData.BroughtBy.MobileNumber}
            onChange={formChangeHandler}
          />
@@ -206,7 +208,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
       <label>IO Number</label>
       <input
         type="number"
-        placeholder="Enter IO number"
+        //="Enter IO number"
         name="IONumber"
         value={formData.IONumber}
         onChange={formChangeHandler}
@@ -217,7 +219,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
       <label>IO Name</label>
       <input
         type="text"
-        placeholder="Enter IO name"
+        //="Enter IO name"
         name="IOName"
         value={formData.IOName}
         onChange={formChangeHandler}

@@ -75,10 +75,10 @@ console.log(apiUrl)
       ? `${apiUrl}/data/${id}`
       // :"http://localhost:5001/insert"
       : `${apiUrl}/insert`;
-
+   console.log(userId)
     await axiosMethod(axiosUrl, {
       ...formData,
-      userId,
+      UserId:userId,
       PatientsDocuments:uploadedDocumentData,
       // PatientsDocuments: uploadedDocumentData.map(doc => doc.url), 
       ImageUrl: image,
@@ -103,6 +103,7 @@ console.log(apiUrl)
     setShowModal(true);
   }
 };
+//dialogBoxConfirm(setShowModal, modalContent, history, setFormData, e,id,formData)
 
 export const dialogBoxConfirm = (
   setShowModal,
@@ -111,6 +112,7 @@ export const dialogBoxConfirm = (
   setFormData,
   e,
   id,
+  setDocuments
 ) => {
   setShowModal(false);
   if (modalContent.title === "Success") {
@@ -142,7 +144,7 @@ export const dialogBoxConfirm = (
       AadharNumber: "",
       ImageUrl: "",
     });
-
+setDocuments([])
     
   } else {
     e.preventDefault();

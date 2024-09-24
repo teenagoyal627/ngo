@@ -33,14 +33,14 @@ const TableFormateMobileScreen = ({
             <h5 className="text-center">Patient Details</h5>
             <div className="d-flex justify-content-around mt-3">
               <FaEdit
-                className="icon"
+                className="icon edit"
                 onClick={() => editHandler(patient._id)}
               />
               <MdDelete
-                className="icon"
+                className="icon delete"
                 onClick={() => deleteHandler(patient._id)}
               />
-              <FaPrint className="icon" onClick={() => printHandler(patient)} />
+              <FaPrint className="icon print" onClick={() => printHandler(patient)} />
             </div>
             {/* personal details */}
             <div className="patient-row">
