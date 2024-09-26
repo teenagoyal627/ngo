@@ -129,89 +129,73 @@ app.get("/data", (req, res) => {
     .catch((err) => res.json(err));
 });
 
-app.get("\data\:id",async(req,res)=>{
-  const {id}=req.params;
-  const updatedData=req.body;
-  try{
-    const patient=await User.findById(id)
-    if(!patient){
-      return res.status(404).json({message:"Patients not found.."})
-    }
-    Object.assign(patient,updatedData)
-
-    const updatedPatient=await patient.save()
-    res.json(updatedPatient)
-  }catch (err) {
-    res.status(500).json({ message: "Server error" });
-  }
-});
 
 //this is for edit the patient form
-// app.get("/data/:id", (req, res) => {
-//   const { id } = req.params;
+app.get("/data/:id", (req, res) => {
+  const { id } = req.params;
 
-//   const updatedData = req.body;
-//   const updatedSearchValue = buildSearchValue(updatedData);
-//   console.log(updatedSearchValue);
-//   const updatedPatientData = {
-//     ...updatedData,
-//     Search_value: updatedSearchValue,
-//   };
+  const updatedData = req.body;
+  const updatedSearchValue = buildSearchValue(updatedData);
+  console.log(updatedSearchValue);
+  const updatedPatientData = {
+    ...updatedData,
+    Search_value: updatedSearchValue,
+  };
 
-//   User.findByIdAndUpdate(id, updatedPatientData, { new: true })
-//     .then((patient) => res.json(patient))
-//     .catch((err) => res.status(500).json({ message: "Server error" }));
-// });
+  User.findByIdAndUpdate(id, updatedPatientData, { new: true })
+    .then((patient) => res.json(patient))
+    .catch((err) => res.status(500).json({ message: "Server error" }));
+});
 
-// const buildSearchValue = (fields) => {
-//   const {
-//     UserId,
-//     Name,
-//     FatherName,
-//     Gender,
-//     Address,
-//     AadharNumber,
-//     LanguageKnown,
-//     RegistrationNo,
-//     RegistrationDate,
-//     MeanOfTransportation,
-//     PatientCondition,
-//     HospitalDepartment,
-//     AnandamCenter,
-//     SentToHome,
-//     BroughtBy,
-//     OPD,
-//     InmateNumber,
-//     IONumber,
-//     IOName,
-//   } = fields;
-//   return [
-//     UserId ,
-//     Name ,
-//     FatherName ,
-//     Gender ,
-//     Address ,
-//     AadharNumber,
-//     LanguageKnown,
-//     RegistrationNo,
-//     RegistrationDate,
-//     MeanOfTransportation,
-//     PatientCondition,
-//     HospitalDepartment,
-//     AnandamCenter,
-//     SentToHome,
-//     BroughtBy?.Name,
-//     BroughtBy?.Address,
-//     BroughtBy?.MobileNumber,
-//     BroughtBy?.Aadhar, 
-//     OPD,
-//     InmateNumber,
-//     IONumber,
-//     IOName,
-//   ]
-//     .join("\+")
-//     .trim();
-// };
+const buildSearchValue = (fields) => {
+  const {
+    UserId,
+    Name,
+    FatherName,
+    Gender,
+    Address,
+    AadharNumber,
+    LanguageKnown,
+    RegistrationNo,
+    RegistrationDate,
+    MeanOfTransportation,
+    PatientCondition,
+    HospitalDepartment,
+    AnandamCenter,
+    SentToHome,
+    BroughtBy,
+    OPD,
+    InmateNumber,
+    IONumber,
+    IOName,
+  } = fields;
+  return [
+    UserId ,
+    Name ,
+    FatherName ,
+    Gender ,
+    Address ,
+    AadharNumber,
+    LanguageKnown,
+    RegistrationNo,
+    RegistrationDate,
+    MeanOfTransportation,
+    PatientCondition,
+    HospitalDepartment,
+    AnandamCenter,
+    SentToHome,
+    BroughtBy?.Name,
+    BroughtBy?.Address,
+    BroughtBy?.MobileNumber,
+    BroughtBy?.Aadhar, 
+    OPD,
+    InmateNumber,
+    IONumber,
+    IOName,
+  ]
+    .join("\+")
+    .trim();
+};
 
 //this code is for delete teh data form the database
 app.put("/data/:id/delete", (req, res) => {
