@@ -134,7 +134,7 @@ app.put("/data/:id", async (req, res) => {
 
     const updatedData=req.body;
     const updatedSearchValue=buildSearchValue(updatedData)
-
+    
     const updatedPatientData={
       ...updatedData,
       Search_value:updatedSearchValue

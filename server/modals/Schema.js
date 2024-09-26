@@ -75,7 +75,7 @@ ReactFormDataSchema.pre("save",function(next){
     doc.IOName,
   ]
   // .filter(Boolean)
-  .join("\n");
+  .join("\+");
 
   next()
 })
