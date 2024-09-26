@@ -129,6 +129,23 @@ app.get("/data", (req, res) => {
     .catch((err) => res.json(err));
 });
 
+// app.put("\data\:id",async(req,res)=>{
+//   const {id}=req.params;
+//   const updatedData=req.body;
+//   try{
+//     const patient=await User.findById(id)
+//     if(!patient){
+//       return res.status(404).json({message:"Patients not found.."})
+//     }
+//     Object.assign(patient,updatedData)
+
+//     const updatedPatient=await patient.save()
+//     res.json(updatedPatient)
+//   }catch (err) {
+//     res.status(500).json({ message: "Server error" });
+//   }
+// });
+
 //this is for edit the patient form
 app.get("/data/:id", (req, res) => {
   const { id } = req.params;
@@ -169,30 +186,30 @@ const buildSearchValue = (fields) => {
     IOName,
   } = fields;
   return [
-    UserId || "fg",
-    Name || "fgsf",
-    FatherName || "fgs",
-    Gender || "fgf",
-    Address || "gfd",
-    AadharNumber || "fgs",
-    LanguageKnown || "",
-    RegistrationNo || "",
-    RegistrationDate || "",
-    MeanOfTransportation || "",
-    PatientCondition || "",
-    HospitalDepartment || "",
-    AnandamCenter || "",
-    SentToHome || "",
-    BroughtBy?.Name || "",
-    BroughtBy?.Address || "",
-    BroughtBy?.MobileNumber || "",
-    BroughtBy?.Aadhar || "",
-    OPD || "",
-    InmateNumber || "",
-    IONumber || "",
+    UserId ,
+    Name ,
+    FatherName ,
+    Gender ,
+    Address ,
+    AadharNumber,
+    LanguageKnown,
+    RegistrationNo,
+    RegistrationDate,
+    MeanOfTransportation,
+    PatientCondition,
+    HospitalDepartment,
+    AnandamCenter,
+    SentToHome,
+    BroughtBy?.Name,
+    BroughtBy?.Address,
+    BroughtBy?.MobileNumber,
+    BroughtBy?.Aadhar, 
+    OPD,
+    InmateNumber,
+    IONumber,
     IOName,
   ]
-    .join("\n")
+    .join("\+")
     .trim();
 };
 
