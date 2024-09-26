@@ -52,27 +52,27 @@ ReactFormDataSchema.pre("save",function(next){
   const doc=this;
   doc.Search_value=[
     doc.UserId,
+    doc.RegistrationNo,
     doc.Name,
     doc.FatherName,
     doc.Gender,
     doc.Address,
-    doc.AadharNumber,
-    doc.LanguageKnown,
-    doc.RegistrationNo,
     doc.RegistrationDate,
     doc.MeanOfTransportation,
-    doc.PatientCondition,
-    doc.HospitalDepartment,
-    doc.AnandamCenter,
-    doc.SentToHome,
     doc.BroughtBy?.Name,         
     doc.BroughtBy?.Address,      
     doc.BroughtBy?.MobileNumber,
     doc.BroughtBy?.Aadhar,
+    doc.PatientCondition,
+    doc.LanguageKnown,
+    doc.HospitalDepartment,
+    doc.AnandamCenter,
+    doc.SentToHome,
     doc.OPD,
     doc.InmateNumber,
     doc.IONumber,
     doc.IOName,
+    doc.AadharNumber
   ]
   // .filter(Boolean)
   .join("\+");
