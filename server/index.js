@@ -129,7 +129,7 @@ app.get("/data", (req, res) => {
     .catch((err) => res.json(err));
 });
 
-app.put("\data\:id",async(req,res)=>{
+app.get("\data\:id",async(req,res)=>{
   const {id}=req.params;
   const updatedData=req.body;
   try{
