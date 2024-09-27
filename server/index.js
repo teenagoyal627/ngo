@@ -131,22 +131,52 @@ app.get("/data", (req, res) => {
 
 
 //this is for edit the patient form
-app.get("/data/:id", (req, res) => {
+app.put("/data/:id", async (req, res) => {
+  console.log("edit code ")
   const { id } = req.params;
+  console.log(req.params)
 
-  const updatedData = req.body;
-  const updatedSearchValue = buildSearchValue(updatedData);
-  console.log(updatedSearchValue);
-  const updatedPatientData = {
-    ...updatedData,
-    Search_value: updatedSearchValue,
-  };
+  try {
+    // Fetch the existing patient data
+    const patient = await User.findById(id);
+    
+    if (!patient) {
+      return res.status(404).json({ message: "Patient not found" });
+    }
 
-  User.findByIdAndUpdate(id, updatedPatientData, { new: true })
-    .then((patient) => res.json(patient))
-    .catch((err) => res.status(500).json({ message: "Server error" }));
+    // Merge new data from req.body into the existing patient document
+    const updatedData = { ...patient.toObject(), ...req.body };
+  console.log(updatedData)
+    // Build the updated search value
+    const updatedSearchValue = buildSearchValue(updatedData);
+    updatedData.Search_value = updatedSearchValue;
+ 
+    // Update the patient data in the database
+    const updatedPatient = await User.findByIdAndUpdate(id, updatedData, { new: true });
+console.log(updatedPatient)
+    res.json(updatedPatient);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
 });
 
+// app.put("/data/:id", (req, res) => {
+//   const { id } = req.params;
+
+//   const updatedData = req.body;
+//   console.log(updatedData)
+//   const updatedSearchValue = buildSearchValue(updatedData);
+//   console.log(updatedSearchValue);
+//   const updatedPatientData = {
+//     ...updatedData,
+//     Search_value: updatedSearchValue,
+//   };
+
+//   User.findByIdAndUpdate(id, updatedPatientData, { new: true })
+//     .then((patient) => res.json(patient))
+//     .catch((err) => res.status(500).json({ message: "Server error" }));
+// });
 const buildSearchValue = (fields) => {
   const {
     UserId,
@@ -169,12 +199,13 @@ const buildSearchValue = (fields) => {
     IONumber,
     IOName,
   } = fields;
-  return [
-    UserId ,
-    Name ,
-    FatherName ,
-    Gender ,
-    Address ,
+  
+  const searchValue = [
+    UserId,
+    Name,
+    FatherName,
+    Gender,
+    Address,
     AadharNumber,
     LanguageKnown,
     RegistrationNo,
@@ -187,15 +218,20 @@ const buildSearchValue = (fields) => {
     BroughtBy?.Name,
     BroughtBy?.Address,
     BroughtBy?.MobileNumber,
-    BroughtBy?.Aadhar, 
+    BroughtBy?.Aadhar,
     OPD,
     InmateNumber,
     IONumber,
     IOName,
   ]
-    .join("\+")
+    .filter(Boolean) // This will filter out empty values
+    .join("+")
     .trim();
+  
+  console.log("Constructed Search Value:", searchValue); // Debugging log
+  return searchValue;
 };
+
 
 //this code is for delete teh data form the database
 app.put("/data/:id/delete", (req, res) => {
@@ -246,6 +282,22 @@ app.post("/filter", async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
+
+//this code is for search the patient..
+app.get("/search",async(req,res)=>{
+  const searchTerm=req.query.q;
+  try{
+    const results=await User.find({
+      $text:{$search:searchTerm},
+      deleted:false,
+    }, {UserId: 1, RegistrationNo: 1, Name: 1, FatherName: 1, Address: 1 } 
+  )
+    res.json(results)
+  }catch(error){
+    res.status(500).json({message:error.message})
+  }
+})
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
