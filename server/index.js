@@ -289,7 +289,7 @@ app.get("/search",async(req,res)=>{
   const searchTerm=req.query.q;
   try{
     const results=await User.find({
-      $Search_vlaue:{$search:searchTerm},
+      $text:{$search:searchTerm},
       deleted:false,
     }, {UserId: 1, RegistrationNo: 1, Name: 1, FatherName: 1, Address: 1 } 
   )
