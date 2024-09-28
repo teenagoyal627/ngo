@@ -131,36 +131,12 @@ app.get("/data", (req, res) => {
 
 
 //this is for edit the patient form
-app.put("/data/:id", async (req, res) => {
-  console.log("edit code ")
+app.get("/data/:id", (req, res) => {
   const { id } = req.params;
-  console.log(req.params)
-
-  try {
-    // Fetch the existing patient data
-    const patient = await User.findById(id);
-    
-    if (!patient) {
-      return res.status(404).json({ message: "Patient not found" });
-    }
-
-    // Merge new data from req.body into the existing patient document
-    const updatedData = { ...patient.toObject(), ...req.body };
-  console.log(updatedData)
-    // Build the updated search value
-    const updatedSearchValue = buildSearchValue(updatedData);
-    updatedData.Search_value = updatedSearchValue;
- 
-    // Update the patient data in the database
-    const updatedPatient = await User.findByIdAndUpdate(id, updatedData, { new: true });
-console.log(updatedPatient)
-    res.json(updatedPatient);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Server error" });
-  }
+  User.findById(id)
+    .then((patient) => res.json(patient))
+    .catch((err) => res.status(500).json({ message: "Server error" }));
 });
-
 // app.put("/data/:id", (req, res) => {
 //   const { id } = req.params;
 
@@ -177,60 +153,60 @@ console.log(updatedPatient)
 //     .then((patient) => res.json(patient))
 //     .catch((err) => res.status(500).json({ message: "Server error" }));
 // });
-const buildSearchValue = (fields) => {
-  const {
-    UserId,
-    Name,
-    FatherName,
-    Gender,
-    Address,
-    AadharNumber,
-    LanguageKnown,
-    RegistrationNo,
-    RegistrationDate,
-    MeanOfTransportation,
-    PatientCondition,
-    HospitalDepartment,
-    AnandamCenter,
-    SentToHome,
-    BroughtBy,
-    OPD,
-    InmateNumber,
-    IONumber,
-    IOName,
-  } = fields;
+// const buildSearchValue = (fields) => {
+//   const {
+//     UserId,
+//     Name,
+//     FatherName,
+//     Gender,
+//     Address,
+//     AadharNumber,
+//     LanguageKnown,
+//     RegistrationNo,
+//     RegistrationDate,
+//     MeanOfTransportation,
+//     PatientCondition,
+//     HospitalDepartment,
+//     AnandamCenter,
+//     SentToHome,
+//     BroughtBy,
+//     OPD,
+//     InmateNumber,
+//     IONumber,
+//     IOName,
+//   } = fields;
   
-  const searchValue = [
-    UserId,
-    Name,
-    FatherName,
-    Gender,
-    Address,
-    AadharNumber,
-    LanguageKnown,
-    RegistrationNo,
-    RegistrationDate,
-    MeanOfTransportation,
-    PatientCondition,
-    HospitalDepartment,
-    AnandamCenter,
-    SentToHome,
-    BroughtBy?.Name,
-    BroughtBy?.Address,
-    BroughtBy?.MobileNumber,
-    BroughtBy?.Aadhar,
-    OPD,
-    InmateNumber,
-    IONumber,
-    IOName,
-  ]
-    .filter(Boolean) // This will filter out empty values
-    .join("+")
-    .trim();
+//   const searchValue = [
+//     UserId,
+//     Name,
+//     FatherName,
+//     Gender,
+//     Address,
+//     AadharNumber,
+//     LanguageKnown,
+//     RegistrationNo,
+//     RegistrationDate,
+//     MeanOfTransportation,
+//     PatientCondition,
+//     HospitalDepartment,
+//     AnandamCenter,
+//     SentToHome,
+//     BroughtBy?.Name,
+//     BroughtBy?.Address,
+//     BroughtBy?.MobileNumber,
+//     BroughtBy?.Aadhar,
+//     OPD,
+//     InmateNumber,
+//     IONumber,
+//     IOName,
+//   ]
+//     .filter(Boolean) // This will filter out empty values
+//     .join("+")
+//     .trim();
   
-  console.log("Constructed Search Value:", searchValue); // Debugging log
-  return searchValue;
-};
+//   console.log("Constructed Search Value:", searchValue); // Debugging log
+//   return searchValue;
+// };
 
 
 //this code is for delete teh data form the database
