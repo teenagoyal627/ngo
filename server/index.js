@@ -126,7 +126,7 @@ app.get("/data", (req, res) => {
   User.find({ UserId: userId, deleted: false })
     .sort({ RegistrationDate: -1 })
     .then((users) => res.json(users))
-    .catch((err) => res.json(err));
+    .catch((err) => res.json(err,"error comes to fetch the data"));
 });
 
 
@@ -291,7 +291,7 @@ app.get("/search",async(req,res)=>{
     const results=await User.find({
       $text:{$search:searchTerm},
       deleted:false,
-    }, {UserId: 1, RegistrationNo: 1, Name: 1, FatherName: 1, Address: 1 } 
+    }, {UserId: 1, RegistrationNo: 1, Name: 1, FatherName: 1, Address: 1, PatientsDocuments:1,ImageUrl:1 } 
   )
     res.json(results)
   }catch(error){

@@ -48,9 +48,10 @@ const ReactFormDataSchema = new mongoose.Schema({
 
 });
 
-ReactFormDataSchema.pre("save",function(next){
-  const doc=this;
-  doc.Search_value=[
+ReactFormDataSchema.pre("save", function (next) {
+  const doc = this;
+  
+  const searchArray = [
     doc.UserId,
     doc.RegistrationNo,
     doc.Name,
@@ -73,12 +74,24 @@ ReactFormDataSchema.pre("save",function(next){
     doc.IONumber,
     doc.IOName,
     doc.AadharNumber
-  ]
-  // .filter(Boolean)
-  .join("\+");
+  ];
 
-  next()
-})
+  if (doc.ImageUrl) {
+    searchArray.push(doc.ImageUrl);
+  }
+
+  if (doc.PatientsDocuments && doc.PatientsDocuments.length > 0) {
+    doc.PatientsDocuments.forEach((document) => {
+      searchArray.push(document.name, document.url);
+    });
+  }
+
+  doc.Search_value = searchArray
+    .filter(Boolean)    
+    .join("\+");        
+
+  next();
+});
 
 const User = mongoose.model("ngoportal", ReactFormDataSchema);
 module.exports = User;
