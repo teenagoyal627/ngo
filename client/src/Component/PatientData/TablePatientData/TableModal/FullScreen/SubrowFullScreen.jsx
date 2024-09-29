@@ -90,13 +90,10 @@ const SubrowFullScreen = ({personalDetails,ngoDetails}) => {
                     <td>{ngoDetails.IOName}</td>
                     <td>{ngoDetails.IONumber}</td>
                     <td>
-                    {console.log(ngoDetails.PatientsDocuments)}
                       {ngoDetails.PatientsDocuments.length > 0
-                      
                         ? ngoDetails.PatientsDocuments.map(
                             (doc, docIndex) => (
                               <div key={docIndex}>
-                              {console.log(doc.name)}
                                 <a
                                   href={doc.url}
                                   target="_blank"

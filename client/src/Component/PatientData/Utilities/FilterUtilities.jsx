@@ -39,6 +39,7 @@ export const filterHandler = async (
   userId
 ) => {
   e.preventDefault();
+  console.log("filter button is clicked")
   const gender = JSON.stringify(filters.gender);
   try {
     const apiUrl = import.meta.env.VITE_SERVER_URL;

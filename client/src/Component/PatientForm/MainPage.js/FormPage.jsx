@@ -2,16 +2,15 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import OtherPageNavbar from "../../Navbar/OtherPageNavbar";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { MessageBox } from "../../MessageBox";
+import FormFields from "./FormFields";
 import {
   handleImageChange,
   formChangeHandler,
   formConfirmHandler,
 } from "../Utilities/FormUtilities";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { MessageBox } from "../../MessageBox";
-// import '../FormFields/MainPage/Form.css'
-import FormFields from "../FormFields/MainPage/FormFields";
-
+import '../../PatientData/MainPage/Loading.css'
 const Form = () => {
   const { id } = useParams();
   const [image, setImage] = useState("");
@@ -40,7 +39,7 @@ const Form = () => {
     IOName: "",
     AadharNumber: "",
   });
-
+  const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({
     title: "",
@@ -51,16 +50,14 @@ const Form = () => {
 
   useEffect(() => {
     if (id) {
-      axios
-        .get(`${apiUrl}/data/${id}`)
+      setLoading(true);
+      axios.get(`${apiUrl}/data/${id}`)
         .then((response) => {
-          console.log(response.data)
           setFormData(response.data || {});
           if (response.data.ImageUrl) {
             setImage(response.data.ImageUrl);
           }
-          
-         
+          setLoading(false)
         })
         .catch((error) => {
           setModalContent({
@@ -68,13 +65,27 @@ const Form = () => {
             body: `Error fetching patient data:${error.message}`,
           });
           setShowModal(true);
+          setLoading(false);
         });
     }
+    
+
   }, [id,apiUrl]);
 
   return (
     <>
       <OtherPageNavbar />
+      {loading && (
+          <div className="loading-backdrop">
+            <div className="loading-box">
+              <div className="loading-spinner"></div>
+              <div className="loading-text">Loading data, this will just take a moment...</div>
+            </div>
+          </div>
+        )}
+
+        {!loading && (
+          <>
       <FormFields
         handleImageChange={(e) => handleImageChange(formData, id, e, setImage)}
         image={image}
@@ -82,6 +93,7 @@ const Form = () => {
         formChangeHandler={(e) => formChangeHandler(e, setFormData, formData)}
         setFormData={setFormData}
         id={id}
+        setImage={setImage}
       />
 
       <MessageBox
@@ -93,6 +105,8 @@ const Form = () => {
         title={modalContent.title}
         body={modalContent.body}
       />
+      </>
+        )}
     </>
   );
 };

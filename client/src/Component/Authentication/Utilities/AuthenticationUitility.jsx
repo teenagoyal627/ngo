@@ -22,8 +22,10 @@ export const loginSubmitHandler = (
 
   signInWithEmailAndPassword(auth, loginField.email, loginField.password)
   .then((userCredential) => {
+    // eslint-disable-next-line no-unused-vars
     const userId = userCredential.user.uid;
-    console.log(userId);
+    // console.log(userId);
+    localStorage.setItem("isAuthenticated", "true");
     history.replace('/form')
     setLoginField({
       email: "",
@@ -99,7 +101,7 @@ export const signupSubmitHandler = async (
     )
       .then((userCredential) => {
         const userId = userCredential.user.uid;
-        console.log(userId)
+        // console.log(userId)
         if (userId) {
           setModalContent({
             title: "Success",

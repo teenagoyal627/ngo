@@ -27,7 +27,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
       <label>Registration Date</label>
       <input
         type="date"
-        placeholder="Enter the registration date"
+        // placeholder="Enter the registration date"
         name="RegistrationDate"
         value={formData.RegistrationDate}
         onChange={formChangeHandler}
@@ -144,7 +144,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
   </div>
 
   <div className="form-row">
-  <div className="form-column">
+  {/* <div className="form-column">
      
      <fieldset className="form-group">
         <label>Brought By</label>
@@ -203,7 +203,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
          />
        </div>
      </fieldset>
- </div>
+ </div> */}
     <div className="form-column">
       <label>IO Number</label>
       <input

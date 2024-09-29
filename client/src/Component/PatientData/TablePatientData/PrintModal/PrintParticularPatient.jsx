@@ -4,9 +4,9 @@
 import "./PrintModal.css";
 import SapnaLogo from "../../../Navbar/Logo/SapnaLogo.png";
 
-const PrintParticularPatient = ({ selectedPatient, closeModal, showModal }) => {
-  console.log(showModal);
-  if (!showModal || !selectedPatient) {
+const PrintParticularPatient = ({ selectedPatient, closeModal, showPrintModal}) => {
+  // console.log(showModal);
+  if (!showPrintModal || !selectedPatient) {
     return null;
   }
 
@@ -61,7 +61,7 @@ const PrintParticularPatient = ({ selectedPatient, closeModal, showModal }) => {
   return (
     <>
       <div className="modal-backdrop"></div>
-
+{showPrintModal && 
       <div
         className="modal fade show"
         style={{
@@ -210,6 +210,8 @@ const PrintParticularPatient = ({ selectedPatient, closeModal, showModal }) => {
           </div>
         </div>
       </div>
+   
+}
     </>
   );
 };

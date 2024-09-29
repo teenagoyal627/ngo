@@ -5,7 +5,6 @@
     justify-content: center;
     min-height: 100vh;
     color:black;
-      /* background: linear-gradient(1535deg, #FFFFFF, #008080); */
       padding: 20px;
       margin-bottom: .1rem;
       margin-top:2px;
@@ -24,7 +23,8 @@
   } */
   .ngo-heading{
     text-align: center;
-    font-size: 2rem;
+    font-size:18px;
+    font-weight: bold;
     margin-bottom: 1rem;
   }
   .form-row {

@@ -64,18 +64,17 @@ export const dialogBoxSubmitHandler = async (
       });
 
       uploadedDocumentData = await Promise.all(uploadPromises);
-       console.log(uploadedDocumentData)
+      //  console.log(uploadedDocumentData)
     }
   }
 
 const apiUrl = import.meta.env.VITE_SERVER_URL;
-console.log(apiUrl)
+// console.log(apiUrl)
     const axiosMethod = id ? axios.put : axios.post;
     const axiosUrl = id
       ? `${apiUrl}/data/${id}`
       // :"http://localhost:5001/insert"
       : `${apiUrl}/insert`;
-   console.log(userId)
     await axiosMethod(axiosUrl, {
       ...formData,
       UserId:userId,
@@ -112,13 +111,13 @@ export const dialogBoxConfirm = (
   setFormData,
   e,
   id,
-  setDocuments
+  setDocuments,
+  setImage
 ) => {
   setShowModal(false);
   if (modalContent.title === "Success") {
     history.replace("/form");
     setFormData({
-      image:"",
       RegistrationNo: "",
       Name: "",
       FatherName: "",
@@ -142,10 +141,9 @@ export const dialogBoxConfirm = (
       IONumber: "",
       IOName: "",
       AadharNumber: "",
-      ImageUrl: "",
     });
-setDocuments([])
-    
+    setDocuments([])
+    setImage("")
   } else {
     e.preventDefault();
     history.replace("/form");

@@ -40,6 +40,8 @@
   .modal-dialog{
     margin-left: 38rem;
     margin-top: 2rem;
+    z-index:1090;
+
   }
 
   .modal-title{
@@ -60,6 +62,7 @@
   @media screen and (max-width:1500px) {
 
     .modal-dialog{
+      z-index:1090;
       margin-left: 10rem;
     }
     .print-box{
@@ -86,6 +89,8 @@
   }
   .modal-dialog{
     margin-left: 1rem;
+    z-index:1090;
+
   }
   .modal-title{
     font-size: 1rem;

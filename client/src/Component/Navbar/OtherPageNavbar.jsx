@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import SapnaLogo from './Logo/SapnaLogo.png';
-import { Link } from "react-router-dom";
+import { Link ,useLocation} from "react-router-dom";
 import './FrontPageNavbar.css'
 import { MessageBox } from '../MessageBox';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
@@ -12,6 +12,8 @@ const OtherPageNavbar = () => {
     body:""
   })
   const history=useHistory()
+  const location=useLocation()
+
 const handleClick=()=>{
   setModalContent({
     title:"Logout",
@@ -22,6 +24,7 @@ const handleClick=()=>{
 const handleConfirm=()=>{
   localStorage.clear()
   sessionStorage.clear()
+  localStorage.setItem("isAuthenticated", "false");
   history.replace('/login')
 }
   return (
@@ -29,14 +32,15 @@ const handleConfirm=()=>{
       <div className='logo-container'>
         <Link to='/ngoPage' className='logo-link'>
           <img src={SapnaLogo} alt='logo of ngo' className='logo-image' />
-          <h3 className='ngo-name'>Anandam-home for the homeless</h3>
+          <h3 className='ngo-name'>Anandam Home For The Homeless</h3>
+          {/* Anandam-home for the homeless */}
         </Link> 
       </div>
      
       <nav>
         <ul>
-          <li><Link to='/form' className="link">New Application</Link></li>
-          <li><Link to='/patientdata' className="link">Browse</Link></li>
+          <li><Link to='/form' className={`link ${location.pathname === '/form' ? 'active':''}`}>New Application</Link></li>
+          <li><Link to='/patientdata' className={`link ${location.pathname === '/patientdata' ? 'active':''}`}>Browse</Link></li>
 
          <li className='logout' onClick={handleClick}>Logout</li>
         </ul>

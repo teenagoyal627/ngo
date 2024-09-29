@@ -19,7 +19,7 @@ import '../../PatientData/MainPage/Loading.css'
 //   return null;
 // };
 
-function DialogBox({ formData, setFormData, id, image }) {
+function DialogBox({ formData, setFormData, id, image,setImage }) {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({
     title: "",
@@ -140,7 +140,7 @@ function DialogBox({ formData, setFormData, id, image }) {
               <li key={index} className="document-preview">
                 <div className="document-row">
                   <img src={documentIcon} alt="" />
-                  <a href={doc} target="_blank" rel="noopener noreferrer">
+                  <a href={doc.previewUrl} target="_blank" rel="noopener noreferrer">
                     {doc.name}
                   </a>
                 </div>
@@ -167,7 +167,7 @@ function DialogBox({ formData, setFormData, id, image }) {
         showModal={showModal}
         handleClose={() => setShowModal(false)}
         handleConfirm={(e) =>
-          dialogBoxConfirm(setShowModal, modalContent, history, setFormData, e,id,setDocuments)
+          dialogBoxConfirm(setShowModal, modalContent, history, setFormData, e,id,setDocuments,setImage)
         }
         title={modalContent.title}
         body={modalContent.body}

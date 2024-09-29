@@ -95,6 +95,7 @@ nav ul li:hover {
 .logout{
   font-size: 22px;
   color: white;
+  cursor: pointer;
 
 }
 .logout:hover {
@@ -102,6 +103,14 @@ nav ul li:hover {
   color: black;
   text-decoration: none;
  }
+
+ .link.active {
+  border: 2px solid #f2eeee; 
+  background-color: white;
+  color: black;
+  border-radius: 8px;     
+  padding: 8px 18px;       
+}
 
 @media screen and (max-width:800px) {
   nav ul li {

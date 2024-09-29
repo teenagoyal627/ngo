@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch ,Redirect} from "react-router-dom";
 import Form from "./Component/PatientForm/MainPage.js/FormPage";
 import Login from "./Component/Authentication/Login/Login";
 import Signup from "./Component/Authentication/Signup/Signup";
@@ -9,18 +9,19 @@ import AllPatientDetails from "./Component/PatientData/MainPage/PatientDetails";
 import FrontPage from "./Component/FrontPage/BeforeLogin/FrontPage";
 import PageAfterLogin from "./Component/FrontPage/AfterLogin/PageAfterLogin";
 
+const isAuthenticated=()=>{
+  return localStorage.getItem("isAuthenticated")==="true"
+}
+{console.log(isAuthenticated())}
 const App = () => {
   return (
     <Router>
       <div>
         <Switch>
-          <Route path="/" exact>
-          <FrontPage/>
-          </Route>
-          {/* <Route path="/patient/:id" component={ShowPatientData}/> */}
+          <Route path="/" exact>{ isAuthenticated() ?<Redirect to='/ngoPage'/>:<FrontPage/>}</Route>
           <Route path="/form/:id?" component={Form} />
-          <Route path="/login" component={Login} />
-          <Route path="/signup" component={Signup} />
+          <Route path="/login">{isAuthenticated() ? <Redirect to='/ngoPage'/>:<Login/> }</Route>
+          <Route path="/signup">{isAuthenticated() ?<Redirect to='/ngoPage'/>:<Signup/>}</Route>
           <Route path="/ngoPage" component={PageAfterLogin} />
           <Route path="/patientdata" component={AllPatientDetails} />
         </Switch>

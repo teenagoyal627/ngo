@@ -9,6 +9,7 @@ import "./Loading.css";
 import "./PatientData.css";
 import {
   closeModal,
+  deleteAfterConfirmation,
   deleteHandler,
   editHandler,
   printHandler,
@@ -16,17 +17,25 @@ import {
 import TableFormateMobileScreen from "../TablePatientData/TableModal/MobileScreen/TableFormateMobileScreen";
 import TableFormateFullScreen from "../TablePatientData/TableModal/FullScreen/TableFormateFullScreen";
 import Searchbox from "../SearchBox/Searchbox";
+import { MessageBox } from "../../MessageBox";
 
 const AllPatientDetails = () => {
   const [patients, setPatients] = useState([]);
   const [selectedPatient, setSelectedPatient] = useState(null);
-  const [showModal, setShowModal] = useState(false);
+  const [showPrintModal, setShowPrintModal] = useState(false);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const [userId, setUserId] = useState(null);
   const history = useHistory();
   const printTableRef = useRef(null);
   const auth = getAuth();
+  const [modalContent, setModalContent] = useState({
+    title: "",
+    body: "",
+  });
+  const [showModal, setShowModal] = useState(false);
+
+const [patientToDelete,setPatientToDelete]=useState(null)
 
   useEffect(() => {
     const handleResize = () => {
@@ -41,13 +50,13 @@ const AllPatientDetails = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         document.cookie = `userId=${user.uid};path=/; max-age=86400; SameSite=None; Secure`;
+     
       } else {
-        console.log("error in storeing the cookies");
+        console.log("error in storing the cookies");
       }
       setUserId(user.uid);
     });
     const apiUrl = import.meta.env.VITE_SERVER_URL;
-
     if (userId) {
       axios
         .get(`${apiUrl}/data`, {
@@ -83,38 +92,59 @@ const AllPatientDetails = () => {
           <div className="header-container">
             <h2 className="header-title">Patient Details</h2>
             <div className="button-container">
-              <FilterData patients={patients} setPatients={setPatients} />
+             <Searchbox setPatients={setPatients}/>
+              <FilterData setPatients={setPatients} />
             </div>
           </div>
-<div>
-  <Searchbox/>
-</div>
+          
           {isMobile ? (
             <TableFormateMobileScreen
               patients={patients}
               editHandler={(id) => editHandler(id, history)}
               printHandler={(patient) =>
-                printHandler(patient, setSelectedPatient, setShowModal)
+                printHandler(patient, setSelectedPatient, setShowPrintModal)
               }
-              deleteHandler={(id) => deleteHandler(id, setPatients)}
+              deleteHandler={(id) =>
+                deleteHandler(id, setModalContent, setShowModal,setPatientToDelete)
+              }
               printRef={printTableRef}
+             
             />
           ) : (
             <TableFormateFullScreen
               patients={patients}
               editHandler={(id) => editHandler(id, history)}
               printHandler={(patient) =>
-                printHandler(patient, setSelectedPatient, setShowModal)
+                printHandler(patient, setSelectedPatient, setShowPrintModal)
               }
-              deleteHandler={(id) => deleteHandler(id, setPatients)}
+              deleteHandler={(id) =>
+                deleteHandler(id, setModalContent, setShowModal,setPatientToDelete)
+              }
               printRef={printTableRef}
+            
             />
           )}
 
           <PrintParticularPatient
             selectedPatient={selectedPatient}
             closeModal={() => closeModal(setShowModal, setSelectedPatient)}
+            showPrintModal={showPrintModal}
+          />
+
+          <MessageBox
             showModal={showModal}
+            handleClose={() => setShowModal(false)}
+            handleConfirm={() =>
+              deleteAfterConfirmation(
+                patientToDelete,
+                setPatients,
+                history,
+                setShowModal,
+                modalContent
+              )
+            }
+            title={modalContent.title}
+            body={modalContent.body}
           />
         </>
       )}

@@ -36,11 +36,15 @@ const TableFormateMobileScreen = ({
                 className="icon edit"
                 onClick={() => editHandler(patient._id)}
               />
+              
+              <FaPrint
+                className="icon print"
+                onClick={() => printHandler(patient)}
+              />
               <MdDelete
                 className="icon delete"
                 onClick={() => deleteHandler(patient._id)}
               />
-              <FaPrint className="icon print" onClick={() => printHandler(patient)} />
             </div>
             {/* personal details */}
             <div className="patient-row">
@@ -57,10 +61,6 @@ const TableFormateMobileScreen = ({
             <div className="patient-row">
               <strong>Sr No:</strong>
               <span>{startIndex + index + 1}</span>
-            </div>
-            <div className="patient-row">
-              <strong>Registration No:</strong>
-              <span>{patient.RegistrationNo}</span>
             </div>
             <div className="patient-row">
               <strong>Name:</strong>
@@ -142,19 +142,23 @@ const TableFormateMobileScreen = ({
             </div>
             <div className="patient-row">
               <strong>Uploaded Documents:</strong>
-              {console.log(patient.PatientsDocuments)}
-              {patient.PatientsDocuments.map((doc, docIndex) => (
-                <div key={docIndex}>
-                  <a
-                    href={doc.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{ textDecoration: "none" }}
-                  >{doc.name}
-                    
-                  </a>
-                </div>
-              ))}
+              {patient.PatientsDocuments &&
+              patient.PatientsDocuments.length > 0 ? (
+                patient.PatientsDocuments.map((doc, docIndex) => (
+                  <div key={docIndex}>
+                    <a
+                      href={doc.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ textDecoration: "none" }}
+                    >
+                      {doc.name}
+                    </a>
+                  </div>
+                ))
+              ) : (
+                <p>No documents uploaded.</p> // Optional: Display a message if no documents are available
+              )}
             </div>
           </div>
         ))}

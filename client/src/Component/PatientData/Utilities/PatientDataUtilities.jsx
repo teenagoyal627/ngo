@@ -19,29 +19,46 @@ export  const getImageForPrint = async (RegistrationNo) => {
     }
   };
 
- export const printHandler =async (patient,setSelectedPatient,setShowModal) => {
+ export const printHandler =async (patient,setSelectedPatient,setShowPrintModal) => {
     try{
-      console.log(patient.ImageUrl)
+      // console.log(patient.ImageUrl)
       // const imageUrl=await getImageForPrint(patient.RegistrationNo)
        const imageUrl=patient.ImageUrl
       setSelectedPatient({...patient,imageUrl});
-      setShowModal(true);
+      setShowPrintModal(true);
     }catch(error){
       console.error("Error while get the image url ",error)
     }
   };
 
 
-  export  const deleteHandler = async (id,setPatients) => {
+  export  const deleteHandler = async (id,setModalContent,setShowModal,setPatientToDelete) => {
+
+    // const apiUrl = import.meta.env.VITE_SERVER_URL;
+    setModalContent({
+      title: "Confirmation",
+      body: "Do you want to delete this patient details.",
+    });
+    setShowModal(true);
+    setPatientToDelete(id)
+    //  await axios.put(`${apiUrl}/data/${id}/delete`);
+    // setPatients((prevPatients) =>
+    //   prevPatients.filter((patient) => patient._id !== id)
+    // );
+  };
+export const deleteAfterConfirmation=async(id,setPatients,history,setShowModal,modalContent)=>{
+ 
+  if (modalContent.title === "Confirmation") {
     const apiUrl = import.meta.env.VITE_SERVER_URL;
-    // console.log("Delete button clicked");
-     await axios.put(`${apiUrl}/data/${id}/delete`);
-    // console.log(response);
+    await axios.put(`${apiUrl}/data/${id}/delete`);
+    setShowModal(false);
     setPatients((prevPatients) =>
       prevPatients.filter((patient) => patient._id !== id)
     );
-  };
+    history.replace('/patientdata')
+  }
 
+}
 
   export const closeModal = (setShowModal,setSelectedPatient) => {
     setShowModal(false);

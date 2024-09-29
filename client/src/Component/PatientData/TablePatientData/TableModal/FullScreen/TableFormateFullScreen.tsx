@@ -52,9 +52,9 @@ const TableFormateFullScreen = ({
   printHandler,
   deleteHandler,
   printRef,
+  
 }) => {
 
-  console.log(patients)
   const columns = useMemo<MRT_ColumnDef<Patient>[]>(
     () => [
       {
@@ -99,13 +99,14 @@ const TableFormateFullScreen = ({
                   onClick={() => editHandler(row.original._id)}
                   className="icon edit-icon"
                 />
-                <RiDeleteBin6Fill
-                  onClick={() => deleteHandler(row.original._id)}
-                  className="icon delete-icon"
-                />
+                
                 <FaPrint
                   onClick={() => printHandler(row.original)}
                   className="icon print-icon"
+                />
+                <RiDeleteBin6Fill
+                  onClick={() => deleteHandler(row.original._id)}
+                  className="icon delete-icon"
                 />
               </div>
             );
@@ -118,7 +119,6 @@ const TableFormateFullScreen = ({
   );
 
   const generateSubRows = (patient) => {
-    console.log(patient)
     if (!patient) {
       return null;
     }
