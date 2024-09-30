@@ -27,9 +27,11 @@ const ReactFormDataSchema = new mongoose.Schema({
   Address: { type: String },
   RegistrationDate: { 
     type: String,
-    default: function() {
-        return new Date().toLocaleDateString('en-US');  // Ensures format as MM/DD/YYYY
-    }
+  // RegistrationDate: { 
+  //   type: String,
+  //   default: function() {
+  //       return new Date().toLocaleDateString('en-US');  // Ensures format as MM/DD/YYYY
+  //   }
 },
   MeanOfTransportation: { type: String },
   BroughtBy: BroughtBySchema,

@@ -109,7 +109,10 @@ app.put("/data/:id", async (req, res) => {
 
 app.post("/insert", async (req, res) => {
   try {
-    const formData = new User(req.body);
+    const formData = new User({
+      ...req.body,
+      RegistrationDate: req.body.RegistrationDate || new Date().toLocaleDateString('en-US')
+    });
     await formData.save();
     res.status(200).json({ success: true, id: formData._id });
   } catch (err) {
