@@ -25,7 +25,10 @@ const ReactFormDataSchema = new mongoose.Schema({
   FatherName: { type: String },
   Gender: { type: String },
   Address: { type: String },
-  RegistrationDate: { type: String },
+  RegistrationDate: { 
+    type: String,
+    default:()=>new Date().toLocaleDateString(),  // toLocalDateString means store date in this way..MM/DD/YYYY
+   },
   MeanOfTransportation: { type: String },
   BroughtBy: BroughtBySchema,
   PatientCondition: { type: String },
@@ -33,6 +36,9 @@ const ReactFormDataSchema = new mongoose.Schema({
   HospitalDepartment: { type: String },
   AnandamCenter: { type: String },
   SentToHome: { type: String },
+  IsSentToHome:{type:Boolean,
+    default:false
+  },
   OPD: { type: Number },
   InmateNumber: { type: Number },
   IONumber: { type: Number },
