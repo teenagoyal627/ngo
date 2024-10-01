@@ -38,15 +38,22 @@
 
   }
   .modal-dialog{
-    margin-left: 38rem;
-    margin-top: 2rem;
+    margin-left: 33rem;
     z-index:1090;
+    width: 100%;
 
   }
 
   .modal-title{
     font-size: 1.5rem;
     margin-left: 1rem;
+  }
+  
+  .print-box {
+    margin-bottom: 2rem;
+    min-height: 197mm;
+    box-sizing: border-box;
+    background: white;
   }
   
   @media print {

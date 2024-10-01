@@ -10,6 +10,7 @@ const ModalFilter = ({
   handleDateChange,
   handleGenderChange,
   filterHandler,
+  handleIsSentToHomeChange
 }) => {
   return (
     <>
@@ -76,7 +77,17 @@ const ModalFilter = ({
                 />
                 <label>Female</label>
               </div>
+             
             </div>
+            <div className="filter-section">
+              <label>IsSentToHome</label>
+              <select onChange={handleIsSentToHomeChange} value={filters.isSentToHome}>
+                <option value="">Select value</option>
+                <option value="true">True</option>
+                <option value="false">False</option>
+              </select>
+            </div>
+
           </div>
           <div className="modal-footer">
             <button

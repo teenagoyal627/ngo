@@ -16,6 +16,7 @@ const PersonalDetails = ({
       <div className='personalForm'>
         <div className="leftSide-section">
           <div className="image-upload-box">
+          <label className='labelHeading'>Patient Image</label>
             <input
               type="file"
               accept="image/*"
@@ -29,11 +30,12 @@ const PersonalDetails = ({
                 src={image || patientAvatar} // Use default avatar if no image
                 alt="Patient"
                 className="image-preview"
+                style={{cursor:'pointer'}}
                 // style={{width:"20rem", height:"20rem"}}
               />
               <div className="overlay">
                 <h2 className="upload-button-text">
-                  Upload Image
+                 { image ? "Edit Image" : "Upload Image"}
                 </h2>
               </div>
             </label>
@@ -115,7 +117,7 @@ const PersonalDetails = ({
                 name="Gender"
                 value={formData.Gender}
                 onChange={formChangeHandler}
-                style={{height:"2.7rem",marginTop:".5rem"}}
+                style={{cursor:'pointer',height:"2.7rem",marginTop:".5rem"}}
               >
                 <option value="">Select Gender</option>
                 <option value="Male">Male</option>

@@ -32,6 +32,13 @@
     justify-content: space-around;
   margin-bottom: 13px;
   }
+  .form-row1 {
+    display: flex;
+    flex-direction: row;
+    gap: 19px;
+    margin-left: .5rem;
+    margin-bottom: 13px;
+  }
   
   .form-column {
     width: 32%;
@@ -68,4 +75,22 @@
       font-size: 1.5rem;
       text-align: start;
     }
+    .form-row1 {
+      display: flex;
+      flex-direction: column;
+      margin-left: .1rem;
+    }
   }
+
+  @media screen and (max-width:1400px){
+    .ngo-heading{
+      font-size: 1.5rem;
+      text-align: start;
+    }
+    .form-row1 {
+      display: flex;
+      flex-direction: column;
+      margin-left: .1rem;
+    }
+  }
+  

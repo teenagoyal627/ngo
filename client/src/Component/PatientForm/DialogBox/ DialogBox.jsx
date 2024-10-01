@@ -118,7 +118,7 @@ function DialogBox({ formData, setFormData, id, image,setImage }) {
         <label htmlFor="fileUpload" className="upload-label">
           Upload Documents
         </label>
-        <div className="file-upload-box">
+        <div className="file-upload-box" onClick={() => document.getElementById('fileUpload').click()}>
           <input
             type="file"
             id="fileUpload"
@@ -126,6 +126,7 @@ function DialogBox({ formData, setFormData, id, image,setImage }) {
             accept=".pdf,.jpg,.jpeg,.png"
             onChange={handleDocumentChange}
             className="file-input"
+            style={{ display: 'none' }}
           />
           <label htmlFor="fileUpload" className="file-upload-button">
             Choose Files

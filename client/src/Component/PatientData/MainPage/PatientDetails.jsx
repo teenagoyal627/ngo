@@ -34,8 +34,8 @@ const AllPatientDetails = () => {
     body: "",
   });
   const [showModal, setShowModal] = useState(false);
-
-const [patientToDelete,setPatientToDelete]=useState(null)
+  const [patientToDelete, setPatientToDelete] = useState(null);
+  const [resultsNotFoundMessage, setResultsNotFoundMessage] = useState("");
 
   useEffect(() => {
     const handleResize = () => {
@@ -50,7 +50,6 @@ const [patientToDelete,setPatientToDelete]=useState(null)
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         document.cookie = `userId=${user.uid};path=/; max-age=86400; SameSite=None; Secure`;
-     
       } else {
         console.log("error in storing the cookies");
       }
@@ -87,16 +86,26 @@ const [patientToDelete,setPatientToDelete]=useState(null)
           </div>
         </div>
       )}
+
       {!loading && patients.length > 0 && (
         <>
           <div className="header-container">
             <h2 className="header-title">Patient Details</h2>
             <div className="button-container">
-             <Searchbox setPatients={setPatients}/>
+              <Searchbox
+                setPatients={setPatients}
+                setResultsNotFoundMessage={setResultsNotFoundMessage}
+              />
               <FilterData setPatients={setPatients} />
             </div>
           </div>
-          
+          {!loading && resultsNotFoundMessage && (
+            <div className="search-container">
+            <div className="results-not-found-message">
+              {resultsNotFoundMessage}
+            </div>
+            </div>
+          )}
           {isMobile ? (
             <TableFormateMobileScreen
               patients={patients}
@@ -105,10 +114,14 @@ const [patientToDelete,setPatientToDelete]=useState(null)
                 printHandler(patient, setSelectedPatient, setShowPrintModal)
               }
               deleteHandler={(id) =>
-                deleteHandler(id, setModalContent, setShowModal,setPatientToDelete)
+                deleteHandler(
+                  id,
+                  setModalContent,
+                  setShowModal,
+                  setPatientToDelete
+                )
               }
               printRef={printTableRef}
-             
             />
           ) : (
             <TableFormateFullScreen
@@ -118,10 +131,14 @@ const [patientToDelete,setPatientToDelete]=useState(null)
                 printHandler(patient, setSelectedPatient, setShowPrintModal)
               }
               deleteHandler={(id) =>
-                deleteHandler(id, setModalContent, setShowModal,setPatientToDelete)
+                deleteHandler(
+                  id,
+                  setModalContent,
+                  setShowModal,
+                  setPatientToDelete
+                )
               }
               printRef={printTableRef}
-            
             />
           )}
 

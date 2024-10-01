@@ -14,7 +14,6 @@ const NgoDetails = ({formData,formChangeHandler}) => {
       <label>Registration No.</label>
       <input
         type="number"
-        //="Enter registration no."
         required
         name="RegistrationNo"
         value={formData.RegistrationNo}
@@ -27,11 +26,10 @@ const NgoDetails = ({formData,formChangeHandler}) => {
       <label>Registration Date</label>
       <input
         type="date"
-        // placeholder="Enter the registration date"
         name="RegistrationDate"
         value={formData.RegistrationDate}
         onChange={formChangeHandler}
-        style={{width:"18rem"}}
+        style={{width:"18rem",cursor:'pointer'}}
 
       />
     </div>
@@ -55,7 +53,6 @@ const NgoDetails = ({formData,formChangeHandler}) => {
       <label>Patient Condition</label>
       <input
         type="text"
-        //="Enter condition of patient"
         name="PatientCondition"
         value={formData.PatientCondition}
         onChange={formChangeHandler}
@@ -69,7 +66,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
         name="HospitalDepartment"
         value={formData.HospitalDepartment}
         onChange={formChangeHandler}
-        style={{width:"18rem"}}
+        style={{width:"18rem",cursor:'pointer'}}
 
       >
         <option value="">Hospital & Department</option>
@@ -90,7 +87,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
         name="AnandamCenter"
         value={formData.AnandamCenter}
         onChange={formChangeHandler}
-        style={{width:"18rem"}}
+        style={{width:"18rem",cursor:'pointer'}}
 
       >
         <option value="">Select Anandam Center</option>
@@ -108,11 +105,10 @@ const NgoDetails = ({formData,formChangeHandler}) => {
       <label>Sent to Home</label>
       <input
         type="date"
-        //="Enter sent to home date"
         name="SentToHome"
         value={formData.SentToHome}
         onChange={formChangeHandler}
-        style={{width:"18rem"}}
+        style={{width:"18rem",cursor:'pointer'}}
 
       />
     </div>
@@ -143,7 +139,7 @@ const NgoDetails = ({formData,formChangeHandler}) => {
     </div>
   </div>
 
-  <div className="form-row">
+  <div className="form-row1">
   {/* <div className="form-column">
      
      <fieldset className="form-group">

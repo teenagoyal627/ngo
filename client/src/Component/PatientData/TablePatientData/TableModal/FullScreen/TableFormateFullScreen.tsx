@@ -144,11 +144,12 @@ const TableFormateFullScreen = ({
               SentToHome: patient.SentToHome || "Unknown",
               OPD: patient.OPD || "Unknown",
               InmateNumber: patient.InmateNumber || "Unknown",
-              BroughtBy: `${patient.BroughtBy?.Name || "Unknown"}, ${
-                patient.BroughtBy?.Address || "Unknown"
-              }, ${patient.BroughtBy?.MobileNumber || "Unknown"}, ${
-                patient.BroughtBy?.Aadhar || "Unknown"
-              }`,
+              BroughtBy: {
+                Name: patient.BroughtBy?.Name || "Unknown",
+                Address: patient.BroughtBy?.Address || "Unknown",
+                Mobile: patient.BroughtBy?.MobileNumber || "Unknown",
+                Aadhar: patient.BroughtBy?.Aadhar || "Unknown"
+              },
               IONumber: patient.IONumber || "Unknown",
               IOName: patient.IOName || "Unknown",
               // PatientsDocments: patient.PatientsDocuments || [],
@@ -158,6 +159,9 @@ const TableFormateFullScreen = ({
                 size: doc.size || "No Size"
               })) || []
             },
+          
+
+            
           },
         ]
       : [];

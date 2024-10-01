@@ -17,6 +17,7 @@ export const handleGenderChange = (e, setFilters, filters) => {
 };
 
 
+
 export const handleClose = (setFilters) => {
   setFilters({
     startDate: "",
@@ -41,6 +42,7 @@ export const filterHandler = async (
   e.preventDefault();
   console.log("filter button is clicked")
   const gender = JSON.stringify(filters.gender);
+  const isSentToHome=filters.isSentToHome;
   try {
     const apiUrl = import.meta.env.VITE_SERVER_URL;
 
@@ -48,6 +50,7 @@ export const filterHandler = async (
       startDate: filters.startDate,
       endDate: filters.endDate,
       gender,
+      isSentToHome,
       userId
     });
     const filteredData = response.data;
@@ -74,3 +77,10 @@ export const filterHandler = async (
   }
 };
 
+export const handleIsSentToHomeChange=(e,setFilters)=>{
+  const {value}=e.target;
+  setFilters((prevFilters)=>({
+    ...prevFilters,
+    isSentToHome:value
+  }))
+}

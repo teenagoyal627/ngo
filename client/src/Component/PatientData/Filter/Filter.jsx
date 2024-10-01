@@ -6,6 +6,7 @@ import {
   handleDateChange,
   handleGenderChange,
   filterHandler,
+  handleIsSentToHomeChange
 } from "../Utilities/FilterUtilities";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -79,6 +80,7 @@ const FilterData = ({ setPatients }) => {
               userId
             )
           }
+          handleIsSentToHomeChange={(e)=>handleIsSentToHomeChange(e,setFilters)}
         />
       )}
       <MessageBox

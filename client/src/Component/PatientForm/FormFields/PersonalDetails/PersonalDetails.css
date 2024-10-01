@@ -39,9 +39,11 @@
   cursor: pointer;
 }
 .image-preview {
-  max-width: 100%;
+  max-width:16.5rem;
+  max-height: 30rem;
   border-radius: 10px;
   padding: 1rem;
+  object-fit: cover;
 }
 .overlay {
   position: absolute;
@@ -52,8 +54,8 @@
   color: white;
   text-align: center;
   padding: 5px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  /* opacity: 0; */
+  transition: none;
 }
 
 .right-section {
@@ -91,6 +93,10 @@
 width: 28rem;
 }
   
+.labelHeading{
+  margin-left: 85px;
+  margin-top: .3rem;
+}
 @media screen and (max-width:1500px) {
   .personalForm {
     width: 55rem;
@@ -142,7 +148,18 @@ width: 28rem;
   .form-column label {
     width: 18rem;
   }
- 
+  .labelHeading{
+    margin-left: 35px;
+    margin-top: .3rem;
+  }
+  .image-preview {
+    border-radius: 10px;
+    padding: 1rem;
+    max-width:10rem;
+    max-height: 20rem;
+  }
+  
+  
   
 }
 

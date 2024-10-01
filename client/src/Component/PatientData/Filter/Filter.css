@@ -11,6 +11,8 @@
 
 .modal-dialog{
   z-index:1090;
+  height: 30rem;
+
 }
 
 
@@ -51,9 +53,9 @@
 .gender-checkbox input[type="checkbox"] {
   margin-right: 5px;
 }
-.modal-dialog{
+/* .modal-dialog{
   height: 30rem;
-}
+} */
 
 .modal-content{
   margin-top: 5rem;

@@ -73,14 +73,17 @@ const apiUrl = import.meta.env.VITE_SERVER_URL;
     const axiosMethod = id ? axios.put : axios.post;
     const axiosUrl = id
       ? `${apiUrl}/data/${id}`
-      // :"http://localhost:5001/insert"
       : `${apiUrl}/insert`;
+      // :"http://localhost:5001/insert"
+
+      const isSentToHome=formData.SentToHome ? true : false
     await axiosMethod(axiosUrl, {
       ...formData,
       UserId:userId,
       PatientsDocuments:uploadedDocumentData,
       // PatientsDocuments: uploadedDocumentData.map(doc => doc.url), 
       ImageUrl: image,
+      IsSentToHome :isSentToHome
     });
     setLoading(false)
     setModalContent({

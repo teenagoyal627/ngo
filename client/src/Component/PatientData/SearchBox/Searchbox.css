@@ -1,4 +1,4 @@
-.search-container {
+.search-container-input {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,7 +32,7 @@
  
   
   @media screen and (max-width:470px) {
-    .search-container {
+    .search-container-input {
         width:20rem;
         margin-left: 1rem;
       }

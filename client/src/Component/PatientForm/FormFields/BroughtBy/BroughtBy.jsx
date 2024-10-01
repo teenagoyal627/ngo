@@ -2,21 +2,21 @@
 /* eslint-disable react/prop-types */
 import React from 'react'
 import Card from '../../../UI/Card'
-
+import './BroughtBy.css'
 const BroughtBy = ({formData,formChangeHandler}) => {
   return (
    <Card>
-    <div className="form-column">
-     
+    <div>
      <fieldset className="form-group">
-        <label>Brought By</label>
+        <label style={{fontWeight:"bold"}}>Brought By</label>
         <div className="brought-by-container">
           <input
            style={{
              display: "flex",
-             width: "18rem",
+             width: "15rem",
              flexWrap: "wrap",
-             gap: "10px",
+             gap: "20px",
+             marginLeft:"1rem"
            }}
            type="text"
            name="BroughtBy.Name"
@@ -27,9 +27,10 @@ const BroughtBy = ({formData,formChangeHandler}) => {
          <input
            style={{
              display: "flex",
-             width: "18rem",
+             width: "15rem",
              flexWrap: "wrap",
-             gap: "10px",
+             gap: "20px",
+             marginLeft:"1rem"
            }}
            type="text"
            name="BroughtBy.Address"
@@ -40,9 +41,11 @@ const BroughtBy = ({formData,formChangeHandler}) => {
          <input
            style={{
              display: "flex",
-             width: "18rem",
+             width: "15rem",
              flexWrap: "wrap",
-             gap: "10px",
+             gap: "20px",
+             marginLeft:"1rem"
+
            }}
            type="text"
            name="BroughtBy.MobileNumber"
@@ -53,9 +56,10 @@ const BroughtBy = ({formData,formChangeHandler}) => {
          <input
            style={{
              display: "flex",
-             width: "18rem",
+             width: "15rem",
              flexWrap: "wrap",
-             gap: "10px",
+             gap: "20px",
+             marginLeft:"1rem"
            }}
            type="text"
            name="BroughtBy.Aadhar"

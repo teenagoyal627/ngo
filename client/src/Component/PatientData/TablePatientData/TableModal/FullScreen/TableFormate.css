@@ -48,3 +48,39 @@
   overflow-x: auto; 
 }
 
+.icon-container{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+}
+.icon-container span {
+  margin-right: auto; 
+}
+
+.icon {
+  margin-left: 8px; 
+}
+
+
+.whatsapp-icon{
+  color: green;
+  font-size: 1.2rem;
+}
+
+
+.location-icon{
+  color: blue;
+  font-size: 1.2rem;
+}
+
+
+.copy-icon{
+  color: black;
+  font-size: 1.2rem;
+}
+
+.icon:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
