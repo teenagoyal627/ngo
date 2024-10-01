@@ -229,7 +229,7 @@ app.put("/data/:id/delete", (req, res) => {
 
 //this is for filter the data
 app.post("/filter", async (req, res) => {
-  const { startDate, endDate, gender, userId } = req.body;
+  const { startDate, endDate, gender, isSentToHome, userId } = req.body;
   // console.log(" filter the start and end and gender are",startDate,endDate,gender,userId)
   const matchStage = { UserId: userId };
 
@@ -244,7 +244,6 @@ app.post("/filter", async (req, res) => {
   }
   if (gender) {
     const genderFilter = JSON.parse(gender);
-    //  console.log(genderFilter)
     const genders = [];
     if (genderFilter.Male) genders.push("Male");
     if (genderFilter.Female) genders.push("Female");
@@ -252,7 +251,10 @@ app.post("/filter", async (req, res) => {
       matchStage.Gender = { $in: genders };
     }
   }
-  // console.log("matchStage:", matchStage)
+  if(isSentToHome!==undefined){
+    matchStage.IsSentToHome=isSentToHome==='true'
+  }
+
   try {
     const filteredPatients = await User.aggregate([{ $match: matchStage }]);
     res.json(filteredPatients);
