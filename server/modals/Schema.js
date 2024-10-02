@@ -51,14 +51,11 @@ const ReactFormDataSchema = new mongoose.Schema({
 
 });
 
-ReactFormDataSchema.pre("findOneAndUpdate", async function (next) {
-  const update = this.getUpdate();
+ReactFormDataSchema.pre("findOneAndUpdate",async function (next){
+  const update=this.getUpdate();
+  const docToUpdate=await this.model.find(this.getQuery())
 
-  // Find the current document to get the existing values
-  const docToUpdate = await this.model.findOne(this.getQuery());
-
-  // Create a search array with updated or existing values
-  const searchArray = [
+  const searchArray=[
     update.UserId || docToUpdate.UserId,
     update.RegistrationNo || docToUpdate.RegistrationNo,
     update.Name || docToUpdate.Name,
@@ -81,69 +78,22 @@ ReactFormDataSchema.pre("findOneAndUpdate", async function (next) {
     update.IONumber || docToUpdate.IONumber,
     update.IOName || docToUpdate.IOName,
     update.AadharNumber || docToUpdate.AadharNumber
-  ];
+  ]
 
-  if (update.ImageUrl || docToUpdate.ImageUrl) {
-    searchArray.push(update.ImageUrl || docToUpdate.ImageUrl);
+  if(update.ImageUrl || docToUpdate.ImageUrl){
+    searchArray.push(update.ImageUrl || docToUpdate.ImageUrl)
   }
 
-  if (update.PatientsDocuments || docToUpdate.PatientsDocuments) {
-    (update.PatientsDocuments || docToUpdate.PatientsDocuments).forEach((document) => {
-      searchArray.push(document.name, document.url);
-    });
+  if(update.PatientsDocuments || docToUpdate.PatientsDocuments){
+    (update.PatientsDocuments || docToUpdate.PatientsDocuments).forEach((document)=>{
+      searchArray.push(document.name,document.url)
+    })
   }
 
-  // Update Search_value
-  update.Search_value = searchArray.filter(Boolean).join("+");
+  update.Search_value=searchArray.filter(Boolean).join('+')
+  next()
 
-  next();
-});
-
-
-// ReactFormDataSchema.pre("save", function (next) {
-//   const doc = this;
-  
-//   const searchArray = [
-//     doc.UserId,
-//     doc.RegistrationNo,
-//     doc.Name,
-//     doc.FatherName,
-//     doc.Gender,
-//     doc.Address,
-//     doc.RegistrationDate,
-//     doc.MeanOfTransportation,
-//     doc.BroughtBy?.Name,         
-//     doc.BroughtBy?.Address,      
-//     doc.BroughtBy?.MobileNumber,
-//     doc.BroughtBy?.Aadhar,
-//     doc.PatientCondition,
-//     doc.LanguageKnown,
-//     doc.HospitalDepartment,
-//     doc.AnandamCenter,
-//     doc.SentToHome,
-//     doc.OPD,
-//     doc.InmateNumber,
-//     doc.IONumber,
-//     doc.IOName,
-//     doc.AadharNumber
-//   ];
-
-//   if (doc.ImageUrl) {
-//     searchArray.push(doc.ImageUrl);
-//   }
-
-//   if (doc.PatientsDocuments && doc.PatientsDocuments.length > 0) {
-//     doc.PatientsDocuments.forEach((document) => {
-//       searchArray.push(document.name, document.url);
-//     });
-//   }
-
-//   doc.Search_value = searchArray
-//     .filter(Boolean)    
-//     .join("\+");        
-
-//   next();
-// });
+})
 
 const User = mongoose.model("ngoportal", ReactFormDataSchema);
 module.exports = User;
