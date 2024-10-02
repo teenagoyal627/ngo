@@ -111,7 +111,8 @@ app.post("/insert", async (req, res) => {
   try {
     const formData = new User({
       ...req.body,
-      RegistrationDate: req.body.RegistrationDate || new Date().toLocaleDateString('en-US')
+      RegistrationDate:
+        req.body.RegistrationDate || new Date().toLocaleDateString("en-US"),
     });
     await formData.save();
     res.status(200).json({ success: true, id: formData._id });
@@ -129,9 +130,8 @@ app.get("/data", (req, res) => {
   User.find({ UserId: userId, deleted: false })
     .sort({ RegistrationDate: -1 })
     .then((users) => res.json(users))
-    .catch((err) => res.json(err,"error comes to fetch the data"));
+    .catch((err) => res.json(err, "error comes to fetch the data"));
 });
-
 
 //this is for edit the patient form
 app.get("/data/:id", (req, res) => {
@@ -178,7 +178,7 @@ app.get("/data/:id", (req, res) => {
 //     IONumber,
 //     IOName,
 //   } = fields;
-  
+
 //   const searchValue = [
 //     UserId,
 //     Name,
@@ -206,11 +206,10 @@ app.get("/data/:id", (req, res) => {
 //     .filter(Boolean) // This will filter out empty values
 //     .join("+")
 //     .trim();
-  
+
 //   console.log("Constructed Search Value:", searchValue); // Debugging log
 //   return searchValue;
 // };
-
 
 //this code is for delete teh data form the database
 app.put("/data/:id/delete", (req, res) => {
@@ -251,8 +250,8 @@ app.post("/filter", async (req, res) => {
       matchStage.Gender = { $in: genders };
     }
   }
-  if(isSentToHome!==undefined){
-    matchStage.IsSentToHome=isSentToHome==='true'
+  if (isSentToHome !== undefined) {
+    matchStage.IsSentToHome = isSentToHome === "true";
   }
 
   try {
@@ -264,21 +263,47 @@ app.post("/filter", async (req, res) => {
   }
 });
 
-
 //this code is for search the patient..
-app.get("/search",async(req,res)=>{
-  const searchTerm=req.query.q;
-  try{
-    const results=await User.find({
-      $text:{$search:searchTerm},
-      deleted:false,
-    }, {UserId: 1, RegistrationNo: 1, Name: 1, FatherName: 1, Address: 1, PatientsDocuments:1,ImageUrl:1 } 
-  )
-    res.json(results)
-  }catch(error){
-    res.status(500).json({message:error.message})
+app.get("/search", async (req, res) => {
+  const searchTerm = req.query.q;
+  try {
+    const results = await User.find(
+      {
+        $text: { $search: searchTerm },
+        deleted: false,
+      },
+      {
+    UserId: 1,
+    RegistrationNo:1,
+    Name:1,
+    FatherName:1,
+    Gender:1,
+    Address:1,
+    RegistrationDate:1,
+    MeanOfTransportation:1,
+    "BroughtBy.Name":1,         
+    "BroughtBy.Address":1,      
+    "BroughtBy.MobileNumber":1,
+    "BroughtBy.Aadhar":1,
+    PatientCondition:1,
+    LanguageKnown:1,
+    HospitalDepartment:1,
+    AnandamCenter:1,
+    SentToHome:1,
+    OPD:1,
+    InmateNumber:1,
+    IONumber:1,
+    IOName:1,
+    AadharNumber:1,
+    PatientsDocuments: 1,
+    ImageUrl: 1,
+      }
+    );
+    res.json(results);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
-})
+});
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
