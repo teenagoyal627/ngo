@@ -47,66 +47,6 @@ app.put("/data/:id", async (req, res) => {
   }
 });
 
-// app.post("/insert", async (req, res) => {
-//   try {
-//     const {
-//       userId,
-//       RegistrationNo,
-//       Name,
-//       FatherName,
-//       Gender,
-//       Address,
-//       RegistrationDate,
-//       MeanOfTransportation,
-//       BroughtBy,
-//       PatientCondition,
-//       LanguageKnown,
-//       HospitalDepartment,
-//       AnandamCenter,
-//       SentToHome,
-//       OPD,
-//       InmateNumber,
-//       IONumber,
-//       IOName,
-//       AadharNumber,
-//       ImageUrl,
-//       PatientsDocuments,
-//     } = req.body;
-
-//     const formData = new User({
-//       UserId: userId,
-//       RegistrationNo,
-//       Name,
-//       FatherName,
-//       Gender,
-//       Address,
-//       RegistrationDate,
-//       MeanOfTransportation,
-//       BroughtBy,
-//       PatientCondition,
-//       LanguageKnown,
-//       HospitalDepartment,
-//       AnandamCenter,
-//       SentToHome,
-//       OPD,
-//       InmateNumber,
-//       IONumber,
-//       IOName,
-//       AadharNumber,
-//       ImageUrl,
-//       PatientsDocuments,
-//     });
-
-//     await formData.save();
-//     res.status(200).json({ success: true, id: formData._id });
-//     console.log(res)
-//     console.log(formData)
-//   } catch (err) {
-//     console.error("Error occurred: ", err);
-//     res.status(500).send("Server error");
-//   }
-// });
-
 app.post("/insert", async (req, res) => {
   try {
     const formData = new User({
@@ -123,11 +63,13 @@ app.post("/insert", async (req, res) => {
 });
 
 app.get("/data", (req, res) => {
-  const { userId } = req.query;
-  if (!userId) {
-    return res.status(400).json({ error: "UserId is required" });
-  }
-  User.find({ UserId: userId, deleted: false })
+  // const { userId } = req.query;
+  // if (!userId) {
+  //   return res.status(400).json({ error: "UserId is required" });
+  // }
+  User.find({
+    //  UserId: userId, 
+     deleted: false })
     .sort({ RegistrationDate: -1 })
     .then((users) => res.json(users))
     .catch((err) => res.json(err, "error comes to fetch the data"));
@@ -138,78 +80,8 @@ app.get("/data/:id", (req, res) => {
   const { id } = req.params;
   User.findById(id)
     .then((patient) => res.json(patient))
-    .catch((err) => res.status(500).json({ message: "Server error" }));
+    .catch((err) => res.status(500).json({ message: "Server error",err }));
 });
-// app.put("/data/:id", (req, res) => {
-//   const { id } = req.params;
-
-//   const updatedData = req.body;
-//   console.log(updatedData)
-//   const updatedSearchValue = buildSearchValue(updatedData);
-//   console.log(updatedSearchValue);
-//   const updatedPatientData = {
-//     ...updatedData,
-//     Search_value: updatedSearchValue,
-//   };
-
-//   User.findByIdAndUpdate(id, updatedPatientData, { new: true })
-//     .then((patient) => res.json(patient))
-//     .catch((err) => res.status(500).json({ message: "Server error" }));
-// });
-// const buildSearchValue = (fields) => {
-//   const {
-//     UserId,
-//     Name,
-//     FatherName,
-//     Gender,
-//     Address,
-//     AadharNumber,
-//     LanguageKnown,
-//     RegistrationNo,
-//     RegistrationDate,
-//     MeanOfTransportation,
-//     PatientCondition,
-//     HospitalDepartment,
-//     AnandamCenter,
-//     SentToHome,
-//     BroughtBy,
-//     OPD,
-//     InmateNumber,
-//     IONumber,
-//     IOName,
-//   } = fields;
-
-//   const searchValue = [
-//     UserId,
-//     Name,
-//     FatherName,
-//     Gender,
-//     Address,
-//     AadharNumber,
-//     LanguageKnown,
-//     RegistrationNo,
-//     RegistrationDate,
-//     MeanOfTransportation,
-//     PatientCondition,
-//     HospitalDepartment,
-//     AnandamCenter,
-//     SentToHome,
-//     BroughtBy?.Name,
-//     BroughtBy?.Address,
-//     BroughtBy?.MobileNumber,
-//     BroughtBy?.Aadhar,
-//     OPD,
-//     InmateNumber,
-//     IONumber,
-//     IOName,
-//   ]
-//     .filter(Boolean) // This will filter out empty values
-//     .join("+")
-//     .trim();
-
-//   console.log("Constructed Search Value:", searchValue); // Debugging log
-//   return searchValue;
-// };
 
 //this code is for delete teh data form the database
 app.put("/data/:id/delete", (req, res) => {
@@ -221,8 +93,8 @@ app.put("/data/:id/delete", (req, res) => {
       }
       res.json({ message: "user marked as deleted", deleted: updatedUser });
     })
-    .catch((error) => {
-      res.status(400).json({ message: "Failed to mark as deleted." });
+    .catch((err) => {
+      res.status(400).json({ message: "Failed to mark as deleted", err});
     });
 });
 
@@ -230,7 +102,11 @@ app.put("/data/:id/delete", (req, res) => {
 app.post("/filter", async (req, res) => {
   const { startDate, endDate, gender, isSentToHome, userId } = req.body;
   // console.log(" filter the start and end and gender are",startDate,endDate,gender,userId)
-  const matchStage = { UserId: userId };
+  const matchStage = { 
+    UserId: userId ,
+    deleted:false
+  
+  };
 
   if (startDate || endDate) {
     matchStage.RegistrationDate = {};
@@ -258,7 +134,7 @@ app.post("/filter", async (req, res) => {
     const filteredPatients = await User.aggregate([{ $match: matchStage }]);
     res.json(filteredPatients);
   } catch (err) {
-    console.error("Error in aggregation pipeline:", err);
+    console.error("Error in aggregation pipeline:", err.message);
     res.status(500).send("Server error");
   }
 });
