@@ -1,7 +1,7 @@
 const express = require("express");
 const connectDB = require("./db");
-const Patient = require("./modals/Schema");
-const User= require("./modals/Schema")
+const {Patient,UserData} = require("./modals/Schema");
+const bcrypt=require("bcrypt")
 
 const cors = require("cors");
 require("dotenv").config();
@@ -73,11 +73,13 @@ app.post("/signup",async(req,res)=>{
     if(existingUser){
       return res.status(400).json({error:"Email already in use"})
     }
-    const newUser=new User({
+
+     const hashedPassword=await bcrypt.hash(password,10)
+    const newUser=new UserData({
       userId,
       username,
       email,
-      password
+      password:hashedPassword
     })
     await newUser.save()
     res.status(200).json({
