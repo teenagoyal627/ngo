@@ -1,6 +1,8 @@
 const express = require("express");
 const connectDB = require("./db");
-const User = require("./modals/Schema");
+const Patient = require("./modals/Schema");
+const User= require("./modals/Schema")
+
 const cors = require("cors");
 require("dotenv").config();
 const bodyParser = require("body-parser");
@@ -26,7 +28,7 @@ connectDB();
 app.put("/data/:id", async (req, res) => {
   const id = req.params.id;
   try {
-    const existingUser = await User.findById(id).lean();
+    const existingUser = await Patient.findById(id).lean();
     if (!existingUser) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -38,7 +40,7 @@ app.put("/data/:id", async (req, res) => {
           ? req.body.PatientsDocuments
           : existingUser.PatientsDocuments,
     };
-    const updatedUser = await User.findByIdAndUpdate(id, updatedData, {
+    const updatedUser = await Patient.findByIdAndUpdate(id, updatedData, {
       new: true,
     });
     res.json(updatedUser);
@@ -49,7 +51,7 @@ app.put("/data/:id", async (req, res) => {
 
 app.post("/insert", async (req, res) => {
   try {
-    const formData = new User({
+    const formData = new Patient({
       ...req.body,
       RegistrationDate:
         req.body.RegistrationDate || new Date().toLocaleDateString("en-US"),
@@ -62,12 +64,44 @@ app.post("/insert", async (req, res) => {
   }
 });
 
+
+app.post("/signup",async(req,res)=>{
+  try{
+    const{userId,username,email,password}=req.body;
+
+    const existingUser=await User.findOne({email})
+    if(existingUser){
+      return res.status(400).json({error:"Email already in use"})
+    }
+    const newUser=new User({
+      userId,
+      username,
+      email,
+      password
+    })
+    await newUser.save()
+    res.status(200).json({
+      success:true,
+      message:"User registered successfully",
+      userId:newUser._id
+    })
+  }catch(error){
+    console.log("Error occoured during signup..",error)
+    res.status(500).json({error:"Server error"})
+  }
+})
+
+
+
+
+
+
 app.get("/data", (req, res) => {
   // const { userId } = req.query;
   // if (!userId) {
   //   return res.status(400).json({ error: "UserId is required" });
   // }
-  User.find({
+  Patient.find({
     //  UserId: userId, 
      deleted: false })
     .sort({ RegistrationDate: -1 })
@@ -78,7 +112,7 @@ app.get("/data", (req, res) => {
 //this is for edit the patient form
 app.get("/data/:id", (req, res) => {
   const { id } = req.params;
-  User.findById(id)
+  Patient.findById(id)
     .then((patient) => res.json(patient))
     .catch((err) => res.status(500).json({ message: "Server error",err }));
 });
@@ -86,7 +120,7 @@ app.get("/data/:id", (req, res) => {
 //this code is for delete teh data form the database
 app.put("/data/:id/delete", (req, res) => {
   const { id } = req.params;
-  User.findByIdAndUpdate(id, { deleted: true }, { new: true })
+  Patient.findByIdAndUpdate(id, { deleted: true }, { new: true })
     .then((updatedUser) => {
       if (!updatedUser) {
         return res.status(404).json({ message: "User not found" });
@@ -131,7 +165,7 @@ app.post("/filter", async (req, res) => {
   }
 
   try {
-    const filteredPatients = await User.aggregate([{ $match: matchStage }]);
+    const filteredPatients = await Patient.aggregate([{ $match: matchStage }]);
     res.json(filteredPatients);
   } catch (err) {
     console.error("Error in aggregation pipeline:", err.message);
@@ -143,7 +177,7 @@ app.post("/filter", async (req, res) => {
 app.get("/search", async (req, res) => {
   const searchTerm = req.query.q;
   try {
-    const results = await User.find(
+    const results = await Patient.find(
       {
         $text: { $search: searchTerm },
         deleted: false,
@@ -171,6 +205,7 @@ app.get("/search", async (req, res) => {
     IONumber:1,
     IOName:1,
     AadharNumber:1,
+    State:1,
     PatientsDocuments: 1,
     ImageUrl: 1,
       }

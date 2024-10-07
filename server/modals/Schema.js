@@ -45,7 +45,7 @@ const ReactFormDataSchema = new mongoose.Schema({
   // PatientsDocuments:{type:[String]}
   PatientsDocuments: [PatientsDocumentsSchema],
   deleted:{type:Boolean, default:false},
-
+  State :{type:String},
   Search_value:{type:String}
 
 
@@ -77,7 +77,9 @@ ReactFormDataSchema.pre("findOneAndUpdate",async function (next){
     update.InmateNumber || docToUpdate.InmateNumber,
     update.IONumber || docToUpdate.IONumber,
     update.IOName || docToUpdate.IOName,
-    update.AadharNumber || docToUpdate.AadharNumber
+    update.AadharNumber || docToUpdate.AadharNumber,
+    update.State || docToUpdate.State
+
   ]
 
   if(update.ImageUrl || docToUpdate.ImageUrl){
@@ -95,5 +97,16 @@ ReactFormDataSchema.pre("findOneAndUpdate",async function (next){
 
 })
 
-const User = mongoose.model("ngoportal", ReactFormDataSchema);
-module.exports = User;
+const UserSchema=new mongoose.Schema({
+  userId:{type:String,required:true},
+  username:{type:String, required:true},
+  email:{type:String,required:true,unique:true},
+  password:{type:String, required:true},
+
+})
+
+
+const Patient = mongoose.model("PatientDetails", ReactFormDataSchema);
+const UserData = mongoose.model("UserDetails", UserSchema);
+
+module.exports ={Patient,UserData};
