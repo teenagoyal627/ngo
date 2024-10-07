@@ -89,7 +89,7 @@ app.post("/signup",async(req,res)=>{
     })
   }catch(error){
     console.log("Error occoured during signup..",error)
-    res.status(500).json({error:"Server error"})
+    res.status(500).json({error:"Server error",error})
   }
 })
 
