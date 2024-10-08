@@ -42,11 +42,10 @@ const ReactFormDataSchema = new mongoose.Schema({
   IOName: { type: String },
   AadharNumber: { type: Number },
   ImageUrl: { type: String },
-  // PatientsDocuments:{type:[String]}
   PatientsDocuments: [PatientsDocumentsSchema],
   deleted:{type:Boolean, default:false},
+  Search_value:{type:String},
   State :{type:String},
-  Search_value:{type:String}
 
 
 });
