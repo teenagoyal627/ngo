@@ -1,4 +1,3 @@
-Navigate to the project directory: cd repo-name.
 Navigate to the client folder: cd ngo_portal/client.
 Install dependencies(if not done already): npm install.
 Start the client: npm run dev.
