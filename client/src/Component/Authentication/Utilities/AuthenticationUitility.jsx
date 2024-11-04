@@ -115,8 +115,9 @@ export const signupSubmitHandler = async (
         console.log(userDetails)
           const apiUrl = import.meta.env.VITE_SERVER_URL;
          console.log(apiUrl)
-          await axios.post(`${apiUrl}/signup`,userDetails)
-
+          
+         await axios.post(`${apiUrl}/signup`,userDetails)
+  // await axios.post("http://localhost:5001/signup",userDetails)
           setModalContent({
             title: "Success",
             body: "Successfully Logged In!",

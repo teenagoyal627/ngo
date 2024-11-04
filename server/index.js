@@ -69,7 +69,7 @@ app.post("/signup",async(req,res)=>{
   try{
     const{userId,username,email,password}=req.body;
 
-    const existingUser=await User.findOne({email})
+    const existingUser=await UserData.findOne({email})
     if(existingUser){
       return res.status(400).json({error:"Email already in use"})
     }
