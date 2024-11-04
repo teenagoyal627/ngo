@@ -1,0 +1,12 @@
+.chart-row{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 20px ;
+  margin-left: 3rem;
+}
+
+.chart-row>*{
+  flex: 1;
+  margin: 0 90px;
+}

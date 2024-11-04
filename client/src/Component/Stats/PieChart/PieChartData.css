@@ -1,0 +1,15 @@
+.chart-container{
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    padding-left: 1px;
+    margin-left: 2rem;
+}
+.chart-container h4{
+    border:2px solid black;
+    padding: 5px;
+    width:42rem;
+}
+.piechart{
+    margin-left:5rem
+}

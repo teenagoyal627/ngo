@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import imageIcon from "./ImageIcon.png";
 import { Modal } from "react-bootstrap";
@@ -36,7 +37,7 @@ const ImageWithModal = ({ imageUrl,showIcon }) => {
         <Modal.Body>
           <img
             src={imageUrl}
-            alt="patient image"
+            alt="No Patient Image"
             style={{ width: "28rem", height: "20rem", cursor: "zoom-in" }}
           />
         </Modal.Body>

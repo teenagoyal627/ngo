@@ -9,7 +9,10 @@ const FormFooter = ({
   setFormData,
   image,
   id,
-  setImage }) => {
+  setImage,
+  userId
+
+ }) => {
   return (
     <Card>
       <div>
@@ -19,6 +22,7 @@ const FormFooter = ({
           id={id}
           image={image}
           setImage={setImage}
+          userId={userId}
         />
       </div>
     </Card>

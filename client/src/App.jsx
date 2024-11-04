@@ -5,9 +5,9 @@ import Signup from "./Component/Authentication/Signup/Signup";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import AllPatientDetails from "./Component/PatientData/MainPage/PatientDetails";
-// import ShowPatientData from "./Component/PatientForm/DialogBox/ShowPatientData";
 import FrontPage from "./Component/FrontPage/BeforeLogin/FrontPage";
 import PageAfterLogin from "./Component/FrontPage/AfterLogin/PageAfterLogin";
+import Stats from "./Component/Stats/Stats";
 
 const isAuthenticated=()=>{
   return localStorage.getItem("isAuthenticated")==="true"
@@ -24,6 +24,7 @@ const App = () => {
           <Route path="/signup">{isAuthenticated() ?<Redirect to='/ngoPage'/>:<Signup/>}</Route>
           <Route path="/ngoPage" component={PageAfterLogin} />
           <Route path="/patientdata" component={AllPatientDetails} />
+        <Route path="/stats" component={Stats}/>
         </Switch>
       </div>
     </Router>

@@ -7,6 +7,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import { auth } from "../../../Firebase";
+import axios from "axios";
 
 export const loginSubmitHandler = (
   e,
@@ -91,6 +92,7 @@ export const signupSubmitHandler = async (
   setShowModal,
   
 ) => {
+  console.log("signup button is clicked...")
   try {
     e.preventDefault();
     const auth = getAuth();
@@ -99,10 +101,22 @@ export const signupSubmitHandler = async (
       signupFields.email,
       signupFields.password
     )
-      .then((userCredential) => {
+      .then(async(userCredential) => {
         const userId = userCredential.user.uid;
-        // console.log(userId)
+        console.log(userId)
         if (userId) {
+
+          const userDetails={
+            userId,
+            username:signupFields.userName,
+            email:signupFields.email,
+            password:signupFields.password
+          }
+        console.log(userDetails)
+          const apiUrl = import.meta.env.VITE_SERVER_URL;
+         console.log(apiUrl)
+          await axios.post(`${apiUrl}/signup`,userDetails)
+
           setModalContent({
             title: "Success",
             body: "Successfully Logged In!",

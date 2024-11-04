@@ -20,19 +20,26 @@ const handleClick=()=>{
     body:"Do you really want to logout form dashboard."
   })
   setShowModal(true)
+  // history.replace('/login')
 }
+
 const handleConfirm=()=>{
   localStorage.clear()
   sessionStorage.clear()
   localStorage.setItem("isAuthenticated", "false");
   history.replace('/login')
+  setShowModal(false)
+ 
 }
+
   return (
     <header className='header'>
       <div className='logo-container'>
         <Link to='/ngoPage' className='logo-link'>
           <img src={SapnaLogo} alt='logo of ngo' className='logo-image' />
-          <h3 className='ngo-name'>Anandam Home For The Homeless</h3>
+          <h3 className='ngo-name full-name'>Anandam Home The For Homeless</h3>
+          <h3 className='ngo-name short-name'>Anandam Home </h3>
+
           {/* Anandam-home for the homeless */}
         </Link> 
       </div>
@@ -41,7 +48,7 @@ const handleConfirm=()=>{
         <ul>
           <li><Link to='/form' className={`link ${location.pathname === '/form' ? 'active':''}`}>New Application</Link></li>
           <li><Link to='/patientdata' className={`link ${location.pathname === '/patientdata' ? 'active':''}`}>Browse</Link></li>
-
+          {/* <li><Link to='/stats' className={`link ${location.pathname === '/stats' ? 'active':''}`}>Stats</Link></li> */}
          <li className='logout' onClick={handleClick}>Logout</li>
         </ul>
       </nav>

@@ -91,11 +91,7 @@ const apiUrl = import.meta.env.VITE_SERVER_URL;
       body: "Patient Data successfully submitted.",
     });
     setShowModal(true);
-    // console.log(id)
-
-    // const newTabUrl=`http://ngoPatientData/patient/${id}`;
-    // window.open(newTabUrl,'_blank')
-  
+   
   } catch (error) {
     setLoading(false)
     setModalContent({
@@ -105,7 +101,6 @@ const apiUrl = import.meta.env.VITE_SERVER_URL;
     setShowModal(true);
   }
 };
-//dialogBoxConfirm(setShowModal, modalContent, history, setFormData, e,id,formData)
 
 export const dialogBoxConfirm = (
   setShowModal,

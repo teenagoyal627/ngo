@@ -11,7 +11,8 @@ const FormFields = ({
   formChangeHandler,
   setFormData,
   id,
-  setImage
+  setImage,
+  userId
 }) => {
   return (
     <div>
@@ -32,6 +33,7 @@ const FormFields = ({
         image={image}
         id={id}
         setImage={setImage}
+        userId={userId}
       />
     </div>
   );

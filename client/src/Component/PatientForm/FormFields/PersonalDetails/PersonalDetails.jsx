@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import Card from '../../../UI/Card';
 import './PersonalDetails.css'
+import StateInput from './StateInput';
 import patientAvatar from "./patientAvatar.png"; // Assuming the avatar is saved in the root or 'images' folder
 
 const PersonalDetails = ({
@@ -71,6 +72,17 @@ const PersonalDetails = ({
           </div>
 
           <div className="form-row">
+            {/* <div className="form-column">
+              <label>Husband Name</label>
+              <input
+                type="text"
+                name="HusbandName"
+                value={formData.HusbandName}
+                onChange={formChangeHandler}
+                style={{width:"18rem"}}
+
+              />
+            </div> */}
             <div className="form-column">
               <label>Address</label>
               <input
@@ -125,6 +137,21 @@ const PersonalDetails = ({
               </select>
             </div>
           </div>
+          {/* <div className="form-row">
+          <div className="form-column">
+              <label>Address</label>
+              <input
+                type="text"
+                //="Enter the address"
+                name="Address"
+                value={formData.Address}
+                onChange={formChangeHandler}
+                style={{width:"18rem"}}
+
+              />
+            </div>
+            <StateInput formData={formData} formChangeHandler={formChangeHandler}/>
+          </div> */}
         </div>
       </div>
     </Card>

@@ -36,15 +36,16 @@
 }
 
 .filter-section {
-  margin-bottom: 15px;
+  margin-bottom: 1px;
 }
 
 .filter-section label {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 1px;
 }
 
 .gender-checkbox {
+  margin-top: 1rem;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -53,16 +54,18 @@
 .gender-checkbox input[type="checkbox"] {
   margin-right: 5px;
 }
-/* .modal-dialog{
-  height: 30rem;
-} */
 
 .modal-content{
   margin-top: 5rem;
   z-index: 1100; 
-  margin-left: 1rem;
+  margin-left: 10rem;
 }
-@media screen and (min-width:100px) and (max-width:1000px) {
+.select-dropdown{
+  width: 29rem;
+  height: 2.5rem;
+}
+
+@media screen and (max-width:412px) {
 
   .filter_button {
     color:black;
@@ -73,11 +76,37 @@
 
   }
   
-  .filter-modal-content{
-    width: 15rem;
-    margin-top: 10rem;
+  .modal-content{
+    width: 20rem;
+    margin-top: 5rem;
     margin-left: 1rem;
-    height: 30rem;
+  }
+  .select-dropdown{
+    width: 17.8rem;
+    height: 2.5rem;
+  }
+}
+
+
+@media screen and (max-width:360px) {
+
+  .filter_button {
+    color:black;
+    margin-top: .1rem;
+    width: 17rem;
+    padding: 8px 5px;
+    margin-left: 1rem;
+
+  }
+  
+  .modal-content{
+    width: 20rem;
+    margin-top: 5rem;
+    margin-left: 1rem;
+  }
+  .select-dropdown{
+    width: 17.8rem;
+    height: 2.5rem;
   }
 }
 

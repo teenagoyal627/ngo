@@ -5,7 +5,7 @@ import { CiSearch } from "react-icons/ci";
 import './Searchbox.css'; 
 import axios from 'axios';
 
-const Searchbox = ({setPatients,setResultsNotFoundMessage}) => {
+const Searchbox = ({setPatients,setResultsNotFoundMessage,setSearchCount}) => {
   const[searchTerm,setSearchTerm]=useState("")
  
   const handleSearch = async (e) => {
@@ -14,19 +14,22 @@ const Searchbox = ({setPatients,setResultsNotFoundMessage}) => {
       const apiUrl = import.meta.env.VITE_SERVER_URL;
 
       const response = await axios.get(`${apiUrl}/search?q=${searchTerm}`);
-      console.log(response.data)
+      // console.log(response.data)
 
       if(response.data.length ===0){
         setResultsNotFoundMessage("No results found..")
         console.log("no results found")
+        setSearchCount(0)
       }
       else{
         setResultsNotFoundMessage("")
         setPatients(response.data)
+        setSearchCount(response.data.length)
       }
     } catch (error) {
       console.error("Error fetching search results:", error);
       setResultsNotFoundMessage("Error fetching the search results...")
+      setSearchCount(0)
     }
   };
 

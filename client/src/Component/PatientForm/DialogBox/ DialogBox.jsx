@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { MessageBox } from "../../MessageBox";
 import { dialogBoxSubmitHandler, dialogBoxConfirm } from "./UtilitiesDialogBox";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import axios from "axios";
 import { MdDeleteOutline } from "react-icons/md";
 import "./DialogBox.css";
@@ -19,7 +19,7 @@ import '../../PatientData/MainPage/Loading.css'
 //   return null;
 // };
 
-function DialogBox({ formData, setFormData, id, image,setImage }) {
+function DialogBox({ formData, setFormData, id, image,setImage,userId }) {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({
     title: "",
@@ -27,7 +27,7 @@ function DialogBox({ formData, setFormData, id, image,setImage }) {
   });
 
   const [documents, setDocuments] = useState([]);
-  const [userId, setUserId] = useState(null);
+  // const [userId, setUserId] = useState(null);
   const [fileInputEvent, setFileInputEvent] = useState(null);
  const[loading,setLoading]=useState(false)
   const history = useHistory();
@@ -55,16 +55,16 @@ function DialogBox({ formData, setFormData, id, image,setImage }) {
     }
 
     //this is for store the userid in the cookies..
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        document.cookie = `userId=${user.uid};path=/; max-age=86400 ; SameSite=None; Secure`;
-        setUserId(user.uid);
-      } else {
-        history.replace("/login");
-      }
-    });
+    // const unsubscribe = onAuthStateChanged(auth, (user) => {
+    //   if (user) {
+    //     document.cookie = `userId=${user.uid};path=/; max-age=86400 ; SameSite=None; Secure`;
+    //     setUserId(user.uid);
+    //   } else {
+    //     history.replace("/login");
+    //   }
+    // });
 
-    return () => unsubscribe();
+    // return () => unsubscribe();
   }, [apiUrl, auth, history, id]);
 
   const handleDocumentChange = (e) => {

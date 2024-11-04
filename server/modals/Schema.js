@@ -133,25 +133,20 @@ ReactFormDataSchema.pre("save", function (next) {
     });
   }
 
-  // Create the Search_value by joining non-falsy values with '+'
   this.Search_value = searchArray.filter(Boolean).join("+");
   next();
 });
 
-// Middleware to handle the updating of Search_value before findOneAndUpdate
 ReactFormDataSchema.pre("findOneAndUpdate", async function (next) {
   try {
-    // Get the update object
     const update = this.getUpdate();
 
-    // Fetch the current document based on the query
     const docToUpdate = await this.model.findOne(this.getQuery());
 
     if (!docToUpdate) {
       return next(new Error("Document not found."));
     }
 
-    // Merge existing fields with updated fields
     const mergedData = {
       ...docToUpdate.toObject(),
       ...update,
@@ -162,7 +157,6 @@ ReactFormDataSchema.pre("findOneAndUpdate", async function (next) {
       PatientsDocuments: update.PatientsDocuments || docToUpdate.PatientsDocuments,
     };
 
-    // Construct the searchArray with updated values
     const searchArray = [
       mergedData.UserId,
       mergedData.RegistrationNo,
@@ -190,7 +184,6 @@ ReactFormDataSchema.pre("findOneAndUpdate", async function (next) {
       mergedData.ImageUrl,
     ];
 
-    // Include PatientsDocuments details
     if (mergedData.PatientsDocuments && mergedData.PatientsDocuments.length > 0) {
       mergedData.PatientsDocuments.forEach((document) => {
         if (document.name) searchArray.push(document.name);
@@ -198,7 +191,6 @@ ReactFormDataSchema.pre("findOneAndUpdate", async function (next) {
       });
     }
 
-    // Set the Search_value in the update object
     update.Search_value = searchArray.filter(Boolean).join("+");
     next();
   } catch (error) {

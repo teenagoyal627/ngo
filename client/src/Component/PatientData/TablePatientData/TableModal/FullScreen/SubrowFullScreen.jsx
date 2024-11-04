@@ -54,7 +54,22 @@ const SubrowFullScreen = ({ personalDetails, ngoDetails }) => {
                 <td>{personalDetails.Name}</td>
                 <td>{personalDetails.FatherName}</td>
                 <td>{personalDetails.Gender}</td>
-                <td>{personalDetails.Address}</td>
+                <td>
+                <div className="icon-container">
+                        <span>{personalDetails.Address}</span>
+                        <a
+                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                           personalDetails.Address
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="icon location-icon"
+                        >
+                          <FaLocationDot />
+                        </a>
+                      </div>
+
+                </td>
                 <td>{personalDetails.LanguageKnown}</td>
                 <td>{personalDetails.AadharNumber}</td>
               </tr>
@@ -98,7 +113,7 @@ const SubrowFullScreen = ({ personalDetails, ngoDetails }) => {
                 <th>Inmate Number</th>
                 <th>IO Name</th>
                 <th>IO Number</th>
-                <th>Patients Documents</th>
+                <th>Attached Documents</th>
               </tr>
             </thead>
             <tbody>
@@ -143,15 +158,12 @@ const SubrowFullScreen = ({ personalDetails, ngoDetails }) => {
                     <td>{ngoDetails.BroughtBy.Name}</td>
                     <td>
                       <div className="icon-container">
-                        <span>{ngoDetails.BroughtBy.Address}</span>
-
                         {/* /search is for the endpoint to the google map
                       2. api=1 means it tells to google map that request is coming from an api instead of normal browser search
                       3. ? is used for as a delimeter which separate the base url from the query parameter
                       4. &query that specifies a search term or parameter that the server should process.
                       5.  encodeURIComponent this is used for passing the certain charaters with their corresponding utf-8 encoded */}
-                        {/* {console.log(encodeURIComponent(ngoDetails.BroughtBy.Address))} */}
-
+                        <span>{ngoDetails.BroughtBy.Address}</span>
                         <a
                           href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
                             ngoDetails.BroughtBy.Address

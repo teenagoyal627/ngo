@@ -304,3 +304,14 @@ header {
   
   
 }
+
+@media screen and (max-width:360px) {
+  
+  .header-right img {
+    max-width: 320px;
+    margin-right:1rem;
+    margin-left: 1rem;
+  }
+  
+  
+}

@@ -36,6 +36,7 @@ const AllPatientDetails = () => {
   const [showModal, setShowModal] = useState(false);
   const [patientToDelete, setPatientToDelete] = useState(null);
   const [resultsNotFoundMessage, setResultsNotFoundMessage] = useState("");
+  const [searchCount, setSearchCount] = useState(0);
 
   useEffect(() => {
     const handleResize = () => {
@@ -56,21 +57,16 @@ const AllPatientDetails = () => {
       setUserId(user.uid);
     });
     const apiUrl = import.meta.env.VITE_SERVER_URL;
-    if (userId) {
-      axios
-        .get(`${apiUrl}/data`, {
-          params: { userId },
-        })
-
-        .then((response) => {
-          setPatients(response.data);
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error("Error fetching data:", error);
-          setLoading(false);
-        });
-    }
+    axios
+      .get(`${apiUrl}/data`)
+      .then((response) => {
+        setPatients(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      });
 
     return () => unsubscribe;
   }, [auth, userId]);
@@ -95,15 +91,20 @@ const AllPatientDetails = () => {
               <Searchbox
                 setPatients={setPatients}
                 setResultsNotFoundMessage={setResultsNotFoundMessage}
+                setSearchCount={setSearchCount}
               />
               <FilterData setPatients={setPatients} />
             </div>
           </div>
-          {!loading && resultsNotFoundMessage && (
+          {!loading && (
             <div className="search-container">
-            <div className="results-not-found-message">
-              {resultsNotFoundMessage}
-            </div>
+              <div className="results-not-found-message">
+                {resultsNotFoundMessage ? (
+                  <p>{resultsNotFoundMessage}</p>
+                ) : (
+                  <p>Search Results: {searchCount}</p>
+                )}
+              </div>
             </div>
           )}
           {isMobile ? (

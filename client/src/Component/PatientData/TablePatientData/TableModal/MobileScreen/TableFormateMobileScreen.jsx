@@ -6,6 +6,10 @@ import { MdDelete } from "react-icons/md";
 import { FaPrint } from "react-icons/fa6";
 import Pagination from "../../../Pagination/Pagination";
 import "./TableFormateMobile.css";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaRegCopy } from "react-icons/fa6";
+import { BsWhatsapp } from "react-icons/bs";
+
 const TableFormateMobileScreen = ({
   patients,
   editHandler,
@@ -14,6 +18,22 @@ const TableFormateMobileScreen = ({
   printRef,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [messageVisible, setMessageVisible] = useState(false);
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        setMessageVisible(true);
+        setTimeout(() => {
+          setMessageVisible(false);
+        }, 2000);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const recordsPerPage = 10;
   const lastIndex = currentPage * recordsPerPage;
   const firstIndex = lastIndex - recordsPerPage;
@@ -70,9 +90,19 @@ const TableFormateMobileScreen = ({
               <strong>Father's Name:</strong>
               <span>{patient.FatherName}</span>
             </div>
-            <div className="patient-row">
+            <div className="patient-row icon-containers">
               <strong>Address:</strong>
               <span>{patient.Address}</span>
+              <a
+                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                            patient.Address
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="icon location-icon"
+                        >
+                          <FaLocationDot />
+                        </a>
             </div>
             <div className="patient-row">
               <strong>Language Known:</strong>
@@ -124,13 +154,57 @@ const TableFormateMobileScreen = ({
               <span>{patient.InmateNumber}</span>
             </div>
             <div className="patient-row">
-              <strong>Brought By:</strong>
-              <span>{`
-              ${patient.BroughtBy?.Name || "Not Mention"},
-              ${patient.BroughtBy?.Address || "Not Mention"},
-              ${patient.BroughtBy?.MobileNumber || "Not Mention"},
-              ${patient.BroughtBy?.Aadhar || "Not Mention"},
-              `}</span>
+              <strong>Brought By Name:</strong>
+              <span>{`${patient.BroughtBy?.Name || "Not Mention"}`}</span>
+             
+            </div>
+            <div className="patient-row icon-containers">
+              <strong>Brought By Address:</strong>
+              <span>{`${patient.BroughtBy?.Address || "Not Mention"}`}</span>
+              <a
+                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                            patient.BroughtBy.Address
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="icon location-icon"
+                        >
+                          <FaLocationDot />
+                        </a>
+            </div>
+            <div className="patient-row">
+              <strong>Brought By MobNo:</strong>
+              <span>{`${patient.BroughtBy?.MobileNumber || "Not Mention"}`}</span>
+              <FaRegCopy
+                          className="icon copy-icon"
+                          onClick={() => {
+                            copyToClipboard(patient.BroughtBy.Mobile);
+                            setMessageVisible(true);
+                          }}
+                        />
+                        <a
+                          href={`https://web.whatsapp.com/send?phone=${patient.BroughtBy.Mobile}&text=नमस्ते, हम सपना ngo की तरफ से मैसेज कर रहे है`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="icon whatsapp-icon"
+                        >
+                          <BsWhatsapp />
+                        </a>
+                        {messageVisible && (
+                <span
+                  style={{
+                    marginLeft: "50rem",
+                    marginTop: "1rem",
+                    color: "green",
+                  }}
+                >
+                  Phone number copied!
+                </span>
+              )}
+            </div>
+            <div className="patient-row">
+              <strong>Brought By Aadhar:</strong>
+              <span>{`${patient.BroughtBy?.Aadhar || "Not Mention"}`}</span>
             </div>
             <div className="patient-row">
               <strong>IO Number:</strong>
@@ -141,7 +215,7 @@ const TableFormateMobileScreen = ({
               <span>{patient.IOName}</span>
             </div>
             <div className="patient-row">
-              <strong>Uploaded Documents:</strong>
+              <strong>Attached Documents:</strong>
               {patient.PatientsDocuments &&
               patient.PatientsDocuments.length > 0 ? (
                 patient.PatientsDocuments.map((doc, docIndex) => (

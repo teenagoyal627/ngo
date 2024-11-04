@@ -58,9 +58,17 @@ const ModalFilter = ({
                 onChange={handleDateChange}
               />
             </div>
+            <div className="filter-section">
+              <label style={{marginBottom:"1rem"}}>Is Sent To Home</label>
+              <select className="select-dropdown" onChange={handleIsSentToHomeChange} value={filters.isSentToHome}>
+                <option value="">Select value</option>
+                <option value="true">True</option>
+                <option value="false">False</option>
+              </select>
+            </div>
 
             <div className="filter-section">
-              <label>Gender</label>
+              <label style={{marginTop:"1rem"}}>Gender</label>
               <div className="gender-checkbox">
                 <input
                   type="checkbox"
@@ -79,14 +87,7 @@ const ModalFilter = ({
               </div>
              
             </div>
-            <div className="filter-section">
-              <label>IsSentToHome</label>
-              <select onChange={handleIsSentToHomeChange} value={filters.isSentToHome}>
-                <option value="">Select value</option>
-                <option value="true">True</option>
-                <option value="false">False</option>
-              </select>
-            </div>
+           
 
           </div>
           <div className="modal-footer">
