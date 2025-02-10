@@ -6,7 +6,7 @@ body {
   height: 100%;
   box-sizing: border-box;
   font-family: Arial, sans-serif;
-  overflow-x: hidden; 
+  /* overflow-x: hidden;  */
   overflow-y: auto;
 }
 
@@ -129,7 +129,7 @@ nav ul li:hover {
 
 @media screen and (max-width: 1500px) {
   body {
-    overflow-x: hidden; 
+    /* overflow-x: hidden;  */
     overflow-y: auto;
   }
  
@@ -189,7 +189,7 @@ nav ul li:hover {
 
 @media screen and (max-width: 950px) {
   body {
-    overflow-x: hidden; 
+    /* overflow-x: hidden;  */
     overflow-y: auto;
   }
  
@@ -259,7 +259,7 @@ nav ul li:hover {
 
 @media screen and (max-width: 680px) {
   body {
-    overflow-x: hidden; 
+    /* overflow-x: hidden;  */
     overflow-y: auto;
   }
  

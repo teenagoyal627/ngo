@@ -2,7 +2,7 @@
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    height: 50vh;
+    height: 100vh;
     padding-left: 1px;
     /* margin-left: 2rem; */
 }
@@ -11,3 +11,62 @@
     padding: 5px;
     width:37rem;
 }
+
+.linegraph-container {
+    display: flex;
+    flex-direction: column;
+    height: 150vh;
+    position: relative; 
+}
+/* 
+.linegraph-container h4 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 4px;
+    width: auto;
+} */
+
+.linegraph-container .filter-box {
+    position: absolute;
+    top: 50px;
+    left: 550px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.linegraph-container .filter-box label {
+    font-weight: bold;
+    margin-right: 0.5rem;
+    color: #333;
+}
+
+.linegraph-container select {
+    padding: 0.4rem 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    background-color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.linegraph-container select:hover {
+    border-color: #888;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.linegraph-container .recharts-wrapper {
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+}
+

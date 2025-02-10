@@ -68,11 +68,7 @@ const PersonalDetails = ({
 
               />
             </div>
-           
-          </div>
-
-          <div className="form-row">
-            {/* <div className="form-column">
+            <div className="form-column">
               <label>Husband Name</label>
               <input
                 type="text"
@@ -82,7 +78,10 @@ const PersonalDetails = ({
                 style={{width:"18rem"}}
 
               />
-            </div> */}
+            </div>
+          </div>
+
+          <div className="form-row">
             <div className="form-column">
               <label>Address</label>
               <input
@@ -108,9 +107,6 @@ const PersonalDetails = ({
               />
             </div>
            
-          </div>
-          <div className="form-row">
-         
             <div className="form-column">
               <label>Aadhar number</label>
               <input
@@ -123,6 +119,9 @@ const PersonalDetails = ({
 
               />
             </div>
+          </div>
+          <div className="form-row">
+         
             <div className="form-column">
               <label>Gender</label>
               <select
@@ -136,9 +135,7 @@ const PersonalDetails = ({
                 <option value="Female">Female</option>
               </select>
             </div>
-          </div>
-          {/* <div className="form-row">
-          <div className="form-column">
+            <div className="form-column">
               <label>Address</label>
               <input
                 type="text"
@@ -151,7 +148,9 @@ const PersonalDetails = ({
               />
             </div>
             <StateInput formData={formData} formChangeHandler={formChangeHandler}/>
-          </div> */}
+
+          </div>
+        
         </div>
       </div>
     </Card>

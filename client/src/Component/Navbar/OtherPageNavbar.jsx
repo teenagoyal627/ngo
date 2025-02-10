@@ -48,7 +48,7 @@ const handleConfirm=()=>{
         <ul>
           <li><Link to='/form' className={`link ${location.pathname === '/form' ? 'active':''}`}>New Application</Link></li>
           <li><Link to='/patientdata' className={`link ${location.pathname === '/patientdata' ? 'active':''}`}>Browse</Link></li>
-          {/* <li><Link to='/stats' className={`link ${location.pathname === '/stats' ? 'active':''}`}>Stats</Link></li> */}
+          <li><Link to='/stats' className={`link ${location.pathname === '/stats' ? 'active':''}`}>Stats</Link></li>
          <li className='logout' onClick={handleClick}>Logout</li>
         </ul>
       </nav>

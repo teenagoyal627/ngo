@@ -50,52 +50,6 @@ const ReactFormDataSchema = new mongoose.Schema({
 
 });
 
-// ReactFormDataSchema.pre("findOneAndUpdate",async function (next){
-//   const update=this.getUpdate();
-//   const docToUpdate=await this.model.find(this.getQuery())
-
-//   const searchArray=[
-//     update.UserId || docToUpdate.UserId,
-//     update.RegistrationNo || docToUpdate.RegistrationNo,
-//     update.Name || docToUpdate.Name,
-//     update.FatherName || docToUpdate.FatherName,
-//     update.Gender || docToUpdate.Gender,
-//     update.Address || docToUpdate.Address,
-//     update.RegistrationDate || docToUpdate.RegistrationDate,
-//     update.MeanOfTransportation || docToUpdate.MeanOfTransportation,
-//     (update.BroughtBy && update.BroughtBy.Name) || docToUpdate.BroughtBy?.Name,
-//     (update.BroughtBy && update.BroughtBy.Address) || docToUpdate.BroughtBy?.Address,
-//     (update.BroughtBy && update.BroughtBy.MobileNumber) || docToUpdate.BroughtBy?.MobileNumber,
-//     (update.BroughtBy && update.BroughtBy.Aadhar) || docToUpdate.BroughtBy?.Aadhar,
-//     update.PatientCondition || docToUpdate.PatientCondition,
-//     update.LanguageKnown || docToUpdate.LanguageKnown,
-//     update.HospitalDepartment || docToUpdate.HospitalDepartment,
-//     update.AnandamCenter || docToUpdate.AnandamCenter,
-//     update.SentToHome || docToUpdate.SentToHome,
-//     update.OPD || docToUpdate.OPD,
-//     update.InmateNumber || docToUpdate.InmateNumber,
-//     update.IONumber || docToUpdate.IONumber,
-//     update.IOName || docToUpdate.IOName,
-//     update.AadharNumber || docToUpdate.AadharNumber,
-//     update.State || docToUpdate.State
-
-//   ]
-
-//   if(update.ImageUrl || docToUpdate.ImageUrl){
-//     searchArray.push(update.ImageUrl || docToUpdate.ImageUrl)
-//   }
-
-//   if(update.PatientsDocuments || docToUpdate.PatientsDocuments){
-//     (update.PatientsDocuments || docToUpdate.PatientsDocuments).forEach((document)=>{
-//       searchArray.push(document.name,document.url)
-//     })
-//   }
-
-//   update.Search_value=searchArray.filter(Boolean).join('+')
-//   next()
-
-// })
-
 
 ReactFormDataSchema.pre("save", function (next) {
   const searchArray = [

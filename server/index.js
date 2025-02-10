@@ -218,6 +218,22 @@ app.get("/search", async (req, res) => {
   }
 });
 
+
+app.get('/map',async(req,res)=>{
+  try {
+    const stateCount = await Patient.aggregate([{
+      "$group": {"_id": "$State", "count":{"$sum": 1}}
+    },
+    { "$sort": {"count": -1}}
+  ]);
+    res.json(stateCount);
+    console.log(stateCount)
+  } catch (err) {
+    console.error("Error in aggregation pipeline:", err.message);
+    res.status(500).send("Server error");
+  }
+})
+
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);

@@ -8,6 +8,7 @@ import AllPatientDetails from "./Component/PatientData/MainPage/PatientDetails";
 import FrontPage from "./Component/FrontPage/BeforeLogin/FrontPage";
 import PageAfterLogin from "./Component/FrontPage/AfterLogin/PageAfterLogin";
 import Stats from "./Component/Stats/Stats";
+import IndiaMap from "./Component/Stats/MapData/IndiaMap";
 
 const isAuthenticated=()=>{
   return localStorage.getItem("isAuthenticated")==="true"
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/ngoPage" component={PageAfterLogin} />
           <Route path="/patientdata" component={AllPatientDetails} />
         <Route path="/stats" component={Stats}/>
+        <Route path='/indiaMap' component={IndiaMap}/>
         </Switch>
       </div>
     </Router>
@@ -33,9 +35,9 @@ const App = () => {
 
 export default App;
 
-// yarn start
+// npm run dev
 // start mongodb
-//run server by node Server.js in terminal
+//run server by node index.js in terminal
 
 
 
