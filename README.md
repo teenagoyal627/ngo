@@ -47,7 +47,7 @@ The **NGO Management System** is a web-based application designed to efficiently
 - **Database:** MongoDB (Mongoose ODM)
 
 
-####Starting the Client
+#### Starting the Client
 ```sh 
 #Navigate to client folder
 cd ngo_portal/client 
@@ -57,7 +57,7 @@ npm install
 npm run dev
 ```
 
-####Starting the Server 
+#### Starting the Server 
 ```
 # Navigate to the server folder
 cd ngo_portal/server
