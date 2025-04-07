@@ -1,66 +1,150 @@
-# NGO Management System
+# 🏥 NGO Management System
 
-## Introduction
-The **NGO Management System** is a web-based application designed to efficiently manage patient records. This system allows users to add, edit, delete and browse patient details while ensuring secure access through authentication.
+**NGO Management System** is a web-based full-stack application built to manage and organize patient records for NGOs. It supports secure user authentication, structured patient data entry, and powerful CRUD functionalities. Users can upload documents, browse, search, edit, and print patient details through a clean and responsive interface.
 
-## Features
-### 1. Home Page
-- New users can **sign up** or **log in** to access the NGO Management system.
-- Secure authentication using **Firebase authentication** 
+---
 
-![Home Page](Screenshots/homePage1.png)
-![Home Page](Screenshots/homePage2.png)
 
-### 2. Patient Details Page 
-- Users can **add patient details** using a structured form. 
-- The form is divided into **three sections**: 
-1. **Personal Details** (Name, Age, Gender, Contact Info, etc.)
+## 🚀 Table of Contents
 
-![Patients Personal Details](Screenshots/personalDetails1.png)
-2. **NGO Details** (Patients Reg. Date, Inmate number, OPD number, etc.)
+- [🧠 Introduction](#-introduction)
+- [⚙️ Tech Stack](#-tech-stack)
+- [📑 Functionalities](#-functionalities)
+- [💡 Component-wise Explanation](#-component-wise-explanation)
+  - [1. Authentication](#1-authentication)
+  - [2. Patient Registration](#2-patient-registration)
+  - [3. Browse Patients](#3-browse-patients)
+  - [4. Upload Documents](#4-upload-documents)
+  - [5. Edit/Delete/Print](#5-editdeleteprint)
+  - [6. Logout](#6-logout)
+- [📦 Folder Setup](#-folder-setup)
 
-![Patients Personal Details](Screenshots/personalDetails2.png)
-3. **Upload Documents** (Medical Reports, Aadhar Card, etc.)
+---
 
-![Patients Personal Details](Screenshots/personalDetails3.png)
+## 🧠 Introduction
 
-### 3. Browse Patients
-- View all patients in a **tabular format**.
+The NGO Management System aims to:
+- Maintain and manage patient records
+- Store personal and medical documentations
+- Offer seamless CRUD operations
+- Enable secure, real-time access through authentication
+- Streamline NGO health data workflows
 
-![Patients Personal Details](Screenshots/browserDetails1.png)
-- Perform **search, edit, delete, and print** operations on patient records.
+---
 
+
+## ⚙️ Tech Stack 
+
+### 🔧 Frontend
+- **React.js**
+- **React Router**
+- **CSS**
+- **Axios**
+
+### 🛠 Backend
+- **Node.js**
+- **Express.js**
+- **MongoDB (with Mongoose)**
+
+### 🔐 Authentication
+- **Firebase Authentication**
+
+---
+
+
+## 📑 Functionalities
+
+- 👤 Secure login & signup for NGO users
+- 🏥 Add patients with structured form data
+- 🗃 Upload supporting documents
+- 🔍 Browse, search, and filter patient entries
+- ✏️ Edit and delete patient records
+- 🖨 Print records
+- 🚪 Logout with session cleanup
+
+---
+## 💡 Component-wise Explanation
+
+### 1. 🔐 Authentication
+
+- Authentication via **Firebase**
+- Allows secure **login/signup**
+- Only authenticated users can access the system
+
+![Home Page](Screenshots/homePage1.png)  
+![Login](Screenshots/homePage2.png)
+
+---
+
+### 2. 🏥 Patient Registration
+
+- Form split into **three sections**:
+  1. **Personal Details**: Name, Age, Gender, Mobile, etc.
+  2. **NGO Details**: Registration Date, Inmate Number, OPD Number
+  3. **Upload Section**: Aadhar, Reports, etc.
+
+![Personal](Screenshots/personalDetails1.png)  
+![NGO Info](Screenshots/personalDetails2.png)  
+![Upload Docs](Screenshots/personalDetails3.png)
+
+---
+### 3. 📋 Browse Patients
+
+- View all records in a responsive **tabular format**
+- Includes:
+  - Pagination
+  - Search bar
+  - Filters
+
+![Browse Table](Screenshots/browserDetails1.png)  
+![Search](Screenshots/filterDetails.png)
+
+- Edit patient details inline
+- Delete records with confirmation prompt
+- Print details directly from browser
 ![Patients Personal Details](Screenshots/printDetails.png) 
-
 ![Patients Personal Details](Screenshots/deleteDetail.png)
 
-![Patients Personal Details](Screenshots/filterDetails.png)
 
-### 4. Logout 
-- Secure Logout, Clear cache.
+---
 
-![Patients Personal Details](Screenshots/logout.png)
+### 6. 🚪 Logout
 
-## Tech Stack
-- **Frontend:** React.js (Create React App)
-- **Backend:** Node.js & Express.js
-- **Database:** MongoDB (Mongoose ODM)
+- Clears session and cached tokens
+- Redirects user to Login page
 
+![Logout](Screenshots/logout.png)
 
-#### Starting the Client
-```sh 
-#Navigate to client folder
-cd ngo_portal/client 
-# Install Dependencies 
-npm install 
-# Start the client
+---
+
+### Starting the Client
+
+## 📦 Folder Setup
+
+### Starting the Client
+```bash
+# Navigate to client folder
+cd ngo_portal/client
+
+# Install dependencies
+npm install
+
+# Start React frontend
 npm run dev
 ```
+---
 
-#### Starting the Server 
-```
-# Navigate to the server folder
+## Started the Server
+
+```bash
+# Navigate to server folder
 cd ngo_portal/server
+
+# Install backend dependencies
+npm install
+
+# Start the backend server
+node index.js
 
 # Start the server
 node index.js
