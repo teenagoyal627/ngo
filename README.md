@@ -117,7 +117,6 @@ The NGO Management System aims to:
 
 ---
 
-### Starting the Client
 
 ## 📦 Folder Setup
 
@@ -127,14 +126,14 @@ The NGO Management System aims to:
 cd ngo_portal/client
 
 # Install dependencies
-npm install
+yarn add
 
 # Start React frontend
 npm run dev
 ```
 ---
 
-## Started the Server
+### Started the Server
 
 ```bash
 # Navigate to server folder
@@ -144,8 +143,5 @@ cd ngo_portal/server
 npm install
 
 # Start the backend server
-node index.js
-
-# Start the server
 node index.js
 ```
